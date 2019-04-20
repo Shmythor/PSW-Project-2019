@@ -66,4 +66,7 @@ public class Player : MonoBehaviour
         idle,
         moving
     }
+
+
+    
 }
