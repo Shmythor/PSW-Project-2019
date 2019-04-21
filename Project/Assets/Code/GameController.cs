@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject Fabric_Fruit;
+    public GameObject TileMap;
 
     // Start is called before the first frame update
     void Start()

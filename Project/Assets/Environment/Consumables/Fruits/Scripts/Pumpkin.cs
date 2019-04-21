@@ -10,34 +10,20 @@ public class Pumpkin : Fruit
     //purple = Resources.Load("./Sprites/Grape-white", typeof(Sprite)) as Sprite;
     
 
-    // References
-    public Pumpkin() {
-        this.type = 1;
-        setPropsByType();
-    }
-
-    public Pumpkin(int type) {
-        this.type = type;
-        setPropsByType();
-    }
+    // References  
 
     void Start() {
-        this.FabricFruit = GameObject.Find("FabricFruit");
-        this.type = 1; 
+        this.FabricFruit = GameObject.Find("FabricFruit");        
         setPropsByType();
-    }
+    }    
 
     void setPropsByType() {        
         if(this.type == 1) {
-            this.calories = 10;
-            GetComponent<SpriteRenderer>().sprite = null;
-            
+            this.calories = 10;            
         } else if (this.type == 2) {
             this.calories = 20;
-            //GetComponent(SpriteRenderer).sprite = white;
         } else {
             this.calories = 30;
-            //GetComponent(SpriteRenderer).sprite = purple;
         }
     }
 }
