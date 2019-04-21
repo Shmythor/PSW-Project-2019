@@ -3,29 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fruit : MonoBehaviour
+public abstract class Fruit : MonoBehaviour
 {
     // References
-    Rigidbody2D rb2d;
-    BoxCollider2D bc2d;
+    public int calories; 
+    protected int type;  
+    protected GameObject FabricFruit;
 
-    private float deltaTime;
-    private float verInput;
-    private float horInput;
+    void Start() {
+        this.FabricFruit = GameObject.Find("FabricFruit");
+    }    
 
-
-    public void Init()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-        bc2d = GetComponent<BoxCollider2D>();
-    }
-
-    void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag.Equals("fruit")) {
-            Destroy(other.gameObject);
-            Debug.Log("entered");
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.transform.tag == "Player") {
+            FabricFruit.SendMessage("consumeCalories", this.calories);
+            Destroy(gameObject); 
         }
-        Debug.Log("32e");
     }
+
+
 
 }

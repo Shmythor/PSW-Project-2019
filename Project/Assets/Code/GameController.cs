@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject fruitPrefab;
+    public GameObject Fabric_Fruit;
 
     // Start is called before the first frame update
     void Start()
     {
-        createFruit();
+
     }
 
     // Update is called once per frame
@@ -18,9 +18,6 @@ public class GameController : MonoBehaviour
         
     }
 
-    private void createFruit() {
-        Instantiate(fruitPrefab, transform.position, Quaternion.identity);
-    }
-
+    
     
 }
