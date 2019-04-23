@@ -5,22 +5,34 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // References
-    Rigidbody2D rb2d;
+    //          References
+    private Rigidbody2D rb2d;
+    private Movement_Component mvCom;
+    private Health_Component healthCom;
 
 
-
+    //          General
+    [SerializeField] private bool movement_enable;
     private float deltaTime;
-    private float verInput;
-    private float horInput;
+
+
+    //          Inputs
+    [Header("Inputs")]
+    [SerializeField] private float verInput;
+    [SerializeField] private float horInput;
     [SerializeField] private float moveMagnitude;
-    [SerializeField] private States movementStates = States.idle;
+    
+    
+    //          Stats
+    [Header("Stats")]
     [SerializeField] private float speed = 5f;
 
 
     public void Init()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        mvCom = new Movement_Component(this, speed);
+        healthCom = new Health_Component(this);
     }
 
 
@@ -29,28 +41,11 @@ public class Player : MonoBehaviour
     public void tick(float d)
     {
         deltaTime = d;
-        updateStates();
-        switch (movementStates)
-        {
-            case States.idle:
-
-            break;
-            case States.moving:
-                movement();
-            break;
-        }
+        mvCom.movement(horInput, verInput);
     }
 
-    private void movement()
-    {
-        //rb2d.AddForce(new Vector2(horInput, verInput) * speed);
-        rb2d.velocity = new Vector2(horInput, verInput) * speed;
-    }
 
-    private void updateStates()
-    {
-        movementStates = moveMagnitude > 0 ? States.moving : States.idle;
-    }
+
 
     public void updateInputs(float ver, float hor, float magnitude)
     {
@@ -60,10 +55,11 @@ public class Player : MonoBehaviour
     }
 
 
-
-    enum States
+    public void die()
     {
-        idle,
-        moving
+
     }
+
+
+
 }
