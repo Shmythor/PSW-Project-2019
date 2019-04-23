@@ -8,7 +8,7 @@ public class Movement_Component
     private Rigidbody2D rb2d;
 
     //          General
-    private bool enabled;
+    private bool enabled = true;
 
 
     //          Stats
