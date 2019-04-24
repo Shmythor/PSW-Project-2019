@@ -7,9 +7,10 @@ public class Player : MonoBehaviour
 {
     //          References
     private Rigidbody2D rb2d;
+    private Animator animator;
     private Movement_Component mvCom;
     private Health_Component healthCom;
-
+    private animation_controller animCom;
 
     //          General
     [SerializeField] private bool movement_enable;
@@ -30,9 +31,11 @@ public class Player : MonoBehaviour
 
     public void Init()
     {
+        animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         mvCom = new Movement_Component(this, speed);
         healthCom = new Health_Component(this);
+        animCom = new animation_controller(animator);
     }
 
 
@@ -42,8 +45,17 @@ public class Player : MonoBehaviour
     {
         deltaTime = d;
         mvCom.movement(horInput, verInput);
+        updateAnimatorParamaters();
     }
 
+
+
+    private void updateAnimatorParamaters()
+    {
+        float verDir = Mathf.Clamp(verInput, -1, 1);
+        float horDIr = Mathf.Clamp(horInput, -1, 1);
+        animCom.updateAnimator(verDir, horDIr);
+    }
 
 
 
