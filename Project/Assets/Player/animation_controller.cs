@@ -18,6 +18,5 @@ public class animation_controller
     {
         anim.SetFloat("direction_up",dirUp);
         anim.SetFloat("direction_right",dirRight);
-
     }
 }
