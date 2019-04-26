@@ -528,8 +528,23 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 2876082018597341824}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1800533487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4468745726907314822, guid: 31b928c0a90113343bc8f1f29cc9600b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2876082018597341824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &1800533491
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800533487}
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
