@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     //          References
     private Rigidbody2D rb2d;
     private Animator animator;
+    public GameObject initialMap; 
     private Movement_Component mvCom;
     private Health_Component healthCom;
     private animation_controller animCom;
@@ -26,19 +27,17 @@ public class Player : MonoBehaviour
     
     //          Stats
     [Header("Stats")]
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 4f;
 
-
-    public void Init()
-    {
+    void Start () {
         animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         mvCom = new Movement_Component(this, speed);
         healthCom = new Health_Component(this);
         animCom = new animation_controller(animator);
+
+        Camera.main.GetComponent<MainCamera>().SetBound(initialMap);
     }
-
-
 
 
     public void tick(float d)

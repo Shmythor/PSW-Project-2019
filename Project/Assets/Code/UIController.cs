@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public Text caloryText;
-    private int calories;
+    public Text caloryText, damageText;
+    private int calories, cont, damage;
 
      /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -15,20 +15,31 @@ public class UIController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        calories = 0;
-        caloryText.text = calories.ToString();
+        calories = 0; cont = 0; damage = 0;
+        setCaloriesText();
+        setDamageText();
     }
 
     void updateCalories(int c) {
-        calories += c;
-        if(calories >= 100) {
-            restorePlayerEnergy();
-            calories -= 100;
+        cont += c; calories += c;
+        
+        if(cont >= 100) {
+            cont -= 100;
+            restorePlayerEnergy();            
         }
+        setCaloriesText();
+    }
+
+    void setCaloriesText() {
         caloryText.text = calories.ToString();
     }
 
+     void setDamageText() {
+        damageText.text = damage.ToString() + "%";
+    }
+
     void restorePlayerEnergy() {
-        //TODO
+        damage = 0;
+        setDamageText();
     }
 }

@@ -14,7 +14,7 @@ public class Input_Manager : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
-        player.Init();
+        //player.Init(); Ahora está en Player start()
     }
 
     private void FixedUpdate()
