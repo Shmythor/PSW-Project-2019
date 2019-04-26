@@ -5,7 +5,7 @@ using UnityEngine;
 public class Input_Manager : MonoBehaviour
 {
 
-    Player player;
+    IPlayer player;
 
     float deltaTime;
     float verInput, horInput;
@@ -13,7 +13,7 @@ public class Input_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<IPlayer>();
         player.Init();
     }
 

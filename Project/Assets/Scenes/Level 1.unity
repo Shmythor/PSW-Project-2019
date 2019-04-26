@@ -528,6 +528,13 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 2876082018597341824}
   m_PrefabAsset: {fileID: 0}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.2, y: 0.35}
+  m_Direction: 0
 --- !u!1 &2095173628 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4529339864364762540, guid: d808b5097ef08f74eb8679aa3a3bc4f4,
@@ -606,7 +613,9 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4468745726907314827, guid: 31b928c0a90113343bc8f1f29cc9600b, type: 3}
+    - {fileID: 4468745726907314826, guid: 31b928c0a90113343bc8f1f29cc9600b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 31b928c0a90113343bc8f1f29cc9600b, type: 3}
 --- !u!1001 &4529339862689221200
 PrefabInstance:
