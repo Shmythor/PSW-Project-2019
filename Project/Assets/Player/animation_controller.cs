@@ -16,7 +16,17 @@ public class animation_controller
 
     public void updateAnimator(float dirUp, float dirRight)
     {
-        anim.SetFloat("direction_up",dirUp);
-        anim.SetFloat("direction_right",dirRight);
+
+        anim.SetFloat("direction_up", floatToInt(dirUp));
+        anim.SetFloat("direction_right", floatToInt(dirRight));
+    }
+
+
+
+    private int floatToInt(float value)
+    {
+        if (value == 0)
+            return 0;
+        return value > 0 ? 1 : -1;
     }
 }

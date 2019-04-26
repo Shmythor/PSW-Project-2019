@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health_Component
 {
     //          References
-    private Player player;
+    private IPlayer player;
 
 
     //          Health Points
@@ -17,14 +17,14 @@ public class Health_Component
     private bool invincible = false;
 
     //              Default constructor
-    public Health_Component(Player player)
+    public Health_Component(IPlayer player)
     {
         this.player = player;
     }
 
 
     //              Constructor with parametrs
-    public Health_Component(Player player, int hearts, float health, float timeInivcibly)
+    public Health_Component(IPlayer player, int hearts, float health, float timeInivcibly)
     {
         this.player = player;
         this.health = health;

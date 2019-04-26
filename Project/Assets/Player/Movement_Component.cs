@@ -14,9 +14,9 @@ public class Movement_Component
     //          Stats
     private float speed;
 
-    public Movement_Component(Player player, float speed)
+    public Movement_Component(Rigidbody2D rb2d, float speed)
     {
-        rb2d = player.GetComponent<Rigidbody2D>();
+        this.rb2d = rb2d;
         this.speed = speed;
     }
 

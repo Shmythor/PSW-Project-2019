@@ -5,7 +5,7 @@ using UnityEngine;
 public class Input_Manager : MonoBehaviour
 {
 
-    Player player;
+    IPlayer player;
 
     float deltaTime;
     float verInput, horInput;

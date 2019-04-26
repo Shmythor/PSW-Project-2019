@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPlayer
 {
     //          References
     private Rigidbody2D rb2d;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     void Start () {
         animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-        mvCom = new Movement_Component(this, speed);
+        mvCom = new Movement_Component(rb2d, speed);
         healthCom = new Health_Component(this);
         animCom = new animation_controller(animator);
 
