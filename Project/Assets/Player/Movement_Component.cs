@@ -27,7 +27,9 @@ public class Movement_Component
         if (enabled == false)
             return;
         //horInput = verInput == 0 ? horInput : 0;
-        rb2d.velocity = new Vector2(horInput, verInput) * speed;
+        // The character is moving slower when the movement is diagonal
+        float actualSpeed = horInput != 0 && verInput != 0 ? speed * 0.75f : speed;
+        rb2d.velocity = new Vector2(horInput, verInput) * actualSpeed;
     }
 
 
