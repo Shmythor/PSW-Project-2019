@@ -6,14 +6,18 @@ using UnityEngine;
 public class Player : MonoBehaviour, IPlayer
 {
     //          References
+    [Header("References")]
+    [SerializeField] private GameObject initialMap;
+    [SerializeField] private GameObject Dust;
     private Rigidbody2D rb2d;
     private Animator animator;
-    public GameObject initialMap; 
     private Movement_Component mvCom;
     private Health_Component healthCom;
     private animation_controller animCom;
+    
 
     //          General
+    [Header("General")]
     [SerializeField] private bool movement_enable;
     private float deltaTime;
 
@@ -29,13 +33,19 @@ public class Player : MonoBehaviour, IPlayer
     [Header("Stats")]
     [SerializeField] private float speed = 4f;
 
+    
+
+
+    
+
     void Start () {
         animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         mvCom = new Movement_Component(rb2d, speed);
+        mvCom.setDustParticles(Dust);
         healthCom = new Health_Component(this);
         animCom = new animation_controller(animator);
-
+        
         Camera.main.GetComponent<MainCamera>().SetBound(initialMap);
     }
 
@@ -43,7 +53,7 @@ public class Player : MonoBehaviour, IPlayer
     public void tick(float d)
     {
         deltaTime = d;
-        mvCom.movement(horInput, verInput);
+        mvCom.movement(horInput, verInput, moveMagnitude);
         updateAnimatorParamaters();
     }
 
