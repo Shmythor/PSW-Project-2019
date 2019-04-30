@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health_Component
 {
     //          References
-    private IPlayer player;
+    private ICharacter character;
 
 
     //          Health Points
@@ -13,20 +13,20 @@ public class Health_Component
     private float health = 100;
 
     //          Stats
-    private float timeInvincible = 1f;
+    private float timeInvincible = 1f; //TODO Invincible
     private bool invincible = false;
 
     //              Default constructor
-    public Health_Component(IPlayer player)
+    public Health_Component(ICharacter character)
     {
-        this.player = player;
+        this.character = character;
     }
 
 
     //              Constructor with parametrs
-    public Health_Component(IPlayer player, int hearts, float health, float timeInivcibly)
+    public Health_Component(ICharacter character, int hearts, float health, float timeInivcibly)
     {
-        this.player = player;
+        this.character = character;
         this.health = health;
         this.hearts = hearts;
         this.timeInvincible = timeInivcibly;
@@ -53,7 +53,7 @@ public class Health_Component
         health -= damage;
         invincible = true;
         if (isDead())
-            player.die();
+            character.die();
     }
 
 

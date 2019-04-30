@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IPlayer
+public class Player : MonoBehaviour, IPlayer, ICharacter
 {
     //          References
     [Header("References")]
@@ -78,12 +78,17 @@ public class Player : MonoBehaviour, IPlayer
 
     public void die()
     {
-
+        // TODO player dies
     }
 
 
 
-    
+    public void reciveDamage(float damage)
+    {
+        healthCom.reciveDamage(damage);
+    }
 
     
+    public Vector2 getPosition() { return transform.position;  }
+
 }
