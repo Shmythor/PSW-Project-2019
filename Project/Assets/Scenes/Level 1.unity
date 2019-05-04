@@ -638,6 +638,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614279571}
   m_CullTransparentMesh: 0
+--- !u!1 &709438518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 460804106504731609, guid: fd652237dff1cc74fa17ed7720d94866,
+    type: 3}
+  m_PrefabInstance: {fileID: 460804106866331446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &709438519
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709438518}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.5
 --- !u!1 &968918424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460804106504731589, guid: fd652237dff1cc74fa17ed7720d94866,
+        type: 3}
+      propertyPath: speed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd652237dff1cc74fa17ed7720d94866, type: 3}

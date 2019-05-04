@@ -10,6 +10,7 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
     private Animator animator;
     private Health_Component healthCom;
     private IStateEnemy state;
+    private animation_controller animCom;
 
     // Stats
     [Header("Stats")]
@@ -25,12 +26,16 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
         rb2d = GetComponent<Rigidbody2D>();
         healthCom = new Health_Component(this);
         state = new Searching(rb2d,speed);
+        animator = GetComponentInChildren<Animator>();
+        animCom = new animation_controller(animator);
     }
 
     
     void FixedUpdate()
     {
         state.movement();
+        Vector2 movementInputs = state.getMovementInputs();
+        animCom.updateAnimator(movementInputs.y, movementInputs.x);
     }
 
 
@@ -42,4 +47,15 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
 
 
     public void reciveDamage(float damage) { healthCom.reciveDamage(damage); }
+
+
+    // We use this function in the ChaseRadius script
+    // Depending if the player is in the range it changes the current state
+    public void changeState(IPlayer player, bool chasing)
+    {
+        if (chasing)
+            state = new Chasing(rb2d, speed, player);
+        else
+            state = new Searching(rb2d, speed);
+    }
 }

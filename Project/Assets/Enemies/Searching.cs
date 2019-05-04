@@ -44,11 +44,5 @@ public class Searching : AStateEnemy
                                    Random.Range(actualPosition.y - radiusOfSearching, actualPosition.y + radiusOfSearching));
     }
     
-    IEnumerator waitForPoint()
-    {
-        yield return new WaitForSeconds(timeToNextLocation);
-        waitForNextPoint = true;
-    }
 
-    //TODO enumerator searching point
 }

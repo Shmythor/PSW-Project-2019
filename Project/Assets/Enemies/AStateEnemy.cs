@@ -10,8 +10,7 @@ public class AStateEnemy : IStateEnemy
 
     // General
     protected Vector2 movePosition;
-    protected bool seePlayer;
-
+    protected IPlayer player;
 
     // Stats
     protected float defSpeed;
@@ -32,5 +31,15 @@ public class AStateEnemy : IStateEnemy
         direction.Normalize();
         rb2d.velocity = direction * actualSpeed;
     }
+
+
+    public Vector2 getMovementInputs()
+    {
+        return rb2d.velocity;
+    }
+
+
+
+
 
 }
