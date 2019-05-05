@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [Header("UI elements")]
-    [SerializeField] private GameObject[] Hearts;
-    [SerializeField] private Text caloryText, damageText;
+    public Text caloryText, damageText;
     private int calories, cont, hearts;
     private float damage;
 
@@ -49,16 +47,7 @@ public class UIController : MonoBehaviour
 
     public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
     public void setDamage(float damage) { this.damage = damage; setDamageText(); }
-    public void setHearts(int hearts) { this.hearts = hearts;  updateHearts(); }
+    public void setHearts(int hearts) { this.hearts = hearts;  //TODO UI CORAZONES }
 
-    private void updateHearts()
-    {
-        foreach(GameObject Heart in Hearts)
-        {
-            Heart.SetActive(false);
-        }
-        for(int i = 0 ; i < hearts && i < Hearts.Length; i++){
-            Hearts[i].SetActive(true);
-        }
-    }
+
 }

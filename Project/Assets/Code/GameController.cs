@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
     }
 
   
-
+    // UI update stats
     public void updatePlayerHealth(int hearts, float damage)
     {
         UI.setHearts(hearts);
