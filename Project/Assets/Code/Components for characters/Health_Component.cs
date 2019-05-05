@@ -51,7 +51,8 @@ public class Health_Component
 
         }
         health -= damage;
-        invincible = true;
+        //invincible = true;
+        // TODO invicible
         if (isDead())
             character.die();
     }

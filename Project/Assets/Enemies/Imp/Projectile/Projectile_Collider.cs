@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Projectile_Collider : MonoBehaviour
 {
+    private Projectile projectile;
+
+    private void Start()
+    {
+        projectile = GetComponentInParent<Projectile>();
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -12,7 +20,12 @@ public class Projectile_Collider : MonoBehaviour
         Iimp imp = collision.GetComponent<Iimp>();
         if (character != null && imp == null)
         {
-            GetComponentInParent<Projectile>().applyDamageToCharacter(character);
+            projectile.applyDamageToCharacter(character);
         }
+    }
+
+    private void destroyWhenAnimationIsEnded()
+    {
+        projectile.destroy();
     }
 }

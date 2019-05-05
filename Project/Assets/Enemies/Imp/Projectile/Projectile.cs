@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
     {
         float magnitude = rb2d.velocity.y * rb2d.velocity.x;
         Mathf.Clamp(magnitude, -1, 1);
-        animator.SetFloat("direction",magnitude);
+        animator.SetFloat("direction",rb2d.velocity.x);
     }
 
     public void setSpeed(float speed) { this.speed = speed; }
@@ -51,6 +51,12 @@ public class Projectile : MonoBehaviour
     public void applyDamageToCharacter(ICharacter character)
     {
         character.reciveDamage(damage);
+        destroy();
+    }
+
+
+    public void destroy()
+    {
         Destroy(gameObject);
     }
 }

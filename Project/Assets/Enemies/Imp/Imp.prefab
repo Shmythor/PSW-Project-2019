@@ -159,7 +159,8 @@ MonoBehaviour:
   damageOnCollide: 0
   hearts: 0
   healths: 0
-  projectileDamage: 0
+  projectileDamage: 200
+  projectileSpeed: 3.8
   projectilePrefab: {fileID: 8546287025220069457, guid: bd8e80f2fe053bf43811494bf18571e1,
     type: 3}
 --- !u!1 &460804106709769280

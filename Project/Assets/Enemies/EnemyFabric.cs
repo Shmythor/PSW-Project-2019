@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFabric : MonoBehaviour
+public static class EnemyFabric
 {
-    // Start is called before the first frame update
-    void Start()
+    public static void spawn()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

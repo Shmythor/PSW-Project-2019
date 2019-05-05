@@ -78,6 +78,8 @@ public class Player : MonoBehaviour, IPlayer, ICharacter
 
     public void die()
     {
+        
+        Destroy(gameObject);
         // TODO player dies
     }
 

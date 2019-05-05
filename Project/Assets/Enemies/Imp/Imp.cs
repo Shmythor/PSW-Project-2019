@@ -14,5 +14,6 @@ public class Imp : AEnemy, Iimp
         Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
         projectile.setDirection(direction);
         projectile.setDamage(projectileDamage);
+        projectile.setSpeed(projectileSpeed);
     }
 }
