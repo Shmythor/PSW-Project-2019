@@ -33,10 +33,7 @@ public class AStateEnemy : IStateEnemy
     }
 
 
-    public Vector2 getMovementInputs()
-    {
-        return rb2d.velocity;
-    }
+    public Vector2 getMovementInputs() { return rb2d.velocity; }
 
 
 

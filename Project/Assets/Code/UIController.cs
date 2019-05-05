@@ -47,7 +47,7 @@ public class UIController : MonoBehaviour
 
     public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
     public void setDamage(float damage) { this.damage = damage; setDamageText(); }
-    public void setHearts(int hearts) { this.hearts = hearts;  //TODO UI CORAZONES }
+    public void setHearts(int hearts) { this.hearts = hearts;  /*TODO UI CORAZONES*/ }
 
 
 }
