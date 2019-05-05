@@ -13,7 +13,7 @@ public class Searching : AStateEnemy
     private bool waitForNextPoint = true;
     
 
-    public Searching(Rigidbody2D rb2d, float defSpeed) : base(rb2d, defSpeed){ actualSpeed = defSpeed * 0.6f; timer = timeToNextLocation; }
+    public Searching(Rigidbody2D rb2d, float defSpeed) : base(rb2d, defSpeed){ actualSpeed = defSpeed * 0.6f; timer = timeToNextLocation; character = null; }
 
     public override void movement()
     {

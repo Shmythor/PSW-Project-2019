@@ -6,17 +6,19 @@ public class Attack_range : MonoBehaviour
 {
     private Imp imp;
 
-    private void Start()
+    private void Awake()
     {
         imp = GetComponentInParent<Imp>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ICharacter character = collision.GetComponent<ICharacter>();
-        if(character != null)
+
+        //TODO make imp attacks other enemies
+        IPlayer player = collision.GetComponent<IPlayer>();
+        if(player != null)
         {
-            Vector2 direction = collision.transform.position;
+            Vector2 direction = player.getPosition();
             imp.fireProjectile(direction);
         }
     }

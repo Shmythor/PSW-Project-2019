@@ -10,7 +10,7 @@ public class AStateEnemy : IStateEnemy
 
     // General
     protected Vector2 movePosition;
-    protected IPlayer player;
+    protected ICharacter character;
 
     // Stats
     protected float defSpeed;

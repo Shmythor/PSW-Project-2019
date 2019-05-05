@@ -19,6 +19,7 @@ public class EnemyFabric : MonoBehaviour
     {
         //TODO decide how many imps we want in each level
         Instantiate(impPrefab, new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
+        Instantiate(impPrefab, new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
     }
 
     

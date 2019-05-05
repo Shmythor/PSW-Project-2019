@@ -5,10 +5,10 @@ using UnityEngine;
 public class Chasing : AStateEnemy
 {
     private GameObject projectile;
-    public Chasing(Rigidbody2D rb2d, float defSpeed, IPlayer player) : base(rb2d, defSpeed)
+    public Chasing(Rigidbody2D rb2d, float defSpeed, ICharacter character) : base(rb2d, defSpeed)
     {
         actualSpeed = defSpeed;
-        this.player = player;
+        this.character = character;
         movePosition = Vector2.zero;
     }
 
@@ -20,6 +20,6 @@ public class Chasing : AStateEnemy
 
     private void lookForThePlayer()
     {
-        movePosition = player.getPosition();
+        movePosition = character.getPosition();
     }
 }

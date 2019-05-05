@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-
     }
 
     void Start()
@@ -57,7 +56,7 @@ public class GameController : MonoBehaviour
         this.calories += calories;
         caloriesToRestore += calories;
         if (caloriesToRestore > 100){
-            player.getHealthComponent().restoreDamageTaken();
+            player.restoreDamageTaken();
             caloriesToRestore -= 100;
         }
         UI.setCalories(this.calories);

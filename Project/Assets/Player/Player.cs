@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IPlayer, ICharacter
+public class Player : MonoBehaviour, IPlayer
 {
     //          References
     [Header("References")]
@@ -84,7 +84,10 @@ public class Player : MonoBehaviour, IPlayer, ICharacter
         // TODO player dies
     }
 
-
+    public void restoreDamageTaken()
+    {
+        healthCom.restoreDamageTaken();
+    }
 
     public void reciveDamage(float damage)
     {
