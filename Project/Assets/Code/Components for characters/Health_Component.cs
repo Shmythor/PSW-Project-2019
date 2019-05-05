@@ -51,6 +51,8 @@ public class Health_Component
         if (damage >= 100)
         {
             hearts--;
+            if (isDead())
+                character.die();
             this.damage = 0;
         }
         updatePlayerInfo(); // Only if it's the player
@@ -60,9 +62,9 @@ public class Health_Component
         // TODO invicible
 
 
-        if (isDead())
-            character.die();
+
     }
+
 
 
 
@@ -73,13 +75,19 @@ public class Health_Component
     }
 
 
+
+
     // Send player's status(amount of hearts and damage taken) to GameController
+    // ONLY FOR PLAYER
     private void updatePlayerInfo()
     {
         if (player == null)
             return;
         GameController.instance.updatePlayerHealth(hearts, damage);
     }
+
+
+
 
     private bool isDead()
     {
@@ -89,6 +97,4 @@ public class Health_Component
 
 
     public void setPlayer(IPlayer player) { this.player = player; }
-    public int getHearts() { return hearts; }
-    public float getDamage() { return damage; }
 }

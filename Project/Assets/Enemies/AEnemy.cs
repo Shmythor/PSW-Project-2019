@@ -11,6 +11,7 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
     private Health_Component healthCom;
     private IStateEnemy state;
     private animation_controller animCom;
+    private Meele_attack_range meele;
 
     // Stats
     [Header("Stats")]
@@ -28,6 +29,8 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
         state = new Searching(rb2d,speed);
         animator = GetComponentInChildren<Animator>();
         animCom = new animation_controller(animator);
+        meele = GetComponentInChildren<Meele_attack_range>();
+        meele.setDamage(damageOnCollide);
     }
 
     

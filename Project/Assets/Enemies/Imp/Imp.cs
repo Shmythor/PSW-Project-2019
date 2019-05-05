@@ -8,6 +8,7 @@ public class Imp : AEnemy, Iimp
     [SerializeField] private float projectileDamage;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private GameObject projectilePrefab;
+ 
 
     public void fireProjectile(Vector2 direction)
     {
