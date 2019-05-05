@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public Text caloryText, damageText;
-    private int calories, cont, damage;
+    [Header("UI elements")]
+    [SerializeField] private GameObject[] Hearts;
+    [SerializeField] private Text caloryText, damageText;
+    private int calories, cont, hearts;
+    private float damage;
 
      /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -41,5 +44,21 @@ public class UIController : MonoBehaviour
     void restorePlayerEnergy() {
         damage = 0;
         setDamageText();
+    }
+
+
+    public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
+    public void setDamage(float damage) { this.damage = damage; setDamageText(); }
+    public void setHearts(int hearts) { this.hearts = hearts;  updateHearts(); }
+
+    private void updateHearts()
+    {
+        foreach(GameObject Heart in Hearts)
+        {
+            Heart.SetActive(false);
+        }
+        for(int i = 0 ; i < hearts && i < Hearts.Length; i++){
+            Hearts[i].SetActive(true);
+        }
     }
 }

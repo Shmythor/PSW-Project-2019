@@ -10,7 +10,7 @@ public class ChaseRadius : MonoBehaviour
 
 
     // It's not in the main GameObject of the enemy because we will might use OnTriggerEnter/OnTriggerExit in Enemy for other purposes
-    private void Start()
+    private void Awake()
     {
         enemyController = GetComponentInParent<AEnemy>();
     }

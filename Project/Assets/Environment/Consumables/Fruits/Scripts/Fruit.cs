@@ -12,7 +12,8 @@ public abstract class Fruit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.transform.tag == "Player") {
-            FabricFruit.SendMessage("consumeCalories", this.calories);
+            GameController.instance.consumeCalories(calories);
+            //FabricFruit.SendMessage("consumeCalories", this.calories);
             Destroy(gameObject); 
         }
     }

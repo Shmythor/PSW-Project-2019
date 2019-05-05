@@ -44,6 +44,7 @@ public class Player : MonoBehaviour, IPlayer, ICharacter
         mvCom = new Movement_Component(rb2d, speed);
         mvCom.setDustParticles(Dust);
         healthCom = new Health_Component(this);
+        healthCom.setPlayer(this);
         animCom = new animation_controller(animator);
         
         Camera.main.GetComponent<MainCamera>().SetBound(initialMap);
@@ -92,5 +93,5 @@ public class Player : MonoBehaviour, IPlayer, ICharacter
 
     
     public Vector2 getPosition() { return transform.position;  }
-
+    public Health_Component getHealthComponent() { return healthCom; }
 }
