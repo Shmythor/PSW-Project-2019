@@ -10,6 +10,9 @@ public class UIController : MonoBehaviour
     private int calories, cont, hearts;
     private float damage;
 
+    [SerializeField] private GameObject heart1, heart2, heart3;
+    
+
      /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -47,7 +50,18 @@ public class UIController : MonoBehaviour
 
     public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
     public void setDamage(float damage) { this.damage = damage; setDamageText(); }
-    public void setHearts(int hearts) { this.hearts = hearts;  /*TODO UI CORAZONES*/ }
+    public void setHearts(int hearts) { 
+        this.hearts = hearts;
+        if(hearts == 2) {
+            heart3.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/objects_7");
+        } else if(hearts == 1) {
+            heart2.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/objects_7");
+        } else if(hearts == 0) {
+            heart1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/objects_7");
+        }
+      /*TODO UI CORAZONES*/ 
+
+    }
 
 
 }
