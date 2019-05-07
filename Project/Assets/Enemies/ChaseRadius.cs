@@ -22,7 +22,7 @@ public class ChaseRadius : MonoBehaviour
         if (player != null)
         {
             Debug.Log(player.ToString());
-            enemyController.changeState(player, true);
+            enemyController.changeState(player, states.chasing);
         }
     }
 
@@ -31,7 +31,7 @@ public class ChaseRadius : MonoBehaviour
         IPlayer player = collision.GetComponent<IPlayer>();
         if (player != null)
         {
-            enemyController.changeState(player, false);
+            enemyController.changeState(player, states.searching);
         }
     }
 }

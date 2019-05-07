@@ -5,7 +5,6 @@ using UnityEngine;
 public class consumableFabric : MonoBehaviour
 {
     public GameObject heartPrefab, energyPrefab;
-    public GameObject GameController;
 
     private int maxHearts = 1, maxEnergy = 2;
 

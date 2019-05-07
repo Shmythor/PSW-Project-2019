@@ -54,13 +54,29 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
 
     // We use this function in the ChaseRadius script
     // Depending if the player is in the range it changes the current state
-    public void changeState(ICharacter character, bool chasing)
+    public void changeState(ICharacter character, states nextState)
     {
-        if (chasing)
-            state = new Chasing(rb2d, speed, character);
-        else
-            state = new Searching(rb2d, speed);
+        switch (nextState)
+        {
+            case states.searching:
+                state = new Searching(rb2d, speed);
+                break;
+            case states.chasing:
+                state = new Chasing(rb2d, speed, character);
+                break;
+            case states.meeleCombat:
+                state = new MeeleCombat(rb2d, speed);
+                break;
+        }
+            
     }
 
     public Vector2 getPosition() { return transform.position; }
+}
+
+public enum states
+{
+    searching,
+    chasing,
+    meeleCombat
 }

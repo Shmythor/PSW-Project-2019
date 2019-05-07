@@ -43,12 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1476ef25c8a48145be85584d52b7f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 6707427074526138475, guid: 82b5a35f7215d934b8e5027adad5ed3c,
+  heartPrefab: {fileID: 6874795115525580428, guid: 82b5a35f7215d934b8e5027adad5ed3c,
     type: 3}
-  energyPrefab: {fileID: 3040842623370416084, guid: 1ec3d8cfe98e6504da9103def295fc0b,
+  energyPrefab: {fileID: 2000711831758618458, guid: 1ec3d8cfe98e6504da9103def295fc0b,
     type: 3}
-  GameController: {fileID: 0}
-  level: 0
   GrapePrefabs:
   - {fileID: 3435003865282362593, guid: e4414238fa934ae4f8778e93241811ad, type: 3}
   - {fileID: 8536800177851144691, guid: dfe011fbb71be594f9f659ade814b3ec, type: 3}

@@ -9,32 +9,62 @@ public class Meele_attack_range : MonoBehaviour
     private float timeForNextAttack = 2f;
     private bool canAttack = true;
     private IEnumerator timer;
-
+    private AEnemy enemy;
+    private bool Attacking;
+    private IPlayer player;
 
     public void setDamage(float damage) { this.damage = damage; }
 
 
 
-    private void Start()
+    private void Awake()
     {
+        enemy = GetComponentInParent<AEnemy>();
         timer = timerForNextAttack();
     }
 
 
-    // Deal damage to the player 
-    // Activating cooldown for the next attack
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         IPlayer player = collision.GetComponent<IPlayer>();
-        if(player != null)
+        if (player != null)
         {
-            if (canAttack == false)
-                return;
-            player.reciveDamage(damage);
-            canAttack = false;
-            StartCoroutine(timer);
-            timer = timerForNextAttack();
+            this.player = player;
+            enemy.changeState(player, states.meeleCombat);
+            Attacking = true;
         }
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (Attacking)
+            attack();
+    }
+    
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IPlayer player = collision.GetComponent<IPlayer>();
+        if (player != null)
+        {
+            Attacking = false;
+            enemy.changeState(player, states.chasing);
+        }
+    }
+
+
+    
+
+
+    private void attack()
+    {
+        if (canAttack == false)
+            return;
+        player.reciveDamage(damage);
+        canAttack = false;
+        StartCoroutine(timer);
+        timer = timerForNextAttack();
     }
 
 
@@ -44,7 +74,6 @@ public class Meele_attack_range : MonoBehaviour
         {
             yield return new WaitForSeconds(timeForNextAttack);
             canAttack = true;
-            Debug.Log("Can attack");
         }
     }
 }
