@@ -8,12 +8,10 @@ public abstract class Fruit : MonoBehaviour
     // References
     protected int calories; 
     public int type;  
-    protected GameObject FabricFruit;
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.transform.tag == "Player") {
             GameController.instance.consumeCalories(calories);
-            //FabricFruit.SendMessage("consumeCalories", this.calories);
             Destroy(gameObject); 
         }
     }
@@ -21,7 +19,5 @@ public abstract class Fruit : MonoBehaviour
     void setType(int type) {
         this.type = type;
     }
-
-
 
 }

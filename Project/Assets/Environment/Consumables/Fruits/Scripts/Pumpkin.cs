@@ -5,15 +5,10 @@ using UnityEngine;
 
 public class Pumpkin : Fruit
 {
-    //Sprite green = Resources.Load("./Sprites/Grape-white", typeof(Sprite)) as Sprite, 
-    //white = Resources.Load("./Sprites/Grape-white", typeof(Sprite)) as Sprite,
-    //purple = Resources.Load("./Sprites/Grape-white", typeof(Sprite)) as Sprite;
-    
 
     // References  
 
-    void Start() {
-        this.FabricFruit = GameObject.Find("FabricFruit");        
+    void Start() {  
         setPropsByType();
     }    
 

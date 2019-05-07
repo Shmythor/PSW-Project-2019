@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+ using System.Linq;
+ // Load all sprites in atlas
 
 
 public class UIController : MonoBehaviour
@@ -10,8 +12,8 @@ public class UIController : MonoBehaviour
     private int calories, cont, hearts;
     private float damage;
 
-    [SerializeField] private GameObject heart1, heart2, heart3;
-    
+    [SerializeField] private GameObject[] heartPrefabs;
+    [SerializeField] private Sprite[] sprites; 
 
      /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -29,7 +31,7 @@ public class UIController : MonoBehaviour
         
         if(cont >= 100) {
             cont -= 100;
-            restorePlayerEnergy();            
+            restoreEnergy();            
         }
         setCaloriesText();
     }
@@ -42,26 +44,23 @@ public class UIController : MonoBehaviour
         damageText.text = damage.ToString() + "%";
     }
 
-    void restorePlayerEnergy() {
-        damage = 0;
-        setDamageText();
-    }
-
-
     public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
     public void setDamage(float damage) { this.damage = damage; setDamageText(); }
-    public void setHearts(int hearts) { 
-        this.hearts = hearts;
-        if(hearts == 2) {
-            heart3.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/objects_7");
-        } else if(hearts == 1) {
-            heart2.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/objects_7");
-        } else if(hearts == 0) {
-            heart1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/objects_7");
-        }
-      /*TODO UI CORAZONES*/ 
-
+    public void setHearts(int hearts) {
+        //perdemos vida
+        if(this.hearts > hearts) {
+            heartPrefabs[hearts].GetComponent<SpriteRenderer>().sprite = sprites[0];
+        } else {
+            heartPrefabs[hearts-1].GetComponent<SpriteRenderer>().sprite = sprites[0];       
+        } 
+        this.hearts = hearts;     
     }
 
+    public void restoreHealth() {        
+       setHearts(this.hearts + 1);
+    }
 
+     public void restoreEnergy() {
+        setDamage(0);
+    }   
 }

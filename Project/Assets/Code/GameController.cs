@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     [Header("Fabrics")]
     [SerializeField] private EnemyFabric enemyFabric;
-    [SerializeField] private FabricFruit FabricFruit;
+    [SerializeField] private consumableFabric consumableFabric;
 
     [Header("Map")]
     [SerializeField] private GameObject TileMap;
@@ -38,7 +38,9 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        FabricFruit.spawnFruit(level);
+        consumableFabric.spawnFruit(level);
+        consumableFabric.spawnConsumable(level);
+        
         enemyFabric.spawnImps(level);
     }
 
@@ -46,8 +48,16 @@ public class GameController : MonoBehaviour
     // UI update stats
     public void updatePlayerHealth(int hearts, float damage)
     {
+        //if(heart lose)
+         //SoundController.(Sound.HeartLoss)
+         
         UI.setHearts(hearts);
         UI.setDamage(damage);
+
+        //else
+         //SoundController.(Sound.HeartWin)
+
+        
     }
 
 
@@ -62,5 +72,12 @@ public class GameController : MonoBehaviour
         UI.setCalories(this.calories);
     }
     
+    public void restoreHealth() {
+        UI.SendMessage("restoreHealth");
+    }
+
+    public void restoreEnergy() {
+        UI.SendMessage("restoreEnergy");
+    }   
     
 }

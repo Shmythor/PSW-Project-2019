@@ -7,7 +7,6 @@ public class Grape : Fruit
 {
     
     void Start() {
-        this.FabricFruit = GameObject.Find("FabricFruit");
         setPropsByType();
     }
 
