@@ -6,13 +6,14 @@ public class consumable : MonoBehaviour
 {
    void OnTriggerEnter2D(Collider2D col) {
         if (col.transform.tag == "Player") {
-            if(gameObject.name == "energyConsumable") {
+            if(gameObject.tag == "energy") {
                 GameController.instance.restoreEnergy();
-            } else if(gameObject.name == "heartConsumable") {
+                 Destroy(gameObject); 
+            } else if(gameObject.tag == "heart") {
                 GameController.instance.restoreHealth();
-            }
-            
-            Destroy(gameObject); 
+                 Destroy(gameObject); 
+            }          
+           
         }
     }
 }

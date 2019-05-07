@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     // Singleton
     public static GameController instance = null;
 
+    
 
 
     private void Awake()
@@ -49,7 +50,7 @@ public class GameController : MonoBehaviour
     public void updatePlayerHealth(int hearts, float damage)
     {
         //if(heart lose)
-         //SoundController.(Sound.HeartLoss)
+        //SoundController.(Sound.HeartLoss)
          
         UI.setHearts(hearts);
         UI.setDamage(damage);

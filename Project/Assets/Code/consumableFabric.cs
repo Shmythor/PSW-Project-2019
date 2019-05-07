@@ -40,10 +40,10 @@ public class consumableFabric : MonoBehaviour
     }
 
     public void restoreHealth() {
-        GameController.SendMessage("restoreHealth");
+        GameController.instance.restoreHealth();
     }
 
     public void restoreEnergy() {
-        GameController.SendMessage("restoreEnergy");
+        GameController.instance.restoreEnergy();
     }    
 }

@@ -50,8 +50,8 @@ public class UIController : MonoBehaviour
         //perdemos vida
         if(this.hearts > hearts) {
             heartPrefabs[hearts].GetComponent<SpriteRenderer>().sprite = sprites[0];
-        } else {
-            heartPrefabs[hearts-1].GetComponent<SpriteRenderer>().sprite = sprites[0];       
+        } else if(this.hearts < hearts) {
+            heartPrefabs[hearts-1].GetComponent<SpriteRenderer>().sprite = sprites[1];       
         } 
         this.hearts = hearts;     
     }
