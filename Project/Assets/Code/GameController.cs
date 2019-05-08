@@ -20,7 +20,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private int caloriesToRestore = 0;
 
     [Header("UI")]
-    [SerializeField] private UIController UI;
+    [SerializeField] private UIController UIController;
+
+    [Header("Music")]
+    [SerializeField] private MusicController MusicController;
 
     // Singleton
     public static GameController instance = null;
@@ -47,18 +50,14 @@ public class GameController : MonoBehaviour
 
   
     // UI update stats
-    public void updatePlayerHealth(int hearts, float damage)
-    {
-        //if(heart lose)
-        //SoundController.(Sound.HeartLoss)
-         
-        UI.setHearts(hearts);
-        UI.setDamage(damage);
+    public void updatePlayerHealth(int hearts, float damage, SoundsEnum.soundEffect[] sounds) {       
+        UIController.setHearts(hearts);
+        UIController.setDamage(damage);         
 
-        //else
-         //SoundController.(Sound.HeartWin)
-
-        
+        foreach (SoundsEnum.soundEffect sound in sounds)
+        {
+            MusicController.playSoundEffect(sound);
+        }   
     }
 
 
@@ -70,15 +69,27 @@ public class GameController : MonoBehaviour
             player.restoreDamageTaken();
             caloriesToRestore -= 100;
         }
-        UI.setCalories(this.calories);
+
+        UIController.setCalories(this.calories);
+
+        
+        
+        float rndSound = Random.Range(1f, 3f);
+
+        if(rndSound <= 1) MusicController.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
+        if(rndSound>1 && rndSound<= 2) MusicController.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
+        if(rndSound>2 && rndSound<= 3) MusicController.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);        
     }
     
     public void restoreHealth() {
-        UI.SendMessage("restoreHealth");
+        UIController.restoreHealth();
+        MusicController.playSoundEffect(SoundsEnum.soundEffect.ui_heartFill);
     }
 
     public void restoreEnergy() {
-        UI.SendMessage("restoreEnergy");
+        UIController.restoreEnergy();
+        MusicController.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
+    
     
 }

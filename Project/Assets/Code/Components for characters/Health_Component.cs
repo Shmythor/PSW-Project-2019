@@ -16,11 +16,13 @@ public class Health_Component
     private float timeInvincible = 1f; //TODO Invincible
     private bool invincible = false;
 
+    private List<SoundsEnum.soundEffect> sounds = new List<SoundsEnum.soundEffect>();
+
 
     //              Default constructor
     public Health_Component(ICharacter character)
     {
-        this.character = character;
+        this.character = character;        
     }
 
 
@@ -48,11 +50,20 @@ public class Health_Component
         if (invincible)
             return;
         damage += damageTaken;
+
+        if(damage > 0 && damage < 40) sounds.Add(SoundsEnum.soundEffect.greedy_hurt1);
+        if(damage > 41 && damage < 70) sounds.Add(SoundsEnum.soundEffect.greedy_hurt2);
+        if(damage > 71 && damage < 100) sounds.Add(SoundsEnum.soundEffect.greedy_hurt3);
+
         if (damage >= 100)
         {
             hearts--;
-            if (isDead())
+            sounds.Add(SoundsEnum.soundEffect.ui_heartLoose);
+            if (isDead()) { 
+                sounds.Add(SoundsEnum.soundEffect.greedy_death);
                 character.die();
+            }
+                              
             this.damage = 0;
         }
         updatePlayerInfo(); // Only if it's the player
@@ -60,30 +71,26 @@ public class Health_Component
 
         //invincible = true;
         // TODO invicible
-
-
-
     }
-
-
 
 
     public void restoreDamageTaken()
     {
         damage = 0;
+        //sounds.Add(SoundsEnum.soundEffect.ui_damageRestored);
         updatePlayerInfo();
     }
-
-
-
 
     // Send player's status(amount of hearts and damage taken) to GameController
     // ONLY FOR PLAYER
     private void updatePlayerInfo()
     {
+        //array from sounds        
+        SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
         if (player == null)
             return;
-        GameController.instance.updatePlayerHealth(hearts, damage);
+        GameController.instance.updatePlayerHealth(hearts, damage, arraySounds);
+        sounds.Clear();
     }
 
 

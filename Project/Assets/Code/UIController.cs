@@ -56,8 +56,10 @@ public class UIController : MonoBehaviour
         this.hearts = hearts;     
     }
 
-    public void restoreHealth() {        
-       setHearts(this.hearts + 1);
+    public void restoreHealth() {
+       if(this.hearts < 3) {
+           setHearts(this.hearts + 1);
+        }      
     }
 
      public void restoreEnergy() {
