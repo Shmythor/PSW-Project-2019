@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IPlayer
     private Movement_Component mvCom;
     private Health_Component healthCom;
     private animation_controller animCom;
-    
+    private LinkedList<IComponent> components;
 
     //          General
     [Header("General")]
@@ -38,16 +38,27 @@ public class Player : MonoBehaviour, IPlayer
 
     
 
-    void Start () {
+    void Awake () {
+        components = new LinkedList<IComponent>();
         animator = GetComponentInChildren<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         mvCom = new Movement_Component(rb2d, speed);
+        mvCom.enable();
         mvCom.setDustParticles(Dust);
         healthCom = new Health_Component(this);
         healthCom.setPlayer(this);
         animCom = new animation_controller(animator);
         
+        
+        components.AddFirst(mvCom);
+        components.AddFirst(healthCom);
+        components.AddFirst(animCom);
+    }
+
+    private void Start()
+    {
         Camera.main.GetComponent<MainCamera>().SetBound(initialMap);
+        healthCom.reciveDamage(0);
     }
 
 
@@ -79,9 +90,15 @@ public class Player : MonoBehaviour, IPlayer
 
     public void die()
     {
-        
-        Destroy(gameObject);
-        // TODO player dies
+
+        GameController.instance.GameOver();
+        //Destroy(gameObject);       // TODO player dies
+    }
+
+
+    public void restoreHealth()
+    {
+        healthCom.restoreHealth();
     }
 
     public void restoreDamageTaken()
@@ -94,7 +111,22 @@ public class Player : MonoBehaviour, IPlayer
         healthCom.reciveDamage(damage);
     }
 
-    
+
+    public void disableInputs()
+    {
+        foreach (IComponent com in components)
+            com.disable();
+    }
+
+    public void enableInputs()
+    {
+        foreach (IComponent com in components)
+            com.enable();
+    }
+
+
+
+
     public Vector2 getPosition() { return transform.position;  }
     public Health_Component getHealthComponent() { return healthCom; }
 }

@@ -11,13 +11,14 @@ public class MainCamera : MonoBehaviour {
 
     Vector2 velocity;
 
-    void Awake () { 
+    void Awake () {
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Start() {
+        
         // Forzar la resolución si no estamos en versión Web
-        if( Application.platform != RuntimePlatform.WebGLPlayer )
+        if ( Application.platform != RuntimePlatform.WebGLPlayer )
             Screen.SetResolution (800, 800, true);
     }
 

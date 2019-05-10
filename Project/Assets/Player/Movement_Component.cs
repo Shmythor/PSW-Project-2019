@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement_Component
+public class Movement_Component : AComponent
 {
     //          References
     private Rigidbody2D rb2d;
     private GameObject dustParticles;
 
     //          General
-    private bool enabled = true;
     private float magnitude;
 
     //          Stats
@@ -43,8 +42,6 @@ public class Movement_Component
 
 
 
-    public void enable() { enabled = true; }
-    public void disable() { enabled = false; }
 
     public void setDustParticles(GameObject dust){ dustParticles = dust;}
 }

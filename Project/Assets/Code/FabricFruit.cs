@@ -11,6 +11,17 @@ public class FabricFruit : MonoBehaviour
     public int level;
 
 
+    public static FabricFruit instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void spawnFruit(int level) {
         for(int i = 0; i < 10; i++) {
             if(Random.Range(0f, 10.0f) >= 8f) {

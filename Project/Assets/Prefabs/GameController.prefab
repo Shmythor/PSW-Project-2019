@@ -43,4 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f7dfae7faf4ab498c4d82917647301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fabric_Fruit: {fileID: 0}
+  level: 1
+  calories: 0
+  caloriesToRestore: 0
+  gamewinScreen: {fileID: 0}
+  gameoverScreen: {fileID: 0}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animation_controller
+public class animation_controller : AComponent
 {
 
     Animator anim;
@@ -16,7 +16,8 @@ public class animation_controller
 
     public void updateAnimator(float dirUp, float dirRight)
     {
-
+        if (enabled == false)
+            return;
         anim.SetFloat("direction_up", floatToInt(dirUp));
         anim.SetFloat("direction_right", floatToInt(dirRight));
     }

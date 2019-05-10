@@ -11,7 +11,16 @@ public class MusicController : MonoBehaviour {
 
     public AudioSource sourceEffects, sourceTracks;
 
+    public static MusicController instance = null;
+
     private void Awake() {
+
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+
         sourceTracks.loop = true;
 
         soundEffects = new Dictionary<SoundsEnum.soundEffect, AudioClip>();

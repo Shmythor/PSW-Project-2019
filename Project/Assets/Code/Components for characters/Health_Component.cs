@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health_Component
+public class Health_Component : AComponent
 {
     //          References
     private ICharacter character;
@@ -22,7 +22,8 @@ public class Health_Component
     //              Default constructor
     public Health_Component(ICharacter character)
     {
-        this.character = character;        
+        this.character = character;
+
     }
 
 
@@ -74,6 +75,14 @@ public class Health_Component
     }
 
 
+
+    public void restoreHealth()
+    {
+        hearts = 3;
+        damage = 0;
+    }
+
+
     public void restoreDamageTaken()
     {
         damage = 0;
@@ -85,6 +94,10 @@ public class Health_Component
     // ONLY FOR PLAYER
     private void updatePlayerInfo()
     {
+
+        if (isDead())
+            return;
+
         //array from sounds        
         SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
         if (player == null)

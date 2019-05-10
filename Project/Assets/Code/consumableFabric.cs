@@ -10,12 +10,20 @@ public class consumableFabric : MonoBehaviour
 
     public GameObject[] GrapePrefabs, PumpkinPrefabs;
 
-    
+    public static consumableFabric instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
 
     public void spawnFruit(int level) {
         for(int i = 0; i < 10; i++) {
             if(Random.Range(0f, 10.0f) >= 8f) {
-                Instantiate(PumpkinPrefabs[level - 1], new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
+                Instantiate(PumpkinPrefabs[level - 1] ,new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
             } else {
                 Instantiate(GrapePrefabs[level - 1], new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
             }            

@@ -13,18 +13,36 @@ public class UIController : MonoBehaviour
     private float damage;
 
     [SerializeField] private GameObject[] heartPrefabs;
-    [SerializeField] private Sprite[] sprites; 
+    [SerializeField] private Sprite[] sprites;
 
-     /// <summary>
+    /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
     /// </summary>
+    /// 
+
+    // Singleton
+    public static UIController instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
+
     void Start()
     {
         calories = 0; cont = 0; damage = 0;
         setCaloriesText();
         setDamageText();
+        
     }
+
+
+    
 
     void updateCalories(int c) {
         cont += c; calories += c;
@@ -48,11 +66,17 @@ public class UIController : MonoBehaviour
     public void setDamage(float damage) { this.damage = damage; setDamageText(); }
     public void setHearts(int hearts) {
         //perdemos vida
-        if(this.hearts > hearts) {
-            heartPrefabs[hearts].GetComponent<SpriteRenderer>().sprite = sprites[0];
-        } else if(this.hearts < hearts) {
-            heartPrefabs[hearts-1].GetComponent<SpriteRenderer>().sprite = sprites[1];       
-        } 
+
+        foreach (GameObject heart in heartPrefabs)
+        {
+            heart.GetComponent<Image>().sprite = sprites[0];
+        }
+        for(int i = 0; i < hearts; i++)
+        {
+            heartPrefabs[i].GetComponent<Image>().sprite = sprites[1];
+        }
+
+        
         this.hearts = hearts;     
     }
 

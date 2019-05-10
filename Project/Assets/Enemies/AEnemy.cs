@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AEnemy : MonoBehaviour, ICharacter
+public abstract class AEnemy : MonoBehaviour, IEnemy
 {
 
     // References 
@@ -26,14 +26,14 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
     {
         rb2d = GetComponent<Rigidbody2D>();
         healthCom = new Health_Component(this);
-        state = new Searching(rb2d,speed);
+        state = new Searching(rb2d, speed);
         animator = GetComponentInChildren<Animator>();
         animCom = new animation_controller(animator);
         meele = GetComponentInChildren<Meele_attack_range>();
         meele.setDamage(damageOnCollide);
     }
 
-    
+
     void FixedUpdate()
     {
         state.movement();
@@ -54,7 +54,7 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
 
     // We use this function in the ChaseRadius script
     // Depending if the player is in the range it changes the current state
-    public void changeState(ICharacter character, states nextState)
+    public void changeState(ICharacter characterToChase, states nextState)
     {
         switch (nextState)
         {
@@ -62,16 +62,30 @@ public abstract class AEnemy : MonoBehaviour, ICharacter
                 state = new Searching(rb2d, speed);
                 break;
             case states.chasing:
-                state = new Chasing(rb2d, speed, character);
+                state = new Chasing(rb2d, speed, characterToChase);
                 break;
             case states.meeleCombat:
                 state = new MeeleCombat(rb2d, speed);
                 break;
         }
-            
+
     }
 
     public Vector2 getPosition() { return transform.position; }
+
+    public void stopEnemyMovement()
+    {
+        state = new Stop(rb2d, speed);
+        if (meele != null)
+            meele.disable();
+    }
+
+    public void restartEnemyMovement()
+    {
+        state = new Searching(rb2d, speed);
+        if (meele != null)
+            meele.enable();
+    }
 }
 
 public enum states

@@ -1,35 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
-    [Header("Fabrics")]
-    [SerializeField] private EnemyFabric enemyFabric;
-    [SerializeField] private consumableFabric consumableFabric;
 
-    [Header("Map")]
-    [SerializeField] private GameObject TileMap;
 
     [Header("Level")]
-    [SerializeField] private int level = 1;
+    [SerializeField] private int level;
 
     [Header("Player")]
     [SerializeField] private IPlayer player;
-    [SerializeField] private int calories = 0;
+    [SerializeField] private int calories = 0;    
     [SerializeField] private int caloriesToRestore = 0;
 
     [Header("UI")]
-    [SerializeField] private UIController UIController;
+    [SerializeField] private GameObject main_UI;
+    [SerializeField] private GameObject gamewinScreen;
+    [SerializeField] private GameObject gameoverScreen;
 
-    [Header("Music")]
-    [SerializeField] private MusicController MusicController;
+
+
+    // Other
+    private LinkedList<IEnemy> enemies;
 
     // Singleton
     public static GameController instance = null;
 
-    
 
+    public void setLevel(int level)
+    {
+        this.level = level;
+    }
 
     private void Awake()
     {
@@ -37,27 +39,52 @@ public class GameController : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
-        consumableFabric.spawnFruit(level);
-        consumableFabric.spawnConsumable(level);
-        
-        enemyFabric.spawnImps(level);
+        // ONLY FOR DEBUG
+        // startLevel();
     }
 
-  
+
+    public void startLevel()
+    {
+        if (level > 0)
+        {
+            main_UI.SetActive(true);
+            player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
+            player.restoreHealth();
+            caloriesToRestore = 0;
+            enemies = new LinkedList<IEnemy>();
+            consumableFabric.instance.spawnFruit(level);
+            consumableFabric.instance.spawnConsumable(level);
+            enemies = EnemyFabric.instance.spawnImps(level);
+            UIController.instance.setCalories(this.calories);
+        }
+        else
+            main_UI.SetActive(false);
+        gameoverScreen.SetActive(false);
+    }
+    
+
     // UI update stats
     public void updatePlayerHealth(int hearts, float damage, SoundsEnum.soundEffect[] sounds) {       
-        UIController.setHearts(hearts);
-        UIController.setDamage(damage);         
+        
+        UIController.instance.setHearts(hearts);
+        UIController.instance.setDamage(damage);         
 
         foreach (SoundsEnum.soundEffect sound in sounds)
         {
-            MusicController.playSoundEffect(sound);
+            MusicController.instance.playSoundEffect(sound);
         }   
+    }
+
+    public void updatePlayerHealth(int hearts, float damage)
+    {
+        UIController.instance.setHearts(hearts);
+        UIController.instance.setDamage(damage);
     }
 
 
@@ -70,26 +97,57 @@ public class GameController : MonoBehaviour
             caloriesToRestore -= 100;
         }
 
-        UIController.setCalories(this.calories);
+        UIController.instance.setCalories(this.calories);
 
         
         
         float rndSound = Random.Range(1f, 3f);
 
-        if(rndSound <= 1) MusicController.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
-        if(rndSound>1 && rndSound<= 2) MusicController.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
-        if(rndSound>2 && rndSound<= 3) MusicController.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);        
+        if(rndSound <= 1) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
+        if(rndSound>1 && rndSound<= 2) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
+        if(rndSound>2 && rndSound<= 3) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);        
     }
     
     public void restoreHealth() {
-        UIController.restoreHealth();
-        MusicController.playSoundEffect(SoundsEnum.soundEffect.ui_heartFill);
+        UIController.instance.restoreHealth();
+        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_heartFill);
     }
 
     public void restoreEnergy() {
-        UIController.restoreEnergy();
-        MusicController.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
+        UIController.instance.restoreEnergy();
+        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
     
     
+    public void GameOver()
+    {
+        pauseGame();
+        gameoverScreen.SetActive(true);
+    }
+
+    public void GameWin()
+    {
+        gamewinScreen.SetActive(true);
+    }
+
+    public void pauseGame()
+    {
+        player.disableInputs();
+        foreach (IEnemy enemy in enemies)
+            enemy.stopEnemyMovement();
+    }
+
+    public void restoreGame()
+    {
+        player.enableInputs();
+        foreach (IEnemy enemy in enemies)
+            enemy.restartEnemyMovement();
+    }
+
+
+    public void pauseScreen()
+    {
+
+    }
+
 }
