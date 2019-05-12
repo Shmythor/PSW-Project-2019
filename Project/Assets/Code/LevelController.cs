@@ -35,7 +35,7 @@ public class LevelController : MonoBehaviour
         
     }
 
-    public void loadTheSameLevel()
+    public void restartLevel()
     {
         int i = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(i, LoadSceneMode.Single);
@@ -46,5 +46,10 @@ public class LevelController : MonoBehaviour
         
         int i = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(++i, LoadSceneMode.Single);
+    }
+
+    public void loadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

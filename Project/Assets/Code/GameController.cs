@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject main_UI;
     [SerializeField] private GameObject gamewinScreen;
     [SerializeField] private GameObject gameoverScreen;
+    [SerializeField] private GameObject pauseScreen;
 
 
 
@@ -65,7 +66,7 @@ public class GameController : MonoBehaviour
         }
         else
             main_UI.SetActive(false);
-        gameoverScreen.SetActive(false);
+        disativateUIScreens();
     }
     
 
@@ -118,36 +119,44 @@ public class GameController : MonoBehaviour
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
     
+
+    private void disativateUIScreens()
+    {
+        gameoverScreen.SetActive(false);
+        gamewinScreen.SetActive(false);
+        pauseScreen.SetActive(false);
+    }
     
     public void GameOver()
     {
-        pauseGame();
+        pauseGame(true);
+        calories = 0; 
         gameoverScreen.SetActive(true);
     }
 
     public void GameWin()
     {
+        pauseGame(false);
         gamewinScreen.SetActive(true);
     }
 
-    public void pauseGame()
+    public void pauseGame(bool gameover)
     {
         player.disableInputs();
         foreach (IEnemy enemy in enemies)
             enemy.stopEnemyMovement();
+        if(gameover == false)
+            pauseScreen.SetActive(true);
     }
 
-    public void restoreGame()
+    public void resumeGame()
     {
         player.enableInputs();
         foreach (IEnemy enemy in enemies)
-            enemy.restartEnemyMovement();
+            enemy.resumeEnemyMovement();
+        pauseScreen.SetActive(false);
     }
 
-
-    public void pauseScreen()
-    {
-
-    }
+    
 
 }

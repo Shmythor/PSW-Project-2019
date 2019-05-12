@@ -6,5 +6,5 @@ public interface IEnemy : ICharacter
 {
     void changeState(ICharacter characterToChase, states nextState);
     void stopEnemyMovement();
-    void restartEnemyMovement();
+    void resumeEnemyMovement();
 }

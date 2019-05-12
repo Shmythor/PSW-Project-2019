@@ -17,7 +17,10 @@ public class animation_controller : AComponent
     public void updateAnimator(float dirUp, float dirRight)
     {
         if (enabled == false)
-            return;
+        {
+            dirUp = 0f;
+            dirRight = 0f;
+        }
         anim.SetFloat("direction_up", floatToInt(dirUp));
         anim.SetFloat("direction_right", floatToInt(dirRight));
     }

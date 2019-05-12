@@ -10,12 +10,12 @@ public class gameover : MonoBehaviour
 
     public void restart()
     {
-        LevelController.instance.changeLevel(0);
+        LevelController.instance.restartLevel();
     }
 
     public void exit()
     {
 
-        LevelController.instance.changeLevel(2);
+        LevelController.instance.changeLevel(0);
     }
 }

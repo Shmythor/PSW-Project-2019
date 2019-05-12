@@ -46,5 +46,7 @@ MonoBehaviour:
   level: 1
   calories: 0
   caloriesToRestore: 0
+  main_UI: {fileID: 0}
   gamewinScreen: {fileID: 0}
   gameoverScreen: {fileID: 0}
+  pauseScreen: {fileID: 0}

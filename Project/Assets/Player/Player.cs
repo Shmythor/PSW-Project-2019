@@ -58,7 +58,7 @@ public class Player : MonoBehaviour, IPlayer
     private void Start()
     {
         Camera.main.GetComponent<MainCamera>().SetBound(initialMap);
-        healthCom.reciveDamage(0);
+        healthCom.reciveDamage(0); // For updating the UI
     }
 
 
@@ -128,5 +128,5 @@ public class Player : MonoBehaviour, IPlayer
 
 
     public Vector2 getPosition() { return transform.position;  }
-    public Health_Component getHealthComponent() { return healthCom; }
+    
 }

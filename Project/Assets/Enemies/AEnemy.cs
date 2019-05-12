@@ -80,7 +80,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
             meele.disable();
     }
 
-    public void restartEnemyMovement()
+    public void resumeEnemyMovement()
     {
         state = new Searching(rb2d, speed);
         if (meele != null)

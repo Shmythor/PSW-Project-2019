@@ -88,5 +88,9 @@ public class UIController : MonoBehaviour
 
      public void restoreEnergy() {
         setDamage(0);
-    }   
+    }
+
+    public void pauseButton() {
+        GameController.instance.pauseGame(false);
+    }
 }
