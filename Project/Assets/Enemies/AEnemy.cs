@@ -19,6 +19,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     [SerializeField] private float damageOnCollide;
     [SerializeField] private int hearts;
     [SerializeField] private float healths;
+    [SerializeField] private bool canMove= true;
 
 
 
@@ -31,11 +32,14 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
         animCom = new animation_controller(animator);
         meele = GetComponentInChildren<Meele_attack_range>();
         meele.setDamage(damageOnCollide);
+        canMove = true;
     }
 
 
     void FixedUpdate()
     {
+        if (canMove == false)
+            return;
         state.movement();
         Vector2 movementInputs = state.getMovementInputs();
         animCom.updateAnimator(movementInputs.y, movementInputs.x);
@@ -75,14 +79,14 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 
     public void stopEnemyMovement()
     {
-        state = new Stop(rb2d, speed);
+        canMove = false;
         if (meele != null)
             meele.disable();
     }
 
     public void resumeEnemyMovement()
     {
-        state = new Searching(rb2d, speed);
+        canMove = true;
         if (meele != null)
             meele.enable();
     }

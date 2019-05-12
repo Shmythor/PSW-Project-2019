@@ -6,7 +6,7 @@ using UnityEngine;
 public class Grape : Fruit
 {
     
-    void Start() {
+    void Awake() {
         setPropsByType();
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pause_screen : MonoBehaviour
+public class pause_screen : AScreen
 {
 
     public void resume()
@@ -10,9 +10,6 @@ public class pause_screen : MonoBehaviour
         GameController.instance.resumeGame();
     }
 
-    public void exit()
-    {
-        LevelController.instance.changeLevel(0);
-    }
+
 
 }

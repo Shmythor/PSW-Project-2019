@@ -8,7 +8,7 @@ public class Pumpkin : Fruit
 
     // References  
 
-    void Start() {  
+    void Awake() {  
         setPropsByType();
     }    
 

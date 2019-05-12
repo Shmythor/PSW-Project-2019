@@ -20,14 +20,16 @@ public class consumableFabric : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void spawnFruit(int level) {
+    public int spawnFruit(int level) {
+        int spawnedCalories = 0;
         for(int i = 0; i < 10; i++) {
             if(Random.Range(0f, 10.0f) >= 8f) {
-                Instantiate(PumpkinPrefabs[level - 1] ,new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
+                spawnedCalories += Instantiate(PumpkinPrefabs[level - 1] ,new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity).GetComponent<Fruit>().getCalories();
             } else {
-                Instantiate(GrapePrefabs[level - 1], new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
+                spawnedCalories += Instantiate(GrapePrefabs[level - 1], new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity).GetComponent<Fruit>().getCalories();
             }            
-        }        
+        }
+        return spawnedCalories;
     }
 
     public void spawnConsumable(int level) {

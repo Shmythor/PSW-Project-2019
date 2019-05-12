@@ -12,7 +12,7 @@ public class Meele_attack_range : MonoBehaviour
     private AEnemy enemy;
     private bool Attacking;
     private IPlayer player;
-    private bool enabled = true;
+    private bool active = true;
 
 
     public void setDamage(float damage) { this.damage = damage; }
@@ -40,7 +40,7 @@ public class Meele_attack_range : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enabled == false)
+        if (active == false)
             return;
         if (Attacking)
             attack();
@@ -75,12 +75,12 @@ public class Meele_attack_range : MonoBehaviour
 
     public void enable()
     {
-        enabled = true;
+        active = true;
     }
 
     public void disable()
     {
-        enabled = false;
+        active = false;
     }
 
     IEnumerator timerForNextAttack()

@@ -20,4 +20,5 @@ public abstract class Fruit : MonoBehaviour
         this.type = type;
     }
 
+    public int getCalories() { return calories; }
 }

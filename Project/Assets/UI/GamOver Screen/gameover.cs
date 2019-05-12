@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameover : MonoBehaviour
+public class gameover : AScreen
 {
 
 
@@ -13,9 +13,5 @@ public class gameover : MonoBehaviour
         LevelController.instance.restartLevel();
     }
 
-    public void exit()
-    {
 
-        LevelController.instance.changeLevel(0);
-    }
 }

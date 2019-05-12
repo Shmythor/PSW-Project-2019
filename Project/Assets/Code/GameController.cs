@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 
     [Header("Level")]
     [SerializeField] private int level;
+    [SerializeField] private int caloriesThisLevel;
+    [SerializeField] private int caloriesToWin;
 
     [Header("Player")]
     [SerializeField] private IPlayer player;
@@ -54,14 +56,12 @@ public class GameController : MonoBehaviour
     {
         if (level > 0)
         {
+            caloriesThisLevel = 0;
+            caloriesToRestore = 0;
             main_UI.SetActive(true);
             player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
             player.restoreHealth();
-            caloriesToRestore = 0;
-            enemies = new LinkedList<IEnemy>();
-            consumableFabric.instance.spawnFruit(level);
-            consumableFabric.instance.spawnConsumable(level);
-            enemies = EnemyFabric.instance.spawnImps(level);
+            spawn();
             UIController.instance.setCalories(this.calories);
         }
         else
@@ -69,6 +69,14 @@ public class GameController : MonoBehaviour
         disativateUIScreens();
     }
     
+
+    private void spawn()
+    {
+        enemies = new LinkedList<IEnemy>();
+        caloriesToWin = consumableFabric.instance.spawnFruit(level);
+        consumableFabric.instance.spawnConsumable(level);
+        enemies = EnemyFabric.instance.spawnImps(level);
+    }
 
     // UI update stats
     public void updatePlayerHealth(int hearts, float damage, SoundsEnum.soundEffect[] sounds) {       
@@ -92,6 +100,7 @@ public class GameController : MonoBehaviour
     public void consumeCalories(int calories)
     {
         this.calories += calories;
+        caloriesThisLevel += calories;
         caloriesToRestore += calories;
         if (caloriesToRestore > 100){
             player.restoreDamageTaken();
@@ -106,7 +115,13 @@ public class GameController : MonoBehaviour
 
         if(rndSound <= 1) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
         if(rndSound>1 && rndSound<= 2) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
-        if(rndSound>2 && rndSound<= 3) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);        
+        if(rndSound>2 && rndSound<= 3) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);      
+        
+        // If the player has consumed all the fruits invoke the gameWin method
+        if(caloriesThisLevel == caloriesToWin)
+        {
+            GameWin();
+        }
     }
     
     public void restoreHealth() {
@@ -129,24 +144,30 @@ public class GameController : MonoBehaviour
     
     public void GameOver()
     {
-        pauseGame(true);
+        pauseGame(false);
         calories = 0; 
         gameoverScreen.SetActive(true);
+        gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);
     }
 
     public void GameWin()
     {
         pauseGame(false);
         gamewinScreen.SetActive(true);
+        gamewinScreen.GetComponent<AScreen>().setCaloriesText(calories);
     }
 
-    public void pauseGame(bool gameover)
+    public void pauseGame(bool activatePauseScreen)
     {
         player.disableInputs();
         foreach (IEnemy enemy in enemies)
             enemy.stopEnemyMovement();
-        if(gameover == false)
+        if (activatePauseScreen == true)
+        {
             pauseScreen.SetActive(true);
+            pauseScreen.GetComponent<AScreen>().setCaloriesText(calories);
+        }
+
     }
 
     public void resumeGame()
@@ -157,6 +178,8 @@ public class GameController : MonoBehaviour
         pauseScreen.SetActive(false);
     }
 
-    
+
+    public void setCaloriesToZero() { calories = 0; } // For exiting to the menu
+
 
 }
