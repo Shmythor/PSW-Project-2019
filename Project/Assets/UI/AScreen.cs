@@ -16,6 +16,6 @@ public abstract class AScreen : MonoBehaviour
 
     public void setCaloriesText(int calories)
     {
-        caloriesText.text = calories.ToString();
+        caloriesText.text = "Score: " + calories.ToString();
     }
 }

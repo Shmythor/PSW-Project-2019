@@ -37,12 +37,12 @@ public class consumableFabric : MonoBehaviour
 
         for(int i = 0; i < 5; i++) {
             if(Random.Range(0f, 10.0f) >= 8f && maxHearts >= contHearts) {
-                Instantiate(heartPrefab, new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
+                Instantiate(heartPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity);
                 contHearts++;
             } 
             
             if(Random.Range(0f, 10.0f) >= 8f && maxEnergy >= contEnergy) {
-                Instantiate(energyPrefab, new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f), 0), Quaternion.identity);
+                Instantiate(energyPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity);
                 contEnergy++;
             }            
         }        

@@ -9,9 +9,12 @@ public abstract class Fruit : MonoBehaviour
     protected int calories; 
     public int type;  
 
-    void OnTriggerEnter2D(Collider2D col) {
-        if (col.transform.tag == "Player") {
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.transform.tag == "Player") {
             GameController.instance.consumeCalories(calories);
+            Destroy(gameObject); 
+        } else if (other.transform.tag == "Environment") {
+            // Re-spawn fruit ?
             Destroy(gameObject); 
         }
     }
