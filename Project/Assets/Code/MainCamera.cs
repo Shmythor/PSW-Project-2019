@@ -26,8 +26,8 @@ public class MainCamera : MonoBehaviour {
 
         // Forzar la resolución si no estamos en versión Web
         if( Application.platform != RuntimePlatform.WebGLPlayer ) {
-            // Si no es cuadrada o pantalla completa
-            if (!Screen.fullScreen || Camera.main.aspect != 1) 
+            //pantalla completa
+            if (!Screen.fullScreen) 
                 Screen.SetResolution (800, 800, true);
             // Permitir cerrar juego al presionar escape
             if (Input.GetKey("escape")) 

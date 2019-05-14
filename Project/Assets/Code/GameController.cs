@@ -153,6 +153,10 @@ public class GameController : MonoBehaviour
     public void GameWin()
     {
         pauseGame(false);
+
+        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_launch);
+        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_explosion);
+
         gamewinScreen.SetActive(true);
         gamewinScreen.GetComponent<AScreen>().setCaloriesText(calories);
     }

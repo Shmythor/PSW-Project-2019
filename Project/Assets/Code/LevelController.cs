@@ -42,10 +42,9 @@ public class LevelController : MonoBehaviour
     }
 
     public void nextLevel()
-    {
-        
+    {        
         int i = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(++i, LoadSceneMode.Single);
+        SceneManager.LoadScene(++i, LoadSceneMode.Single);      
     }
 
     public void loadMainMenu()
