@@ -6,12 +6,12 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 {
 
     // References 
-    private Rigidbody2D rb2d;
-    private Animator animator;
-    private Health_Component healthCom;
-    private IStateEnemy state;
-    private animation_controller animCom;
-    private Meele_attack_range meele;
+    protected Rigidbody2D rb2d;
+    protected Animator animator;
+    protected Health_Component healthCom;
+    protected IStateEnemy state;
+    protected animation_controller animCom;
+    protected Meele_attack_range meele;
 
     // Stats
     [Header("Stats")]
@@ -23,7 +23,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 
 
 
-    void Start()
+    void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         healthCom = new Health_Component(this);
@@ -31,7 +31,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
         animator = GetComponentInChildren<Animator>();
         animCom = new animation_controller(animator);
         meele = GetComponentInChildren<Meele_attack_range>();
-        meele.setDamage(damageOnCollide);
+        if(meele != null) meele.setDamage(damageOnCollide);
         canMove = true;
     }
 

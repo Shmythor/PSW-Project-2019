@@ -25,6 +25,14 @@ public class Meele_attack_range : MonoBehaviour
         timer = timerForNextAttack();
     }
 
+    private void FixedUpdate()
+    {
+        if (active == false)
+            return;
+        if (Attacking)
+            attack();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,13 +46,7 @@ public class Meele_attack_range : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
-    {
-        if (active == false)
-            return;
-        if (Attacking)
-            attack();
-    }
+   
     
 
     private void OnTriggerExit2D(Collider2D collision)

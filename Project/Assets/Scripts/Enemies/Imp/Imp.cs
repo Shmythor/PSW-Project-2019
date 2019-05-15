@@ -8,7 +8,17 @@ public class Imp : AEnemy, Iimp
     [SerializeField] private float projectileDamage;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private GameObject projectilePrefab;
- 
+    [SerializeField] private float projectileCooldown;
+
+    private Attack_range rangeAttack;
+
+
+    private void Start()
+    {
+        rangeAttack = GetComponentInChildren<Attack_range>();
+        rangeAttack.setCooldown(projectileCooldown);
+        meele.disable();
+    }
 
     public void fireProjectile(Vector2 direction)
     {
