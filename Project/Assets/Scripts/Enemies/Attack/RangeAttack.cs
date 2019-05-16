@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack_range : AAttack
+public class RangeAttack : AAttack
 {
     private Imp imp;
-   
+
 
     private void Start()
     {
         imp = GetComponentInParent<Imp>();
-        
+
     }
 
 
@@ -18,7 +18,7 @@ public class Attack_range : AAttack
     public override void attack()
     {
         //TODO make imp attacks other enemies
- 
+
         if (canAttack == false)
             return;
         Vector2 direction = player.getPosition();

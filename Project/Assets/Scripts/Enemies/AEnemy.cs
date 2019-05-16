@@ -11,7 +11,10 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     protected Health_Component healthCom;
     protected IStateEnemy state;
     protected animation_controller animCom;
-    protected Meele_attack_range meele;
+    protected Meele_attack_range meeleAttack;
+    protected RangeAttack rangeAttack;
+    protected List<IAttack> attackComponents = new List<IAttack>();
+
 
     // Stats
     [Header("Stats")]
@@ -25,16 +28,23 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 
     void Awake()
     {
+        initReferences();
+        if (meeleAttack != null) meeleAttack.setDamage(damageOnCollide);
+        canMove = true;
+    }
+
+    private void initReferences()
+    {
         rb2d = GetComponent<Rigidbody2D>();
         healthCom = new Health_Component(this);
         state = new Searching(rb2d, speed);
         animator = GetComponentInChildren<Animator>();
         animCom = new animation_controller(animator);
-        meele = GetComponentInChildren<Meele_attack_range>();
-        if(meele != null) meele.setDamage(damageOnCollide);
-        canMove = true;
+        meeleAttack = GetComponentInChildren<Meele_attack_range>();
+        rangeAttack = GetComponentInChildren<RangeAttack>();
+        attackComponents.Add(meeleAttack);
+        attackComponents.Add(rangeAttack);
     }
-
 
     void FixedUpdate()
     {
@@ -77,18 +87,18 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 
     public Vector2 getPosition() { return transform.position; }
 
-    public void stopEnemyMovement()
+    public void stopEnemy()
     {
         canMove = false;
-        if (meele != null)
-            meele.disable();
+        foreach (IAttack attack in attackComponents)
+            attack.disable();
     }
 
-    public void resumeEnemyMovement()
+    public void resumeEnemy()
     {
         canMove = true;
-        if (meele != null)
-            meele.enable();
+        foreach (IAttack attack in attackComponents)
+            attack.enable();
     }
 }
 

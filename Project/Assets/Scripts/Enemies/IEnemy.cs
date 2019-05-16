@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IEnemy : ICharacter
 {
     void changeState(ICharacter characterToChase, states nextState);
-    void stopEnemyMovement();
-    void resumeEnemyMovement();
+    void stopEnemy();
+    void resumeEnemy();
 }

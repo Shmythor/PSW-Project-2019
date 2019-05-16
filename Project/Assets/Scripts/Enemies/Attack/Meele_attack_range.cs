@@ -20,7 +20,7 @@ public class Meele_attack_range : AAttack
             return;
         this.player = player;
         Attacking = true;
-        enemy.changeState(player, states.chasing);
+        enemy.changeState(player, states.meeleCombat);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
