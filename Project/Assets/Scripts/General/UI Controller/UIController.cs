@@ -8,12 +8,13 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public Text caloryText, damageText;
+    
     private int calories, cont, hearts;
     private float damage;
 
-    [SerializeField] private GameObject[] heartPrefabs;
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] private Text heartText, caloryText;
+    [SerializeField] private SimpleHealthBar healthBar;
+     [SerializeField] private UITimer UITimer;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -30,6 +31,8 @@ public class UIController : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+
+        
     }
 
 
@@ -37,8 +40,7 @@ public class UIController : MonoBehaviour
     {
         calories = 0; cont = 0; damage = 0;
         setCaloriesText();
-        setDamageText();
-        
+        setDamageBar();       
     }
 
 
@@ -58,26 +60,17 @@ public class UIController : MonoBehaviour
         caloryText.text = calories.ToString();
     }
 
-     void setDamageText() {
-        damageText.text = damage.ToString() + "%";
+    public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
+    public void setDamage(float damage) { 
+        this.damage = damage;
+        setDamageBar();
     }
 
-    public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
-    public void setDamage(float damage) { this.damage = damage; setDamageText(); }
+    public void setDamageBar() {
+        healthBar.UpdateBar(100 - this.damage, 100);
+    }
     public void setHearts(int hearts) {
-        //perdemos vida
-
-        foreach (GameObject heart in heartPrefabs)
-        {
-            heart.GetComponent<Image>().sprite = sprites[0];
-        }
-        for(int i = 0; i < hearts; i++)
-        {
-            heartPrefabs[i].GetComponent<Image>().sprite = sprites[1];
-        }
-
-        
-        this.hearts = hearts;     
+        heartText.text = hearts.ToString(); 
     }
 
     public void restoreHealth() {
@@ -97,5 +90,9 @@ public class UIController : MonoBehaviour
     public void spawnDEBUG()
     {
         GameController.instance.startLevel();
+    }
+
+    public void resetTime() {
+        UITimer.resetTime();
     }
 }

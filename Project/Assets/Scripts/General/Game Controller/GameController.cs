@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
             main_UI.SetActive(true);
             player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
             player.restoreHealth();
+            UIController.instance.resetTime();
             spawn();
             UIController.instance.setCalories(this.calories);
         }

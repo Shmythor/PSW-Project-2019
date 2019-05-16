@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &486145955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6681982335047448270, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1949081585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96206a51b0582f84fa7fc4b4bc944a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &487632778
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +271,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8567232113360718948, guid: 7214dc4985aee454a8fb7673ae29c992,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
     - target: {fileID: 8567232113360718946, guid: 7214dc4985aee454a8fb7673ae29c992,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -324,13 +341,14 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 8567232113360718948, guid: 7214dc4985aee454a8fb7673ae29c992,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7214dc4985aee454a8fb7673ae29c992, type: 3}
+--- !u!1 &1357166401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1092181463333475815, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1949081585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1817910047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -638,6 +656,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3104357026555698996, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_Name
+      value: Level Prefabs
+      objectReference: {fileID: 0}
     - target: {fileID: 2159730049504735959, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -672,11 +695,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -158
-      objectReference: {fileID: 0}
-    - target: {fileID: 3104357026555698996, guid: 704bb5665c9b3324c8bf83dd503b36c5,
-        type: 3}
-      propertyPath: m_Name
-      value: Level Prefabs
       objectReference: {fileID: 0}
     - target: {fileID: 4380735993369880036, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
@@ -900,5 +918,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1092181463333475814, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: UITimer
+      value: 
+      objectReference: {fileID: 486145955}
+    - target: {fileID: 3270410355184517855, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: UITimer
+      value: 
+      objectReference: {fileID: 1357166401}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704bb5665c9b3324c8bf83dd503b36c5, type: 3}

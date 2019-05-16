@@ -6,16 +6,9 @@ using UnityEngine.UI;
 
 public class UITimer : MonoBehaviour
 {
-    float timeLeft = 19;
+    float timeLeft = 59;
     public Text timer;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        timer.fontStyle = FontStyle.Normal;
-        timer.color = Color.white;   
-    }
-
+       
     // Update is called once per frame
     void Update()
     {
@@ -40,5 +33,11 @@ public class UITimer : MonoBehaviour
             timeLeft -= Time.deltaTime;
         }        
 
+    }
+
+    public void resetTime() {
+        timeLeft = 59;
+        timer.fontStyle = FontStyle.Normal;
+        timer.color = Color.white; 
     }
 }
