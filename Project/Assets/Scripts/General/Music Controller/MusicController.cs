@@ -27,7 +27,7 @@ public class MusicController : MonoBehaviour {
         soundTracks = new Dictionary<SoundsEnum.soundTrack, AudioClip>(); 
 
         addSoundEffectsToDictionary();       
-        //addSoundTracksToDictionary(); TODO
+        addSoundTracksToDictionary();
     }
 
     private void addSoundEffectsToDictionary() {
@@ -55,7 +55,10 @@ public class MusicController : MonoBehaviour {
     public void playSoundEffect(SoundsEnum.soundEffect sound) {
         sourceEffects.PlayOneShot(soundEffects[sound]);
     }
-    void playSoundTrack(SoundsEnum.soundTrack sound) {
-        //sourceTracks.PlayOneShot(soundTracks[sound]); TODO
+    public void playSoundTrack(SoundsEnum.soundTrack sound) {
+        sourceTracks.Stop();
+        sourceTracks.PlayOneShot(soundTracks[sound]); 
     }
+
+
 }

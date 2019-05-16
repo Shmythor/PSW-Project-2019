@@ -179,6 +179,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8497167873511514119, guid: 79612f9ac9444a64c8433cf5b24e04d0,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79612f9ac9444a64c8433cf5b24e04d0, type: 3}
 --- !u!1 &665685162
@@ -317,11 +322,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3866623428633880547, guid: 0f63fc9dce092b140a843f076c95079d,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelChanger
-      objectReference: {fileID: 0}
     - target: {fileID: 3866623428633880545, guid: 0f63fc9dce092b140a843f076c95079d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,6 +376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866623428633880547, guid: 0f63fc9dce092b140a843f076c95079d,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelChanger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f63fc9dce092b140a843f076c95079d, type: 3}

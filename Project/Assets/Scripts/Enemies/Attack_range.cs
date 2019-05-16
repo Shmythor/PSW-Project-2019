@@ -2,70 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack_range : MonoBehaviour
+public class Attack_range : AAttack
 {
     private Imp imp;
-    private bool Attacking;
-    private bool canAttack = true;
-    private ICharacter characterToShoot;
-    private float cooldown = 1f;
-    private IEnumerator timer;
-
-
-    public void setCooldown(float cooldown) { this.cooldown = cooldown; }
-
+   
 
     private void Start()
     {
         imp = GetComponentInParent<Imp>();
-        timer = timerForNextAttack();
+        
     }
 
 
-    private void FixedUpdate()
+
+    public override void attack()
     {
-        if (Attacking)
-            shoot();
+        //TODO make imp attacks other enemies
+ 
+        if (canAttack == false)
+            return;
+        Vector2 direction = player.getPosition();
+        imp.fireProjectile(direction);
+        startCooldown();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         IPlayer player = collision.GetComponent<IPlayer>();
-        if (player != null)
-        {
-            Attacking = true;
-            characterToShoot = player;
-        }
+        if (player == null)
+            return;
+        this.player = player;
+        Attacking = true;
     }
-
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         IPlayer player = collision.GetComponent<IPlayer>();
-        if(player != null)
-            Attacking = false;
+        if (player == null)
+            return;
+        Attacking = false;
     }
 
 
-    private void shoot()
-    {
-        //TODO make imp attacks other enemies
-            if (canAttack == false)
-                return;
-            Vector2 direction = characterToShoot.getPosition();
-            imp.fireProjectile(direction);
-            canAttack = false;
-            StartCoroutine(timer);
-            timer = timerForNextAttack();
-        
-    }
-
-    IEnumerator timerForNextAttack()
-    {
-        while (canAttack == false)
-        {
-            yield return new WaitForSeconds(cooldown);
-            canAttack = true;
-        }
-    }
 }

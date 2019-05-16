@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
     {
         // ONLY FOR DEBUG
         // startLevel();
+        MusicController.instance.playSoundTrack(SoundsEnum.soundTrack.main_mainSong);
     }
 
 
