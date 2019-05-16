@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int level;
     [SerializeField] private int caloriesThisLevel;
     [SerializeField] private int caloriesToWin;
-
+    [SerializeField] private int lastLevel = 3;
     [Header("Player")]
     [SerializeField] private IPlayer player;
     [SerializeField] private int calories = 0;    
@@ -31,10 +31,11 @@ public class GameController : MonoBehaviour
     public static GameController instance = null;
 
 
-    public void setLevel(int level)
-    {
-        this.level = level;
-    }
+    public void setLevel(int level){this.level = level;}
+    public int getLevel() { return level; }
+    public bool isIsLastLevel() { return level == lastLevel ? true : false; }
+    public void setCaloriesToZero() { calories = 0; } // For exiting to the menu
+
 
     private void Awake()
     {
@@ -166,7 +167,7 @@ public class GameController : MonoBehaviour
     {
         player.disableInputs();
         foreach (IEnemy enemy in enemies)
-            enemy.stopEnemyMovement();
+            enemy.stopEnemy();
         if (activatePauseScreen == true)
         {
             pauseScreen.SetActive(true);
@@ -179,12 +180,12 @@ public class GameController : MonoBehaviour
     {
         player.enableInputs();
         foreach (IEnemy enemy in enemies)
-            enemy.resumeEnemyMovement();
+            enemy.resumeEnemy();
         pauseScreen.SetActive(false);
     }
 
 
-    public void setCaloriesToZero() { calories = 0; } // For exiting to the menu
+
 
 
 }

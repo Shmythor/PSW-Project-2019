@@ -10,14 +10,14 @@ public class Imp : AEnemy, Iimp
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileCooldown;
 
-    private Attack_range rangeAttack;
+    private RangeAttack rangeAttack;
 
 
     private void Start()
     {
-        rangeAttack = GetComponentInChildren<Attack_range>();
+        rangeAttack = GetComponentInChildren<RangeAttack>();
         rangeAttack.setCooldown(projectileCooldown);
-        meele.disable();
+        meeleAttack.disable();
     }
 
     public void fireProjectile(Vector2 direction)

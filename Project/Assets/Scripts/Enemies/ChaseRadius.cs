@@ -21,7 +21,6 @@ public class ChaseRadius : MonoBehaviour
         IPlayer player = collision.GetComponent<IPlayer>();
         if (player != null)
         {
-            Debug.Log(player.ToString());
             enemyController.changeState(player, states.chasing);
         }
     }
