@@ -57,6 +57,7 @@ public class MusicController : MonoBehaviour {
     }
     public void playSoundTrack(SoundsEnum.soundTrack sound) {
         sourceTracks.Stop();
+        sourceTracks.loop = true;
         sourceTracks.PlayOneShot(soundTracks[sound]); 
     }
 

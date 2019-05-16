@@ -40,11 +40,6 @@ public abstract class AAttack : MonoBehaviour, IAttack
         timer = cooldownForNextAttack();
     }
 
-    
-
-
-
-
     public void enable() { active = true; }
     public void disable() { active = false; }
 
