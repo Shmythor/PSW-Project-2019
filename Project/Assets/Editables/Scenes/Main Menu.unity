@@ -322,6 +322,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3866623428633880547, guid: 0f63fc9dce092b140a843f076c95079d,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelChanger
+      objectReference: {fileID: 0}
     - target: {fileID: 3866623428633880545, guid: 0f63fc9dce092b140a843f076c95079d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,11 +381,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866623428633880547, guid: 0f63fc9dce092b140a843f076c95079d,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelChanger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f63fc9dce092b140a843f076c95079d, type: 3}
@@ -443,7 +443,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: afa0b6e4298e66645b2d933649ee9b27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b61ed4da2a8341445a994d1ecea177ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
