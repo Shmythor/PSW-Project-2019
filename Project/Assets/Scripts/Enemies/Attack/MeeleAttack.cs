@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Meele_attack_range : AAttack
+public class MeeleAttack : AAttack
 {
 
 
@@ -19,7 +19,7 @@ public class Meele_attack_range : AAttack
         if (player == null)
             return;
         this.player = player;
-        Attacking = true;
+        attacking = true;
         enemy.changeState(player, states.meeleCombat);
     }
 
@@ -28,7 +28,7 @@ public class Meele_attack_range : AAttack
         IPlayer player = collision.GetComponent<IPlayer>();
         if (player == null)
             return;
-        Attacking = false;
+        attacking = false;
         enemy.changeState(player, states.searching);
     }
 

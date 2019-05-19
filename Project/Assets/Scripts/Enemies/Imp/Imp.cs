@@ -10,7 +10,6 @@ public class Imp : AEnemy, Iimp
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileCooldown;
 
-    private RangeAttack rangeAttack;
 
 
     private void Start()

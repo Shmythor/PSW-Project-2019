@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class AStateEnemy : IStateEnemy
 {
-    // References
+    /*          References          */
     protected Rigidbody2D rb2d;
 
 
-    // General
+    /*          General          */
     protected Vector2 movePosition;
     protected ICharacter character;
 
-    // Stats
+    /*          Stats          */
     protected float defSpeed;
     protected float actualSpeed;
+
+    public Vector2 getMovementInputs() { return rb2d.velocity; }
 
 
     public AStateEnemy(Rigidbody2D rb2d, float defSpeed)
@@ -33,7 +35,7 @@ public class AStateEnemy : IStateEnemy
     }
 
 
-    public Vector2 getMovementInputs() { return rb2d.velocity; }
+    
 
 
 

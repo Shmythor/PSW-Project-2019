@@ -5,12 +5,10 @@ using UnityEngine;
 public class consumableFabric : MonoBehaviour
 {
     public GameObject heartPrefab, energyPrefab;
-
+    public GameObject[] GrapePrefabs, PumpkinPrefabs;
+    public static consumableFabric instance = null;
     private int maxHearts = 1, maxEnergy = 2;
 
-    public GameObject[] GrapePrefabs, PumpkinPrefabs;
-
-    public static consumableFabric instance = null;
 
     private void Awake()
     {

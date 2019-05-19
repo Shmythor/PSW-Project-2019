@@ -17,24 +17,24 @@ public class GameController : MonoBehaviour
     [SerializeField] private int caloriesToRestore = 0;
 
     [Header("UI")]
-    [SerializeField] private GameObject main_UI;
+    [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject gamewinScreen;
     [SerializeField] private GameObject gameoverScreen;
     [SerializeField] private GameObject pauseScreen;
 
 
 
-    // Other
+    /*          Other          */
     private LinkedList<IEnemy> enemies;
 
-    // Singleton
+    /*          Singleton          */
     public static GameController instance = null;
 
 
     public void setLevel(int level){this.level = level;}
     public int getLevel() { return level; }
     public bool isIsLastLevel() { return level == lastLevel ? true : false; }
-    public void setCaloriesToZero() { calories = 0; } // For exiting to the menu
+    public void setCaloriesToZero() { calories = 0; } /* For exiting to the menu */
 
 
     private void Awake()
@@ -43,7 +43,6 @@ public class GameController : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -60,7 +59,7 @@ public class GameController : MonoBehaviour
         {
             caloriesThisLevel = 0;
             caloriesToRestore = 0;
-            main_UI.SetActive(true);
+            mainUI.SetActive(true);
             player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
             player.restoreHealth();
             UIController.instance.resetTime();
@@ -68,11 +67,11 @@ public class GameController : MonoBehaviour
             UIController.instance.setCalories(this.calories);
         }
         else
-            main_UI.SetActive(false);
+            mainUI.SetActive(false);
         disativateUIScreens();
     }
     
-
+    
     private void spawn()
     {
         enemies = new LinkedList<IEnemy>();
@@ -81,7 +80,7 @@ public class GameController : MonoBehaviour
         enemies = EnemyFabric.instance.spawnImps(level);
     }
 
-    // UI update stats
+    /*          UI update states          */
     public void updatePlayerHealth(int hearts, float damage, SoundsEnum.soundEffect[] sounds) {       
         
         UIController.instance.setHearts(hearts);
@@ -120,7 +119,7 @@ public class GameController : MonoBehaviour
         if(rndSound>1 && rndSound<= 2) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
         if(rndSound>2 && rndSound<= 3) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);      
         
-        // If the player has consumed all the fruits invoke the gameWin method
+        /* If the player has consumed all the fruits invoke the gameWin method      */
         if(caloriesThisLevel == caloriesToWin)
         {
             GameWin();

@@ -3,27 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
  using System.Linq;
- // Load all sprites in atlas
+
 
 
 public class UIController : MonoBehaviour
 {
-    
+
+    /*          Singleton          */
+    public static UIController instance = null;
     private int calories, cont, hearts;
     private float damage;
-
+    [Header("Referencess")]
     [SerializeField] private Text heartText, caloryText;
     [SerializeField] private SimpleHealthBar healthBar;
-     [SerializeField] private UITimer UITimer;
+    [SerializeField] private UITimer UITimer;
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
-    /// 
 
-    // Singleton
-    public static UIController instance = null;
+    void setCaloriesText() { caloryText.text = calories.ToString(); }
+    public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
+    public void setDamageBar() { healthBar.UpdateBar(100 - this.damage, 100); }
+    public void setHearts(int hearts) { heartText.text = hearts.ToString(); }
+    public void setDamage(float damage){
+        this.damage = damage;
+        setDamageBar();
+    }
+
+    
+
+    /*
+        Start is called on the frame when a script is enabled just before
+        any of the Update methods is called the first time.
+    */
+
+
 
     private void Awake()
     {
@@ -56,22 +68,7 @@ public class UIController : MonoBehaviour
         setCaloriesText();
     }
 
-    void setCaloriesText() {
-        caloryText.text = calories.ToString();
-    }
-
-    public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
-    public void setDamage(float damage) { 
-        this.damage = damage;
-        setDamageBar();
-    }
-
-    public void setDamageBar() {
-        healthBar.UpdateBar(100 - this.damage, 100);
-    }
-    public void setHearts(int hearts) {
-        heartText.text = hearts.ToString(); 
-    }
+   
 
     public void restoreHealth() {
        if(this.hearts < 3) {

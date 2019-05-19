@@ -2,33 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health_Component : AComponent
+public class HealthComponent : AComponent
 {
-    //          References
+    /*          References          */
     private ICharacter character;
     private IPlayer player;
 
-    //          Health Points
+    /*          Healths          */
     private int hearts = 3;
     private float damage = 0;
 
-    //          Stats
-    private float timeInvincible = 1f; //TODO Invincible
+    /*          Stats          */
+    private float timeInvincible = 1f;          //TODO Invincible
     private bool invincible = false;
 
+    /*          Sounds          */
     private List<SoundsEnum.soundEffect> sounds = new List<SoundsEnum.soundEffect>();
 
 
-    //              Default constructor
-    public Health_Component(ICharacter character)
+    public void setPlayer(IPlayer player) { this.player = player; }
+
+
+    /*          Default constructor          */
+    public HealthComponent(ICharacter character)
     {
         this.character = character;
 
     }
 
 
-    //              Constructor with parametrs
-    public Health_Component(ICharacter character, int hearts, float damage, float timeInivcibly)
+    /*          Constructor with parametrs          */
+    public HealthComponent(ICharacter character, int hearts, float damage, float timeInivcibly)
     {
         this.character = character;
         this.damage = damage;
@@ -39,13 +43,12 @@ public class Health_Component : AComponent
 
 
 
-    /// <summary>
-    ///  Can not recive damage if the character is already invicible
-    ///  If damage is more than health the character has, it takes one heart and increases the health by 100
-    ///  Starts invicible time
-    ///  Checks if the character is dead
-    /// </summary>
-    /// <param name="damageTaken"></param>
+    /*
+        Can not recive damage if the character is already invicible
+        If damage is more than health the character has, it takes one heart and increases the health by 100
+        Starts invicible time
+        Checks if the character is dead
+    */
     public void reciveDamage(float damageTaken)
     {
         if (invincible)
@@ -116,5 +119,5 @@ public class Health_Component : AComponent
 
 
 
-    public void setPlayer(IPlayer player) { this.player = player; }
+    
 }

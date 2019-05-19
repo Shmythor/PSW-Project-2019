@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameover : AScreen
+public class GameOver : AScreen
 {
 
 

@@ -7,11 +7,11 @@ public abstract class AAttack : MonoBehaviour, IAttack
     protected float damage;
     protected float cooldown = 1f;
     protected bool canAttack = true;
-    protected bool Attacking;
-    protected IPlayer player;
+    protected bool attacking;
     protected bool active = true;
     protected IEnumerator timer;
     protected AEnemy enemy;
+    protected IPlayer player;
 
     public void setDamage(float damage) { this.damage = damage; }
     public void setCooldown(float cooldown) { this.cooldown = cooldown; }
@@ -27,7 +27,7 @@ public abstract class AAttack : MonoBehaviour, IAttack
     {
         if (active == false)
             return;
-        if (Attacking)
+        if (attacking)
             attack();
     }
 
@@ -53,5 +53,5 @@ public abstract class AAttack : MonoBehaviour, IAttack
         }
     }
 
-    virtual public void attack(){ }
+    virtual public void attack(){ } // MUST BEEN OVERRIDED
 }

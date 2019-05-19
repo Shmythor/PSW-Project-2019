@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pause_screen : AScreen
+public class PauseScreen : AScreen
 {
 
     private void OnEnable()

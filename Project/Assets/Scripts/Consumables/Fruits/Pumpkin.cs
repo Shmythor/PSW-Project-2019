@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pumpkin : Fruit
-{
-
-    // References  
+{ 
 
     void Awake() {  
         setPropsByType();

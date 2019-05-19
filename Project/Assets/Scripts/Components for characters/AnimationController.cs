@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animation_controller : AComponent
+public class AnimationController : AComponent
 {
 
-    Animator anim;
+    private Animator anim;
 
     
-    public animation_controller(Animator anim)
+    public AnimationController(Animator anim)
     {
         this.anim = anim;
     }

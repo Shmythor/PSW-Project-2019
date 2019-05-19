@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class consumable : MonoBehaviour
+public class Consumable : MonoBehaviour
 {
    void OnTriggerEnter2D(Collider2D col) {
         if (col.transform.tag == "Player") {

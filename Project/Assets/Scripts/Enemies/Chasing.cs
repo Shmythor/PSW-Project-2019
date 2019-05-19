@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chasing : AStateEnemy
 {
     private GameObject projectile;
+
     public Chasing(Rigidbody2D rb2d, float defSpeed, ICharacter character) : base(rb2d, defSpeed)
     {
         actualSpeed = defSpeed;

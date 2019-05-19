@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    // Singleton
+    /*          Singleton          */
     public static LevelController instance = null;
 
     void Start()

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement_Component : AComponent
+public class MovementComponent : AComponent
 {
-    //          References
+    /*          References          */
     private Rigidbody2D rb2d;
     private GameObject dustParticles;
 
-    //          General
+    /*          General          */
     private float magnitude;
 
-    //          Stats
+    /*          Stats          */
     private float speed;
 
-    public Movement_Component(Rigidbody2D rb2d, float speed)
+
+    public void setDustParticles(GameObject dust) { dustParticles = dust; }
+
+    public MovementComponent(Rigidbody2D rb2d, float speed)
     {
         this.rb2d = rb2d;
         this.speed = speed;
@@ -27,7 +30,7 @@ public class Movement_Component : AComponent
         this.magnitude = magnitude;
         if (enabled == false)
             return;
-        // The character is moving slower when the movement is diagonal
+        /* The character is moving slower when the movement is diagonal */
         float actualSpeed = horInput != 0 && verInput != 0 ? speed * 0.75f : speed;
         rb2d.velocity = new Vector2(horInput, verInput) * actualSpeed;
         enableDust();
@@ -43,5 +46,5 @@ public class Movement_Component : AComponent
 
 
 
-    public void setDustParticles(GameObject dust){ dustParticles = dust;}
+    
 }

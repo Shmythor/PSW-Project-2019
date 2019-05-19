@@ -13,8 +13,6 @@ public class RangeAttack : AAttack
 
     }
 
-
-
     public override void attack()
     {
         //TODO make imp attacks other enemies
@@ -33,7 +31,7 @@ public class RangeAttack : AAttack
         if (player == null)
             return;
         this.player = player;
-        Attacking = true;
+        attacking = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -41,7 +39,7 @@ public class RangeAttack : AAttack
         IPlayer player = collision.GetComponent<IPlayer>();
         if (player == null)
             return;
-        Attacking = false;
+        attacking = false;
     }
 
 

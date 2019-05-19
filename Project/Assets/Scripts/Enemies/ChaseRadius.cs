@@ -9,7 +9,7 @@ public class ChaseRadius : MonoBehaviour
 
 
 
-    // It's not in the main GameObject of the enemy because we will might use OnTriggerEnter/OnTriggerExit in Enemy for other purposes
+    /* It's not in the main GameObject of the enemy because we will might use OnTriggerEnter/OnTriggerExit in Enemy for other purposes */
     private void Awake()
     {
         enemyController = GetComponentInParent<AEnemy>();
@@ -17,7 +17,7 @@ public class ChaseRadius : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Default behaviour is that the enemy is going to chase only the player
+        /* Default behaviour is that the enemy is going to chase only the player  */
         IPlayer player = collision.GetComponent<IPlayer>();
         if (player != null)
         {

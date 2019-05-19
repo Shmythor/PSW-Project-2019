@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyFabric : MonoBehaviour
 {
-
+    public static EnemyFabric instance = null;
     [Header("Enemies")]
     [SerializeField] private GameObject impPrefab;
 
-    public static EnemyFabric instance = null;
+   
 
     private void Awake()
     {

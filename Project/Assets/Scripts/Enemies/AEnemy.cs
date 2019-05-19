@@ -5,18 +5,18 @@ using UnityEngine;
 public abstract class AEnemy : MonoBehaviour, IEnemy
 {
 
-    // References 
+    /*          References          */
     protected Rigidbody2D rb2d;
     protected Animator animator;
-    protected Health_Component healthCom;
+    protected HealthComponent healthCom;
     protected IStateEnemy state;
-    protected animation_controller animCom;
-    protected Meele_attack_range meeleAttack;
+    protected AnimationController animCom;
+    protected MeeleAttack meeleAttack;
     protected RangeAttack rangeAttack;
     protected List<IAttack> attackComponents = new List<IAttack>();
 
 
-    // Stats
+    /*          Stats          */
     [Header("Stats")]
     [SerializeField] private float speed;
     [SerializeField] private float damageOnCollide;
@@ -36,11 +36,11 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     private void initReferences()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        healthCom = new Health_Component(this);
+        healthCom = new HealthComponent(this);
         state = new Searching(rb2d, speed);
         animator = GetComponentInChildren<Animator>();
-        animCom = new animation_controller(animator);
-        meeleAttack = GetComponentInChildren<Meele_attack_range>();
+        animCom = new AnimationController(animator);
+        meeleAttack = GetComponentInChildren<MeeleAttack>();
         rangeAttack = GetComponentInChildren<RangeAttack>();
         attackComponents.Add(meeleAttack);
         attackComponents.Add(rangeAttack);

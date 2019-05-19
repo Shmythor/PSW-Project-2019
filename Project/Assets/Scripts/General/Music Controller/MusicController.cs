@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
- // Load all sprites in atlas
 
 
 public class MusicController : MonoBehaviour {
+
+    public AudioSource sourceEffects, sourceTracks;
+    public static MusicController instance = null;
     private Dictionary<SoundsEnum.soundEffect, AudioClip> soundEffects;
     private Dictionary<SoundsEnum.soundTrack, AudioClip> soundTracks;
 
-    public AudioSource sourceEffects, sourceTracks;
-
-    public static MusicController instance = null;
+    
 
     private void Awake() {
 

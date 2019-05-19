@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Input_Manager : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
 
-    IPlayer player;
+    private IPlayer player;
+    private float deltaTime;
+    private float verInput, horInput;
 
-    float deltaTime;
-    float verInput, horInput;
-
-    // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Player>();
-        //player.Init(); Ahora está en Player start()
     }
 
     private void FixedUpdate()
     {
-        getInput();
+        getInputs();
         updatePlayerInputs();
         deltaTime = Time.fixedDeltaTime;
         player.tick(deltaTime);
     }
 
 
-    private void getInput()
+    private void getInputs()
     {
         verInput = Input.GetAxis("Vertical");
         horInput = Input.GetAxis("Horizontal");

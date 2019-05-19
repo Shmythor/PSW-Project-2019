@@ -928,5 +928,15 @@ PrefabInstance:
       propertyPath: UITimer
       value: 
       objectReference: {fileID: 1357166401}
+    - target: {fileID: 3270410355184517855, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: mainUI
+      value: 
+      objectReference: {fileID: 1357166401}
+    - target: {fileID: 5525713481168427361, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704bb5665c9b3324c8bf83dd503b36c5, type: 3}

@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class UITimer : MonoBehaviour
 {
-    float timeLeft = 59;
     public Text timer;
+    private float timeLeft = 59;
+    
        
-    // Update is called once per frame
+    
     void Update()
     {
         

@@ -17,19 +17,19 @@ public class MainCamera : MonoBehaviour {
 
     void Start() {
         
-        // Forzar la resolución si no estamos en versión Web
+        /* Forzar la resolución si no estamos en versión Web    */
         if ( Application.platform != RuntimePlatform.WebGLPlayer )
             Screen.SetResolution (800, 800, true);
     }
 
     void Update () {
 
-        // Forzar la resolución si no estamos en versión Web
+        /* Forzar la resolución si no estamos en versión Web */
         if( Application.platform != RuntimePlatform.WebGLPlayer ) {
-            //pantalla completa
+            /* pantalla completa */
             if (!Screen.fullScreen) 
                 Screen.SetResolution (800, 800, true);
-            // Permitir cerrar juego al presionar escape
+            /* Permitir cerrar juego al presionar escape    */
             if (Input.GetKey("escape")) 
                 Application.Quit();
         }
@@ -52,7 +52,7 @@ public class MainCamera : MonoBehaviour {
 
     }
 
-    public void SetBound (GameObject map) {
+    public void setBound (GameObject map) {
         Tiled2Unity.TiledMap config = map.GetComponent<Tiled2Unity.TiledMap>();
         float cameraSize = Camera.main.orthographicSize;
 
@@ -61,10 +61,10 @@ public class MainCamera : MonoBehaviour {
         bRX = map.transform.position.x + config.NumTilesWide - cameraSize;
         bRY = map.transform.position.y - config.NumTilesHigh + cameraSize;
 
-        FastMove();
+        fastMove();
     }
 
-    public void FastMove(){
+    public void fastMove(){
         transform.position = new Vector3(
             target.position.x,
             target.position.y,

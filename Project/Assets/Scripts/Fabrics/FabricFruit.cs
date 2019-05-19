@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class FabricFruit : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /* Start is called before the first frame update */
     public GameObject[] GrapePrefabs, PumpkinPrefabs;
     public GameObject UIController;
-
     public int level;
-
-
     public static FabricFruit instance = null;
 
     private void Awake()
