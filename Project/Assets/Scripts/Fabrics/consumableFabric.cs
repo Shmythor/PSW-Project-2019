@@ -15,22 +15,33 @@ public class consumableFabric : MonoBehaviour
         if (instance == null)
             instance = this;
         else if (instance != this)
-            Destroy(gameObject);
+            Destroy(gameObject);        
     }
 
     public int spawnFruit(int level) {
-        int spawnedCalories = 0;
-        for(int i = 0; i < 10; i++) {
-            if(Random.Range(0f, 10.0f) >= 8f) {
-                spawnedCalories += Instantiate(PumpkinPrefabs[level - 1] ,new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<Fruit>().getCalories();
+        GameObject[] fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner"); 
+
+        int spawnedCalories = 0, rndFarm;
+        Vector3 rndVector;
+       
+        for(int i = 0; i < 6; i++) {
+            rndVector = new Vector3(Random.Range(0f, 4.0f), Random.Range(-4.0f, 0), 0);
+            
+            if (level == 3) rndFarm = (int) Random.Range(0, 6);
+            else rndFarm = (int) Random.Range(0, 3);
+
+            if(Random.Range(0f, 10.0f) >= 6f) {
+                spawnedCalories += Instantiate(PumpkinPrefabs[level - 1], fruitSpawners[rndFarm].transform.position + rndVector, Quaternion.identity).GetComponent<Fruit>().getCalories();
             } else {
-                spawnedCalories += Instantiate(GrapePrefabs[level - 1], new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<Fruit>().getCalories();
+                spawnedCalories += Instantiate(GrapePrefabs[level - 1], fruitSpawners[rndFarm].transform.position + rndVector, Quaternion.identity).GetComponent<Fruit>().getCalories();
             }            
         }
+
         return spawnedCalories;
     }
 
-    public void spawnConsumable(int level) {
+    public void spawnConsumable(int level) {       
+
         int contHearts = 0, contEnergy = 0;
         if(level != 1) {
             for(int i = 0; i < 5; i++) {
