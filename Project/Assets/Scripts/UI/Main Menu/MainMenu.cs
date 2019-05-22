@@ -21,6 +21,6 @@ public class MainMenu : MonoBehaviour
 
     public void startGame()
     {   
-            LevelController.instance.nextLevel();        
+        LevelController.instance.nextLevel();        
     }
 }

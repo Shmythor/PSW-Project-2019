@@ -14,15 +14,12 @@ public class LevelController : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
-
-        
+        DontDestroyOnLoad(gameObject);        
     }
 
 
     private void OnLevelWasLoaded(int level)
-    {
-        
+    {        
         GameController.instance.setLevel(level);
         GameController.instance.startLevel();
     }
@@ -39,12 +36,16 @@ public class LevelController : MonoBehaviour
     {
         int i = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(i, LoadSceneMode.Single);
+
+        UIController.instance.resetTimer();  
     }
 
     public void nextLevel()
     {        
         int i = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(++i, LoadSceneMode.Single);      
+        SceneManager.LoadScene(++i, LoadSceneMode.Single);    
+        
+        //UIController.instance.resetTimer();  
     }
 
     public void loadMainMenu()

@@ -89,7 +89,15 @@ public class UIController : MonoBehaviour
         GameController.instance.startLevel();
     }
 
-    public void resetTime() {
-        UITimer.resetTime();
+    public void resetTimer() {
+        UITimer.resetTimer();
+    }
+
+    public void restartTimer() {
+        UITimer.restartTimer();
+    }
+
+    public void stopTimer() {
+        UITimer.stopTimer();
     }
 }

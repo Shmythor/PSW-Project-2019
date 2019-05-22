@@ -44,9 +44,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  caloriesThisLevel: 0
+  caloriesToWin: 0
+  lastLevel: 3
   calories: 0
   caloriesToRestore: 0
-  main_UI: {fileID: 0}
-  gamewinScreen: {fileID: 0}
-  gameoverScreen: {fileID: 0}
-  pauseScreen: {fileID: 0}
+  mainUI: {fileID: 1119792595442324293, guid: a9c0f79eafc66dc43ae638aaa860b3fd, type: 3}
+  gamewinScreen: {fileID: 3253793416130547578, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+    type: 3}
+  gameoverScreen: {fileID: 3461850615739070497, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
+    type: 3}
+  pauseScreen: {fileID: 3626836529521803791, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+    type: 3}

@@ -59,11 +59,17 @@ public class GameController : MonoBehaviour
         {
             caloriesThisLevel = 0;
             caloriesToRestore = 0;
+            
             mainUI.SetActive(true);
+
             player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
             player.restoreHealth();
-            UIController.instance.resetTime();
+
+            UIController.instance.resetTimer();
+            UIController.instance.restartTimer();
+            
             spawn();
+
             UIController.instance.setCalories(this.calories);
         }
         else
@@ -150,6 +156,8 @@ public class GameController : MonoBehaviour
         calories = 0; 
         gameoverScreen.SetActive(true);
         gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);
+
+        
     }
 
     public void GameWin()

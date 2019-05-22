@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameOver : AScreen
 {
-
-
-    
-
-    public void restart()
-    {
-        LevelController.instance.restartLevel();
+    private void OnEnable()
+    {        
+        UIController.instance.stopTimer();        
     }
 
+    public void restart()
+    {       
+        LevelController.instance.restartLevel();
+    }
 
 }
