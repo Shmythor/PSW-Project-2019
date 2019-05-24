@@ -29,9 +29,11 @@ public class Player : MonoBehaviour, IPlayer
     
     [Header("Stats")]
     [SerializeField] private float speed = 4f;
+    [SerializeField] private int hearts = 3;
 
 
     public Vector2 getPosition() { return transform.position; }
+    public void setHearts(int hearts) { this.hearts = hearts; }
 
 
 
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour, IPlayer
     private void Start()
     {
         Camera.main.GetComponent<MainCamera>().setBound(initialMap);
+        healthCom.setHearts(hearts);
         healthCom.reciveDamage(0); /* For updating the UI */
     }
 
@@ -111,6 +114,8 @@ public class Player : MonoBehaviour, IPlayer
 
     public void reciveDamage(float damage)
     {
+        if (damage >= hearts * 100)
+            healthCom.instantKill();
         healthCom.reciveDamage(damage);
     }
 

@@ -25,6 +25,9 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     [SerializeField] private bool canMove= true;
 
 
+    public Vector2 getPosition() { return transform.position; }
+    public Vector2 getVelocity() { return rb2d.velocity; }
+
 
     void Awake()
     {
@@ -42,8 +45,8 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
         animCom = new AnimationController(animator);
         meeleAttack = GetComponentInChildren<MeeleAttack>();
         rangeAttack = GetComponentInChildren<RangeAttack>();
-        attackComponents.Add(meeleAttack);
-        attackComponents.Add(rangeAttack);
+        if(meeleAttack != null)attackComponents.Add(meeleAttack);
+        if(rangeAttack != null) attackComponents.Add(rangeAttack);
     }
 
     void FixedUpdate()
@@ -85,7 +88,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 
     }
 
-    public Vector2 getPosition() { return transform.position; }
+
 
     public void stopEnemy()
     {

@@ -11,6 +11,7 @@ public class MeeleAttack : AAttack
     {
         player.reciveDamage(damage);
         startCooldown();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

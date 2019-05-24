@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MusicController : MonoBehaviour {
 
-    public AudioSource sourceEffects, sourceTracks;
+    public AudioSource sourceEffects, sourceTracks, mainSong;
     public static MusicController instance = null;
     private Dictionary<SoundsEnum.soundEffect, AudioClip> soundEffects;
     private Dictionary<SoundsEnum.soundTrack, AudioClip> soundTracks;
@@ -55,10 +55,32 @@ public class MusicController : MonoBehaviour {
     public void playSoundEffect(SoundsEnum.soundEffect sound) {
         sourceEffects.PlayOneShot(soundEffects[sound]);
     }
+
     public void playSoundTrack(SoundsEnum.soundTrack sound) {
         sourceTracks.Stop();
+        mainSong.Pause();
         sourceTracks.loop = true;
         sourceTracks.PlayOneShot(soundTracks[sound]); 
+    }
+
+
+    public void pauseMainSong()
+    {
+        mainSong.Pause();
+    }
+
+
+    public void playMainSong()
+    {
+        sourceTracks.Stop();
+        mainSong.loop = true;
+        mainSong.Play();
+    }
+
+    public void resumeMainSong()
+    {
+        sourceTracks.Stop();
+        mainSong.Play();
     }
 
 
