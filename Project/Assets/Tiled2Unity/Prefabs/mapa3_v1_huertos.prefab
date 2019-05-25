@@ -953,7 +953,7 @@ GameObject:
   - component: {fileID: 9106220133069097351}
   m_Layer: 0
   m_Name: huerto2_up
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1000,7 +1000,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 3.7729578, y: -1.2069314}
@@ -1029,7 +1029,7 @@ GameObject:
   - component: {fileID: 2542371947915089059}
   m_Layer: 0
   m_Name: huerto3_down
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1076,7 +1076,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.735052, y: -2.0312495}
@@ -2753,7 +2753,7 @@ GameObject:
   - component: {fileID: 352265618086793303}
   m_Layer: 0
   m_Name: huerto1
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2800,7 +2800,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.8013084, y: -3.711277}
@@ -3149,7 +3149,7 @@ GameObject:
   - component: {fileID: 3447489129335280061}
   m_Layer: 0
   m_Name: huerto2_down
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3196,7 +3196,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 3.8615832, y: -1.1150126}
@@ -3757,7 +3757,7 @@ GameObject:
   - component: {fileID: 3814404112683182462}
   m_Layer: 0
   m_Name: huerto3_up
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3804,7 +3804,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 3.2560272, y: -2.5698624}

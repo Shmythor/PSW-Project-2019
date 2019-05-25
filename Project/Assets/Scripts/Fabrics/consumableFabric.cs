@@ -22,6 +22,7 @@ public class consumableFabric : MonoBehaviour
 
     private int spawnFruits() {
         GameObject[] fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner"); 
+        Debug.Log("I'm finding: " + fruitSpawners.Length.ToString());
         ArrayList lastPositions = new ArrayList();
         int spawnedCalories = 0, rndFarm;
        
@@ -90,11 +91,5 @@ public class consumableFabric : MonoBehaviour
         return new Vector3(Random.Range(x1, x2), Random.Range(y1, y2), 0);
     }
     
-    public void restoreHealth() {
-        GameController.instance.restoreHealth();
-    }
-
-    public void restoreEnergy() {
-        GameController.instance.restoreEnergy();
-    }    
+    
 }

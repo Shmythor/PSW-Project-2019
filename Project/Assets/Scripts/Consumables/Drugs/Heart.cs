@@ -8,7 +8,7 @@ public class Heart : Drug
         
     void OnTriggerEnter2D(Collider2D other) {          
         if (other.transform.tag == "Player") {
-            GameController.instance.restoreHealth();           
+            restoreHealth();           
             Destroy(gameObject);
         }        
     }

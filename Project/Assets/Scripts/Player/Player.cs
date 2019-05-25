@@ -62,6 +62,8 @@ public class Player : MonoBehaviour, IPlayer
 
     private void Start()
     {
+        initialMap = MapController.instance.getActiveMap();
+
         Camera.main.GetComponent<MainCamera>().setBound(initialMap);
         healthCom.setHearts(hearts);
         healthCom.reciveDamage(0); /* For updating the UI */

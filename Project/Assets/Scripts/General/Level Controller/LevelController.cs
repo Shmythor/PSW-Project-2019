@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour
 {
     /*          Singleton          */
     public static LevelController instance = null;
+    private int currentLevel;
 
     void Start()
     {
@@ -23,29 +24,42 @@ public class LevelController : MonoBehaviour
         GameController.instance.setLevel(level);
         GameController.instance.startLevel();
     }
- 
+    
+    public void startGame() {
+        SceneManager.LoadScene(1);
+
+        this.currentLevel = 1;
+
+        GameController.instance.setLevel(currentLevel);
+        GameController.instance.startLevel();
+    }
 
 
     public void changeLevel(int level)
     {
-        SceneManager.LoadScene(level, LoadSceneMode.Single);
-        
+        this.currentLevel = level;
+
+        GameController.instance.setLevel(currentLevel);
+        GameController.instance.startLevel();
     }
 
     public void restartLevel()
     {
-        int i = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(i, LoadSceneMode.Single);
+        //int i = SceneManager.GetActiveScene().buildIndex;
+        //SceneManager.LoadScene(i, LoadSceneMode.Single);
 
-        UIController.instance.resetTimer();  
+        UIController.instance.resetTimer(); 
+
+        GameController.instance.setLevel(currentLevel);
+        GameController.instance.startLevel(); 
     }
 
     public void nextLevel()
-    {        
-        int i = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(++i, LoadSceneMode.Single);    
+    {    
+        currentLevel++;
+        GameController.instance.setLevel(currentLevel);
+        GameController.instance.startLevel();      
         
-        //UIController.instance.resetTimer();  
     }
 
     public void loadMainMenu()

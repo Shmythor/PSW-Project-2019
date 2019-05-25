@@ -52,7 +52,7 @@ public class MainCamera : MonoBehaviour {
 
     }
 
-    public void setBound (GameObject map) {
+    public void setBound(GameObject map) {
         Tiled2Unity.TiledMap config = map.GetComponent<Tiled2Unity.TiledMap>();
         float cameraSize = Camera.main.orthographicSize;
 

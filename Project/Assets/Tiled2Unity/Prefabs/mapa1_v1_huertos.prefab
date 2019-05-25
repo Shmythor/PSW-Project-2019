@@ -1062,7 +1062,7 @@ GameObject:
   - component: {fileID: 4515838357111904498}
   m_Layer: 0
   m_Name: huerto1
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1109,7 +1109,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.7233508, y: -3.3743496}
@@ -1383,7 +1383,7 @@ GameObject:
   - component: {fileID: 3095941292617299101}
   m_Layer: 0
   m_Name: huerto3
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1430,7 +1430,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.097475, y: -3.174398}
@@ -1459,7 +1459,7 @@ GameObject:
   - component: {fileID: 241579822063378949}
   m_Layer: 0
   m_Name: huerto2
-  m_TagString: Untagged
+  m_TagString: FruitSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1506,7 +1506,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.829331, y: -2.7432213}

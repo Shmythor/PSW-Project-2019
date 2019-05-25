@@ -21,12 +21,12 @@ public class MainMenu : MonoBehaviour
 
     public void startGame()
     {   
-        LevelController.instance.nextLevel();        
+        LevelController.instance.startGame();        
     }
 
     public void loadGame()
     {
-
+        LevelController.instance.startGame();   
     }
 
     public void accountLogin()

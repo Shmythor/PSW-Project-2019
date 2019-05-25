@@ -17,7 +17,13 @@ public class Drug : Consumable
     }
 
     
-    
+        protected void restoreHealth() {
+            GameController.instance.restoreHealth();
+        }
+
+        protected void restoreEnergy() {
+            GameController.instance.restoreEnergy();
+        }
 
 
 }

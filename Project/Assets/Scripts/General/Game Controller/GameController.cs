@@ -7,20 +7,14 @@ public class GameController : MonoBehaviour
 
 
     [Header("Level")]
-    [SerializeField] private int level;
-    [SerializeField] private int caloriesThisLevel;
-    [SerializeField] private int caloriesToWin;
-    [SerializeField] private int lastLevel = 3;
+    [SerializeField] private int level, caloriesThisLevel, caloriesToWin, lastLevel = 3;
+
     [Header("Player")]
     [SerializeField] private IPlayer player;
-    [SerializeField] private int calories = 0;    
-    [SerializeField] private int caloriesToRestore = 0;
+    [SerializeField] private int calories, caloriesToRestore;    
 
     [Header("UI")]
-    [SerializeField] private GameObject mainUI;
-    [SerializeField] private GameObject gamewinScreen;
-    [SerializeField] private GameObject gameoverScreen;
-    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject mainUI, gamewinScreen, gameoverScreen, pauseScreen;
 
 
 
@@ -31,7 +25,7 @@ public class GameController : MonoBehaviour
     public static GameController instance = null;
 
 
-    public void setLevel(int level){this.level = level;}
+    public void setLevel(int level){ this.level = level; }
     public int getLevel() { return level; }
     public bool isIsLastLevel() { return level == lastLevel ? true : false; }
     public void setCaloriesToZero() { calories = 0; } /* For exiting to the menu */
@@ -43,6 +37,12 @@ public class GameController : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+
+
+        player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
+        player.restoreHealth();
+
+        enemies = new List<IEnemy>();
     }
 
     private void Start()
@@ -54,25 +54,33 @@ public class GameController : MonoBehaviour
 
 
     public void startLevel()
-    {
+    {       
         if (level > 0)
         {
+            /* Set map */        
+            MapController.instance.setMap(level);
+           
+            
+            /* Spawn Consumables */
             caloriesThisLevel = 0;
             caloriesToRestore = 0;
-            
-            mainUI.SetActive(true);
+            spawnConsumables();
 
-            player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
-            player.restoreHealth();
+            /* Spawn Enemies */            
+            spawnEnemies();
+
+            /* Set UI */      
+            mainUI.SetActive(true);            
 
             UIController.instance.resetTimer();
             UIController.instance.restartTimer();
-            
-            spawn();
+           
 
             UIController.instance.setCalories(this.calories);
 
             MusicController.instance.playMainSong();
+
+            player.enableInputs();
         }
         else
             mainUI.SetActive(false);
@@ -80,10 +88,18 @@ public class GameController : MonoBehaviour
     }
     
     
-    private void spawn()
+    private void spawnConsumables()
     {
-        enemies = new List<IEnemy>();
+        
         caloriesToWin = consumableFabric.instance.spawnConsumables(level);
+        
+    }
+
+    private void spawnEnemies() {
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
         enemies = EnemyFabric.instance.spawnImps(level);
     }
 
