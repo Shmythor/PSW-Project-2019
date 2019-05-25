@@ -19,7 +19,7 @@ public class MainCamera : MonoBehaviour {
         
         /* Forzar la resolución si no estamos en versión Web    */
         if ( Application.platform != RuntimePlatform.WebGLPlayer )
-            Screen.SetResolution (800, 800, true);
+            Screen.SetResolution (1920, 1080, true);
     }
 
     void Update () {
@@ -28,7 +28,7 @@ public class MainCamera : MonoBehaviour {
         if( Application.platform != RuntimePlatform.WebGLPlayer ) {
             /* pantalla completa */
             if (!Screen.fullScreen) 
-                Screen.SetResolution (800, 800, true);
+                Screen.SetResolution (1920, 1080, true);
             /* Permitir cerrar juego al presionar escape    */
             if (Input.GetKey("escape")) 
                 Application.Quit();

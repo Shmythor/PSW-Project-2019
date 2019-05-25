@@ -24,13 +24,24 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
     [SerializeField] private float healths;
     [SerializeField] private bool canMove= true;
 
+    public void setSpeed(float speed) { this.speed = speed; }
+    public void setDamageOnCollide(float damage) { this.damageOnCollide = damage; }
+    public void setHearts(int hearts) { this.hearts = hearts; }
+    public Vector2 getPosition() { return transform.position; }
+    public Vector2 getVelocity() { return rb2d.velocity; }
 
 
     void Awake()
     {
         initReferences();
+        initVariables();
         if (meeleAttack != null) meeleAttack.setDamage(damageOnCollide);
         canMove = true;
+    }
+
+    private void initVariables()
+    {
+        healthCom.setHearts(hearts);
     }
 
     private void initReferences()
@@ -42,8 +53,8 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
         animCom = new AnimationController(animator);
         meeleAttack = GetComponentInChildren<MeeleAttack>();
         rangeAttack = GetComponentInChildren<RangeAttack>();
-        attackComponents.Add(meeleAttack);
-        attackComponents.Add(rangeAttack);
+        if(meeleAttack != null)attackComponents.Add(meeleAttack);
+        if(rangeAttack != null) attackComponents.Add(rangeAttack);
     }
 
     void FixedUpdate()
@@ -85,7 +96,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 
     }
 
-    public Vector2 getPosition() { return transform.position; }
+
 
     public void stopEnemy()
     {

@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 8113828119877142639}
   - component: {fileID: 7403265836397767372}
   m_Layer: 0
-  m_Name: Meele
+  m_Name: Meele Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

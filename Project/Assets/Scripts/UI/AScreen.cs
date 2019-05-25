@@ -9,7 +9,7 @@ public abstract class AScreen : MonoBehaviour
     [SerializeField] private Text caloriesText;
 
 
-    public void setCaloriesText(int calories){ caloriesText.text = "Score: " + calories.ToString(); }
+    public void setCaloriesText(int calories){ caloriesText.text = calories.ToString(); }
 
     public void exit()
     {

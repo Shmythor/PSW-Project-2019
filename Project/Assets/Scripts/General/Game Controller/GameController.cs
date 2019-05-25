@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
 
 
     /*          Other          */
-    private LinkedList<IEnemy> enemies;
+    private List<IEnemy> enemies;
 
     /*          Singleton          */
     public static GameController instance = null;
@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
     {
         // ONLY FOR DEBUG
         // startLevel();
-        MusicController.instance.playSoundTrack(SoundsEnum.soundTrack.main_mainSong);
+        
     }
 
 
@@ -71,6 +71,8 @@ public class GameController : MonoBehaviour
             spawn();
 
             UIController.instance.setCalories(this.calories);
+
+            MusicController.instance.playMainSong();
         }
         else
             mainUI.SetActive(false);
@@ -80,7 +82,7 @@ public class GameController : MonoBehaviour
     
     private void spawn()
     {
-        enemies = new LinkedList<IEnemy>();
+        enemies = new List<IEnemy>();
         caloriesToWin = consumableFabric.instance.spawnFruit(level);
         consumableFabric.instance.spawnConsumable(level);
         enemies = EnemyFabric.instance.spawnImps(level);
@@ -133,11 +135,13 @@ public class GameController : MonoBehaviour
     }
     
     public void restoreHealth() {
+        player.restoreHealth();
         UIController.instance.restoreHealth();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_heartFill);
     }
 
     public void restoreEnergy() {
+        player.restoreDamageTaken();
         UIController.instance.restoreEnergy();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
@@ -192,6 +196,7 @@ public class GameController : MonoBehaviour
         foreach (IEnemy enemy in enemies)
             enemy.resumeEnemy();
         pauseScreen.SetActive(false);
+        MusicController.instance.resumeMainSong();
     }
 
 }

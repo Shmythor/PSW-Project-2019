@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AAttack : MonoBehaviour, IAttack
+public abstract class AAttack : MonoBehaviour, IAttack, IComponent
 {
-    protected float damage;
+   protected float damage;
     protected float cooldown = 1f;
     protected bool canAttack = true;
     protected bool attacking;
@@ -13,6 +13,7 @@ public abstract class AAttack : MonoBehaviour, IAttack
     protected AEnemy enemy;
     protected IPlayer player;
 
+    
     public void setDamage(float damage) { this.damage = damage; }
     public void setCooldown(float cooldown) { this.cooldown = cooldown; }
 

@@ -23,4 +23,14 @@ public class MainMenu : MonoBehaviour
     {   
         LevelController.instance.nextLevel();        
     }
+
+    public void loadGame()
+    {
+
+    }
+
+    public void accountLogin()
+    {
+
+    }
 }

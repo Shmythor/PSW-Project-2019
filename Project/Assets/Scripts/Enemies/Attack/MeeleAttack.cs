@@ -11,6 +11,7 @@ public class MeeleAttack : AAttack
     {
         player.reciveDamage(damage);
         startCooldown();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,6 +30,7 @@ public class MeeleAttack : AAttack
         if (player == null)
             return;
         attacking = false;
+        if (enemy != null)
         enemy.changeState(player, states.searching);
     }
 

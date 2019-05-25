@@ -21,7 +21,7 @@ public class HealthComponent : AComponent
 
 
     public void setPlayer(IPlayer player) { this.player = player; }
-
+    public void setHearts(int hearts) { this.hearts = hearts; }
 
     /*          Default constructor          */
     public HealthComponent(ICharacter character)
@@ -57,7 +57,7 @@ public class HealthComponent : AComponent
 
         if(damage > 0 && damage < 40) sounds.Add(SoundsEnum.soundEffect.greedy_hurt1);
         if(damage > 41 && damage < 70) sounds.Add(SoundsEnum.soundEffect.greedy_hurt2);
-        if(damage > 71 && damage < 100) sounds.Add(SoundsEnum.soundEffect.greedy_hurt3);
+        if(damage > 71) sounds.Add(SoundsEnum.soundEffect.greedy_hurt3);
 
         if (damage >= 100)
         {
@@ -100,16 +100,22 @@ public class HealthComponent : AComponent
 
         if (isDead())
             return;
-
-        //array from sounds        
+        /*      array from sounds         */
         SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
         if (player == null)
             return;
+
+        player.setHearts(hearts);
         GameController.instance.updatePlayerHealth(hearts, damage, arraySounds);
         sounds.Clear();
     }
 
+    public void instantKill()
+    {
+        character.die();
+        updatePlayerInfo();
 
+    }
 
 
     private bool isDead()

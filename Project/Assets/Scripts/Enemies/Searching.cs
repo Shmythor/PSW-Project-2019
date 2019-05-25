@@ -5,32 +5,57 @@ using UnityEngine;
 public class Searching : AStateEnemy
 {
 
-    private float radiusOfSearching = 10f;
+    private float radiusOfSearching = 6f;
     private float acceptableDistanceToPoint = 2f;
     private float timeToNextLocation = 2f;
     private float timer;
+    private float timerWalking;
+    private float timeMaximumWalking = 3f;
     private bool hasReached = false;
     private bool waitForNextPoint = true;
     
 
-    public Searching(Rigidbody2D rb2d, float defSpeed) : base(rb2d, defSpeed){ actualSpeed = defSpeed * 0.6f; timer = timeToNextLocation; character = null; }
+    public Searching(Rigidbody2D rb2d, float defSpeed) : base(rb2d, defSpeed){
+        actualSpeed = defSpeed * 0.6f;
+        timer = timeToNextLocation;
+        character = null;
+        randomMovePosition();
+    }
 
     public override void movement()
     {
         hasReached = isItReached();
         if (hasReached == true)
         {
-            timer -= Time.fixedDeltaTime;
-            if(timer < 0)
-            {
-                randomMovePosition();
-                timer = timeToNextLocation;  
-            }
+            timeWaitOnPoint();
             return;
+        }
+        else
+        {
+            timeWalking();
         }
         base.movement();
     }
 
+    private void timeWaitOnPoint()
+    {
+        timer -= Time.fixedDeltaTime;
+        if (timer < 0)
+        {
+            randomMovePosition();
+            timer = timeToNextLocation;
+        }
+    }
+
+    private void timeWalking()
+    {
+        timer -= Time.fixedDeltaTime;
+        if (timer < 0)
+        {
+            randomMovePosition();
+            timer = timeMaximumWalking;
+        }
+    }
 
     private bool isItReached()
     {

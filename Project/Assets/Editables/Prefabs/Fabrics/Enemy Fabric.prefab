@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impPrefab: {fileID: 460804106504731609, guid: fd652237dff1cc74fa17ed7720d94866,
     type: 3}
+  bunnyPrefab: {fileID: 1267078285931768200, guid: 8c9b4fcdfa08f7347ba2e4cba426f481,
+    type: 3}

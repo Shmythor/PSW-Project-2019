@@ -9,4 +9,5 @@ public interface IPlayer: ICharacter
     void disableInputs();
     void enableInputs();
     void restoreHealth();
+    void setHearts(int hearts);
 }
