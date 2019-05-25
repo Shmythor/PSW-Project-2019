@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Editables/Scenes/Main Menu.unity
     guid: 17c71dd364548b8478b7044f2491a095
   - enabled: 1
-    path: Assets/Editables/Scenes/Level 1.unity
+    path: Assets/Editables/Scenes/Game.unity
     guid: d6ac041e79d58304aa49b55338e58e10
   - enabled: 1
     path: Assets/Editables/Scenes/Level 2.unity

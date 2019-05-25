@@ -28,9 +28,8 @@ public class consumableFabric : MonoBehaviour
        
         for(int i = 0; i < 6; i++) { 
             
-            //TODO!!!! (UTILIZAR fruirSpawners.leght)
-            if (level == 3) { rndFarm = (int) Random.Range(0, 5); }
-            else { rndFarm = (int) Random.Range(0, 3); }
+            rndFarm = (int) Random.Range(0, fruitSpawners.Length);
+
             //FIN TODO!!!
             Vector2 rndFarmSize = fruitSpawners[rndFarm].GetComponent<BoxCollider2D>().size;
             Vector3 newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);

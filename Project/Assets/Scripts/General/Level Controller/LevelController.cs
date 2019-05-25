@@ -45,9 +45,6 @@ public class LevelController : MonoBehaviour
 
     public void restartLevel()
     {
-        //int i = SceneManager.GetActiveScene().buildIndex;
-        //SceneManager.LoadScene(i, LoadSceneMode.Single);
-
         UIController.instance.resetTimer(); 
 
         GameController.instance.setLevel(currentLevel);
