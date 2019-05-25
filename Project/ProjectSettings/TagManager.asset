@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Environment
-  - fruit
   - UIController
-  - heart
-  - energy
   - FruitSpawner
   - Enemy
+  - Consumable
+  - heart
+  - energy
+  - fruit
   layers:
   - Default
   - TransparentFX

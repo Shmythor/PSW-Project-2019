@@ -22,15 +22,13 @@ public class consumableFabric : MonoBehaviour
 
     private int spawnFruits() {
         GameObject[] fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner"); 
-        Debug.Log("I'm finding: " + fruitSpawners.Length.ToString());
+        
         ArrayList lastPositions = new ArrayList();
         int spawnedCalories = 0, rndFarm;
        
-        for(int i = 0; i < 6; i++) { 
-            
+        for(int i = 0; i < 6; i++) {             
             rndFarm = (int) Random.Range(0, fruitSpawners.Length);
-
-            //FIN TODO!!!
+            
             Vector2 rndFarmSize = fruitSpawners[rndFarm].GetComponent<BoxCollider2D>().size;
             Vector3 newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);
 
@@ -48,7 +46,7 @@ public class consumableFabric : MonoBehaviour
                     }                        
                 }     
                                 
-            }                
+            }                            
             lastPositions.Add(newConsumablePosition);
 
             int spawnType = 0;

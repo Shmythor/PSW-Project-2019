@@ -19,6 +19,10 @@ public class PauseScreen : AScreen
         GameController.instance.resumeGame();
     }
 
+    public void saveGame() {
+        
+    }
+
 
 
 }
