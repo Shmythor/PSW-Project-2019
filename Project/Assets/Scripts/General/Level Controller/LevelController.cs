@@ -21,8 +21,7 @@ public class LevelController : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {        
-        GameController.instance.setLevel(level);
-        GameController.instance.startLevel();
+        GameController.instance.startLevel(currentLevel);
     }
     
     public void startGame() {
@@ -33,6 +32,16 @@ public class LevelController : MonoBehaviour
         GameController.instance.setLevel(currentLevel);
         GameController.instance.startLevel();
         */
+
+        GameController.instance.startLevel(currentLevel);
+    }
+
+    public void loadGame() {
+        SceneManager.LoadScene(1);       
+        GameDataSerializable data = SaveLoad.loadGameData();
+        this.currentLevel = data.level;
+
+        GameController.instance.loadGame(data);
     }
 
 
@@ -40,23 +49,20 @@ public class LevelController : MonoBehaviour
     {
         this.currentLevel = level;
 
-        GameController.instance.setLevel(currentLevel);
-        GameController.instance.startLevel();
+        GameController.instance.startLevel(currentLevel);
     }
 
     public void restartLevel()
     {
         UIController.instance.resetTimer(); 
 
-        GameController.instance.setLevel(currentLevel);
-        GameController.instance.startLevel(); 
+        GameController.instance.startLevel(currentLevel);
     }
 
     public void nextLevel()
     {    
         currentLevel++;
-        GameController.instance.setLevel(currentLevel);
-        GameController.instance.startLevel();      
+       GameController.instance.startLevel(currentLevel);      
         
     }
 

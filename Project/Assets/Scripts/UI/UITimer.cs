@@ -57,4 +57,7 @@ public class UITimer : MonoBehaviour
     public float getTime() {
         return timeLeft;
     }
+    public void setTime(float time) {
+        timeLeft = time;
+    }
 }

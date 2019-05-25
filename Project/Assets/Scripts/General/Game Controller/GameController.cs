@@ -26,9 +26,7 @@ public class GameController : MonoBehaviour
 
 
 
-    private bool loadOrNot = true;
-
-    public void setLevel(int level){ this.level = level; }
+    public void setLevel(int level) { this.level = level; }
     public int getLevel() { return level; }
     public bool isIsLastLevel() { return level == lastLevel ? true : false; }
     public void setCaloriesToZero() { calories = 0; } /* For exiting to the menu */
@@ -60,8 +58,6 @@ public class GameController : MonoBehaviour
     }
 
 
-    public void startLevel()
-    {       
         if (level > 0)
         {
             /* Set map */        
@@ -101,7 +97,15 @@ public class GameController : MonoBehaviour
             Destroy(consumable);
         }        
         caloriesToWin = consumableFabric.instance.spawnConsumables(level);
-        
+    }  
+
+    private void spawnConsumables(GameDataSerializable data)
+    {
+         foreach (GameObject consumable in GameObject.FindGameObjectsWithTag("Consumable"))
+        {
+            Destroy(consumable);
+        }  
+        caloriesToWin = consumableFabric.instance.spawnConsumables(data);
     }
 
     private void spawnEnemies() {
@@ -110,8 +114,14 @@ public class GameController : MonoBehaviour
             Destroy(enemy);
         }
         enemies = EnemyFabric.instance.spawnImps(level);
+    }
 
-        
+    private void spawnEnemies(GameDataSerializable data) {  
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }     
+        enemies = EnemyFabric.instance.spawnImps(data);
     }
 
     #region Player stats' methods
@@ -119,19 +129,14 @@ public class GameController : MonoBehaviour
         
         UIController.instance.setHearts(hearts);
         UIController.instance.setDamage(damage);         
-
-        foreach (SoundsEnum.soundEffect sound in sounds)
-        {
-            MusicController.instance.playSoundEffect(sound);
-        }   
+        if(sounds != null) {
+            foreach (SoundsEnum.soundEffect sound in sounds)
+            {
+                MusicController.instance.playSoundEffect(sound);
+            }   
+        }
+        
     }
-
-    public void updatePlayerHealth(int hearts, float damage)
-    {
-        UIController.instance.setHearts(hearts);
-        UIController.instance.setDamage(damage);
-    }
-
 
     public void consumeCalories(int calories)
     {
@@ -232,6 +237,7 @@ public class GameController : MonoBehaviour
 
     #region SaveLoad Methods
 
+   
     public void saveGame() {
         GameDataSerializable data = new GameDataSerializable(new GameData(
             GameObject.FindGameObjectsWithTag("Consumable"),
@@ -247,11 +253,31 @@ public class GameController : MonoBehaviour
         SaveLoad.saveGameData(data);
     }   
 
-    public void loadGame() {
-        GameDataSerializable data = SaveLoad.loadGameData();
-        Debug.Log("Conseguido!!" + data.level.ToString());
-    }
+    public void loadGame(GameDataSerializable data) { 
+        
+        /* Set map */        
+        this.level = data.level;
+        MapController.instance.setMap(level);
 
+        /* Set Greedy */        
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
+        player.enableInputs();
+            
+        /* Spawn Consumables */        
+        caloriesThisLevel = 0;
+        caloriesToRestore = 0;
+        spawnConsumables(data);
+
+        /* Spawn Enemies */            
+        spawnEnemies(data);
+
+        /* Set UI */      
+        mainUI.SetActive(true);       
+        UIController.instance.setUIStats(data.damage, data.time, data.hearts, data.calories);   
+
+        /* Set music */   
+        MusicController.instance.playMainSong();
+    }
     
     #endregion
 
