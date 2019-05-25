@@ -29,9 +29,10 @@ public class LevelController : MonoBehaviour
         SceneManager.LoadScene(1);
 
         this.currentLevel = 1;
-
+        /*
         GameController.instance.setLevel(currentLevel);
         GameController.instance.startLevel();
+        */
     }
 
 

@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3461850615567570231}
   - component: {fileID: 7979608546814426201}
   m_Layer: 5
-  m_Name: Renunciar Button
+  m_Name: Play Again Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,7 +262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3461850615739070508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 3461850616745403613}
   - component: {fileID: 7366458380510821663}
   m_Layer: 5
-  m_Name: Salir button
+  m_Name: Exit button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3e1952a4df5d9024e8399cbfd9a36ed7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af95fde72b1126f44b756193e4d93ebf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

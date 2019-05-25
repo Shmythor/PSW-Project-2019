@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3493948063441187749}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.36460954, y: -3.8918076, z: 90}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2159730049504735959}
@@ -354,10 +354,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696613375710662319}
     m_Modifications:
-    - target: {fileID: 3626836529521803791, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+    - target: {fileID: 3626836529349504794, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
         type: 3}
-      propertyPath: m_Name
-      value: Pause Screen
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626836529349504794, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626836529349504794, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 192.00003
       objectReference: {fileID: 0}
     - target: {fileID: 3626836529521803778, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
         type: 3}
@@ -463,6 +473,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626836529521803779, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626836529521803791, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_Name
+      value: Pause Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626836530527821564, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626836530527821564, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626836530527821564, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 46.000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563887626438463899, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563887626438463899, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563887626438463899, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 119
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ba633e6504a9fc44a42e89f558cf2f6, type: 3}
@@ -710,14 +760,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696613375710662319}
     m_Modifications:
-    - target: {fileID: 3253793416130547578, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+    - target: {fileID: 3253793415124276105, guid: 85ac94eefb1652748b7cbfaaaae487ef,
         type: 3}
-      propertyPath: m_Name
-      value: GamWin Screen
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3253793416130547578, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+    - target: {fileID: 3253793415124276105, guid: 85ac94eefb1652748b7cbfaaaae487ef,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253793416130547574, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+        type: 3}
+      propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3253793416130547575, guid: 85ac94eefb1652748b7cbfaaaae487ef,
@@ -825,6 +880,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3253793416130547578, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+        type: 3}
+      propertyPath: m_Name
+      value: GamWin Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253793416352375407, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253793416352375407, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5551485155506836405, guid: 85ac94eefb1652748b7cbfaaaae487ef,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -839,6 +909,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -82.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511529137574842034, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511529137574842034, guid: 85ac94eefb1652748b7cbfaaaae487ef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85ac94eefb1652748b7cbfaaaae487ef, type: 3}
@@ -956,15 +1036,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 696613375710662319}
     m_Modifications:
+    - target: {fileID: 3461850615567570228, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461850615567570228, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3461850615739070497, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
         type: 3}
       propertyPath: m_Name
       value: GameOver Screen
-      objectReference: {fileID: 0}
-    - target: {fileID: 3461850615739070497, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3461850615739070508, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
         type: 3}
@@ -1069,6 +1154,21 @@ PrefabInstance:
     - target: {fileID: 3461850615739070508, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461850615739070509, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461850616745403602, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461850616745403602, guid: 1923c33c8fa2f1d4a8eae46fa45ec7a7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
