@@ -43,10 +43,6 @@ public class UIController : MonoBehaviour
     public float getTime() {
        return UITimer.getTime();
     }
-
-    public void setTime(float time) {
-       UITimer.setTime(time);
-    }
     
 
     /*
@@ -90,13 +86,6 @@ public class UIController : MonoBehaviour
         setHearts(3);        
     }
 
-    public void setUIStats(float damage, float time, int hearts, int calories) {
-        setCalories(calories);
-        setDamage(damage);
-        setHearts(hearts);
-        setTime(time);      
-    }
-
     void updateCalories(int c) {
         cont += c; calories += c;
         
@@ -125,7 +114,7 @@ public class UIController : MonoBehaviour
 
     public void spawnDEBUG()
     {
-        GameController.instance.loadGame(SaveLoad.loadGameData());
+        GameController.instance.loadGame();
     }
 
     public void resetTimer() {

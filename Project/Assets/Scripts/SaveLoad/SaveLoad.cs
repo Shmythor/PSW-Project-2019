@@ -7,8 +7,6 @@ public static class SaveLoad {
 
     private static string path = Application.persistentDataPath + "/game.pipo";
 
-    public static bool loadGameNow { get => loadGameNow; set => loadGameNow = value; }
-
     public static void saveGameData(GameDataSerializable data) {
         BinaryFormatter formatter = new BinaryFormatter();        
 
