@@ -42,6 +42,11 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
 
 
+        player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
+
+
+        enemies = new List<IEnemy>();
+
         
     }
 
@@ -50,12 +55,7 @@ public class GameController : MonoBehaviour
         if(loadOrNot) {
             Debug.Log("Holas");
         }
-
-        player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
         player.restoreHealth();
-
-        enemies = new List<IEnemy>();
-
         UIController.instance.initUIStats();
     }
 
