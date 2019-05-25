@@ -16,12 +16,16 @@ public class HealthComponent : AComponent
     private float timeInvincible = 1f;          //TODO Invincible
     private bool invincible = false;
 
+    
     /*          Sounds          */
     private List<SoundsEnum.soundEffect> sounds = new List<SoundsEnum.soundEffect>();
 
 
+
+
     public void setPlayer(IPlayer player) { this.player = player; }
     public void setHearts(int hearts) { this.hearts = hearts; }
+
 
     /*          Default constructor          */
     public HealthComponent(ICharacter character)
@@ -63,7 +67,7 @@ public class HealthComponent : AComponent
         {
             hearts--;
             sounds.Add(SoundsEnum.soundEffect.ui_heartLoose);
-            if (isDead()) { 
+            if (isDead()) {
                 sounds.Add(SoundsEnum.soundEffect.greedy_death);
                 character.die();
             }
@@ -83,6 +87,7 @@ public class HealthComponent : AComponent
     {
         hearts = 3;
         damage = 0;
+        updatePlayerInfo();
     }
 
 
@@ -93,8 +98,8 @@ public class HealthComponent : AComponent
         updatePlayerInfo();
     }
 
-    // Send player's status(amount of hearts and damage taken) to GameController
-    // ONLY FOR PLAYER
+    /* Send player's status(amount of hearts and damage taken) to GameController */
+    /* ONLY FOR PLAYER  */
     private void updatePlayerInfo()
     {
 
@@ -116,6 +121,8 @@ public class HealthComponent : AComponent
         updatePlayerInfo();
 
     }
+
+
 
 
     private bool isDead()

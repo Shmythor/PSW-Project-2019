@@ -47,7 +47,6 @@ public class LevelController : MonoBehaviour
     public void restartLevel()
     {
         UIController.instance.resetTimer(); 
-
         GameController.instance.setLevel(currentLevel);
         GameController.instance.startLevel(); 
     }

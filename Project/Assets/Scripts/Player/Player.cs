@@ -98,9 +98,9 @@ public class Player : MonoBehaviour, IPlayer
 
     public void die()
     {
-
+        //Debug.Log
         GameController.instance.GameOver();
-        //Destroy(gameObject);       // TODO player dies
+        
     }
 
 

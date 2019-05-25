@@ -71,9 +71,7 @@ public class UIController : MonoBehaviour
     }
 
     public void resetUIStats() {
-        setCalories(this.calories);
-        setDamage(0);
-        setHearts(3);      
+  
 
         this.stopTimer();
         this.resetTimer();
@@ -86,15 +84,7 @@ public class UIController : MonoBehaviour
         setHearts(3);        
     }
 
-    void updateCalories(int c) {
-        cont += c; calories += c;
-        
-        if(cont >= 100) {
-            cont -= 100;
-            restoreEnergy();            
-        }
-        setCaloriesText();
-    }
+
 
    
 

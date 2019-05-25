@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         if(loadOrNot) {
             Debug.Log("Holas");
         }
-        player.restoreHealth();
+        
         UIController.instance.initUIStats();
     }
 
@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
             /* Set Greedy */
             //RND SPAWN?
             player.enableInputs();
-            
+            player.restoreHealth();
             /* Spawn Consumables */
             caloriesThisLevel = 0;
             caloriesToRestore = 0;
@@ -81,8 +81,8 @@ public class GameController : MonoBehaviour
 
             /* Set UI */      
             mainUI.SetActive(true);  
-            UIController.instance.resetUIStats();    
-
+            UIController.instance.resetUIStats();
+            UIController.instance.setCalories(calories);
             /* Set music */   
             MusicController.instance.playMainSong();
 
@@ -130,6 +130,7 @@ public class GameController : MonoBehaviour
     {
         UIController.instance.setHearts(hearts);
         UIController.instance.setDamage(damage);
+        UIController.instance.setCalories(calories);
     }
 
 
@@ -162,13 +163,11 @@ public class GameController : MonoBehaviour
 
     public void restoreHealth() {
         player.restoreHealth();
-        UIController.instance.restoreHealth();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_heartFill);
     }
 
     public void restoreEnergy() {
         player.restoreDamageTaken();
-        UIController.instance.restoreEnergy();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
 
@@ -185,6 +184,7 @@ public class GameController : MonoBehaviour
     
     public void GameOver()
     {
+        
         pauseGame(false);
         calories = 0; 
         gameoverScreen.SetActive(true);
