@@ -43,13 +43,13 @@ public class GameController : MonoBehaviour
         player.restoreHealth();
 
         enemies = new List<IEnemy>();
+
+        UIController.instance.initUIStats();
     }
 
     private void Start()
     {
-        // ONLY FOR DEBUG
-        // startLevel();
-        
+                
     }
 
 
@@ -59,7 +59,10 @@ public class GameController : MonoBehaviour
         {
             /* Set map */        
             MapController.instance.setMap(level);
-           
+
+            /* Set Greedy */
+            //RND SPAWN?
+            player.enableInputs();
             
             /* Spawn Consumables */
             caloriesThisLevel = 0;
@@ -70,17 +73,13 @@ public class GameController : MonoBehaviour
             spawnEnemies();
 
             /* Set UI */      
-            mainUI.SetActive(true);            
+            mainUI.SetActive(true);  
+            UIController.instance.resetUIStats();    
 
-            UIController.instance.resetTimer();
-            UIController.instance.restartTimer();
-           
-
-            UIController.instance.setCalories(this.calories);
-
+            /* Set music */   
             MusicController.instance.playMainSong();
 
-            player.enableInputs();
+           
         }
         else
             mainUI.SetActive(false);

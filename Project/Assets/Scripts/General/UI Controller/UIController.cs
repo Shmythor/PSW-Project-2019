@@ -55,8 +55,21 @@ public class UIController : MonoBehaviour
         setDamageBar();       
     }
 
+    public void resetUIStats() {
+        setCalories(this.calories);
+        setDamage(0);
+        setHearts(3);      
 
-    
+        this.stopTimer();
+        this.resetTimer();
+        this.restartTimer();  
+    }
+
+    public void initUIStats() {
+        setCalories(0);
+        setDamage(0);
+        setHearts(3);        
+    }
 
     void updateCalories(int c) {
         cont += c; calories += c;
