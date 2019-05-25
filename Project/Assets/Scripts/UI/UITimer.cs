@@ -53,4 +53,8 @@ public class UITimer : MonoBehaviour
     public void restartTimer() {
         runTimer = true;
     }
+
+    public float getTime() {
+        return timeLeft;
+    }
 }

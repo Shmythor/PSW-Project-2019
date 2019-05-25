@@ -28,6 +28,21 @@ public class UIController : MonoBehaviour
         setDamageBar();
     }
 
+    public int getCalories() {
+        return calories;
+    }
+
+    public int getHearts() {
+        return hearts;
+    }
+
+    public float getDamage() {
+        return damage;
+    }
+
+    public float getTime() {
+       return UITimer.getTime();
+    }
     
 
     /*
@@ -99,7 +114,7 @@ public class UIController : MonoBehaviour
 
     public void spawnDEBUG()
     {
-        GameController.instance.startLevel();
+        GameController.instance.loadGame();
     }
 
     public void resetTimer() {

@@ -25,6 +25,9 @@ public class GameController : MonoBehaviour
     public static GameController instance = null;
 
 
+
+    private bool loadOrNot = true;
+
     public void setLevel(int level){ this.level = level; }
     public int getLevel() { return level; }
     public bool isIsLastLevel() { return level == lastLevel ? true : false; }
@@ -49,7 +52,9 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-                
+        if(loadOrNot) {
+            Debug.Log("Holas");
+        }
     }
 
 
@@ -79,7 +84,7 @@ public class GameController : MonoBehaviour
             /* Set music */   
             MusicController.instance.playMainSong();
 
-           
+          
         }
         else
             mainUI.SetActive(false);
@@ -103,9 +108,11 @@ public class GameController : MonoBehaviour
             Destroy(enemy);
         }
         enemies = EnemyFabric.instance.spawnImps(level);
+
+        
     }
 
-    /*          UI update states          */
+    #region Player stats' methods
     public void updatePlayerHealth(int hearts, float damage, SoundsEnum.soundEffect[] sounds) {       
         
         UIController.instance.setHearts(hearts);
@@ -149,8 +156,8 @@ public class GameController : MonoBehaviour
         {
             GameWin();
         }
-    }
-    
+    } 
+
     public void restoreHealth() {
         player.restoreHealth();
         UIController.instance.restoreHealth();
@@ -163,8 +170,9 @@ public class GameController : MonoBehaviour
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
 
-    /* UI SCREENS  */
-    
+    #endregion
+
+    #region UI SCREENS   
 
     private void disativateUIScreens()
     {
@@ -206,6 +214,7 @@ public class GameController : MonoBehaviour
         }
 
     }
+    
 
     public void resumeGame()
     {
@@ -215,5 +224,34 @@ public class GameController : MonoBehaviour
         pauseScreen.SetActive(false);
         MusicController.instance.resumeMainSong();
     }
+
+    #endregion
+
+
+    #region SaveLoad Methods
+
+    public void saveGame() {
+        GameDataSerializable data = new GameDataSerializable(new GameData(
+            GameObject.FindGameObjectsWithTag("Consumable"),
+            GameObject.FindGameObjectsWithTag("Enemy"),
+            GameObject.FindGameObjectWithTag("Player"),
+            this.level,
+            UIController.instance.getHearts(),
+            UIController.instance.getCalories(),
+            UIController.instance.getDamage(),
+            UIController.instance.getTime()
+        )); 
+
+        SaveLoad.saveGameData(data);
+    }   
+
+    public void loadGame() {
+        GameDataSerializable data = SaveLoad.loadGameData();
+        Debug.Log("Conseguido!!" + data.level.ToString());
+    }
+
+    
+    #endregion
+
 
 }
