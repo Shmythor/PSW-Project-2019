@@ -23,9 +23,15 @@ public class EnemyFabric : MonoBehaviour
     {
         List<IEnemy> listOfEnemies = new List<IEnemy>();
         //TODO decide how many imps we want in each level
-        
-        listOfEnemies.Add(Instantiate(impPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<IEnemy>());
-        listOfEnemies.Add(Instantiate(bunnyPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<IEnemy>());
+        int num = 1;
+        if(level>=4) num++;
+        //if(level>=5) num++;
+        if(level>=6) num++;
+
+        for(int i = 0; i < num; i++) {
+            listOfEnemies.Add(Instantiate(impPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<IEnemy>());
+            listOfEnemies.Add(Instantiate(bunnyPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<IEnemy>());
+        }
 
         return listOfEnemies;
     }

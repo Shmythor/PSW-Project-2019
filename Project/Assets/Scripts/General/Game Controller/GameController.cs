@@ -89,7 +89,10 @@ public class GameController : MonoBehaviour
     
     private void spawnConsumables()
     {
-        
+        foreach (GameObject consumable in GameObject.FindGameObjectsWithTag("Consumable"))
+        {
+            Destroy(consumable);
+        }        
         caloriesToWin = consumableFabric.instance.spawnConsumables(level);
         
     }

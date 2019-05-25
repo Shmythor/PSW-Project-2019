@@ -51,10 +51,14 @@ public class consumableFabric : MonoBehaviour
             }                
             lastPositions.Add(newConsumablePosition);
 
+            int spawnType = 0;
+            if(level >= 3) spawnType = 1;
+            if(level >= 5) spawnType = 2;
+
             if(Random.Range(0f, 10.0f) >= 6f) {
-                spawnedCalories += Instantiate(PumpkinPrefabs[level - 1], newConsumablePosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
+                spawnedCalories += Instantiate(PumpkinPrefabs[spawnType], newConsumablePosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
             } else {
-                spawnedCalories += Instantiate(GrapePrefabs[level - 1], newConsumablePosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
+                spawnedCalories += Instantiate(GrapePrefabs[spawnType], newConsumablePosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
             }            
         }
 
