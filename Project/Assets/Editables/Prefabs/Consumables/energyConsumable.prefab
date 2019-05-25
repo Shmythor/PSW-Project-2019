@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6431694943348560484}
   - component: {fileID: 4183065324308181658}
   - component: {fileID: 395469702114734406}
-  - component: {fileID: 489778080586645807}
+  - component: {fileID: 8465992883024814461}
   m_Layer: 0
   m_Name: energyConsumable
   m_TagString: energy
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &489778080586645807
+--- !u!114 &8465992883024814461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +138,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2000711831758618458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cc9135084b77f54dbce1f3c6ef83910, type: 3}
+  m_Script: {fileID: 11500000, guid: 4871492cef3662a45acf28ef8a2e9a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

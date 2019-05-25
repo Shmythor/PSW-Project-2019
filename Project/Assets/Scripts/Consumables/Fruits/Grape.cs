@@ -18,11 +18,6 @@ public class Grape : Fruit
         } else {
             this.calories = 15;
         }
-    }
-
-
-    
-
-    
+    }  
 
 }

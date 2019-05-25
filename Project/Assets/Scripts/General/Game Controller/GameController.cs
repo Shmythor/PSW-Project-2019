@@ -141,6 +141,8 @@ public class GameController : MonoBehaviour
         UIController.instance.restoreEnergy();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
+
+    /* UI SCREENS  */
     
 
     private void disativateUIScreens()
@@ -191,9 +193,5 @@ public class GameController : MonoBehaviour
             enemy.resumeEnemy();
         pauseScreen.SetActive(false);
     }
-
-
-
-
 
 }

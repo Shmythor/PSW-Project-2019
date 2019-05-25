@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Fruit : MonoBehaviour
+public abstract class Fruit : Consumable
 {
     /*          References          */
     public int type;
     protected int calories;
 
 
-    public void setType(int type){this.type = type;}
+    public void setType(int type) { this.type = type; }
     public int getCalories() { return calories; }
 
     void Awake() {
@@ -36,14 +36,7 @@ public abstract class Fruit : MonoBehaviour
         attached to this object (2D physics only).
     */
     
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.transform.tag == "Environment") {
-            //TODO -> HABRÍA QUE REGENERAR LA FRUTA
-            GameController.instance.consumeCalories(1000);
-            Destroy(gameObject); 
-        }        
-    }
+    
 
 
 }

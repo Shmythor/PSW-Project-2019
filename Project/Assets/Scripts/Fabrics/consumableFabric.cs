@@ -21,34 +21,33 @@ public class consumableFabric : MonoBehaviour
     public int spawnFruit(int level) {
         GameObject[] fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner"); 
         ArrayList lastPositions = new ArrayList();
-
         int spawnedCalories = 0, rndFarm;
        
-        for(int i = 0; i < 6; i++) {   
+        for(int i = 0; i < 6; i++) { 
+            
+            //TODO!!!! (UTILIZAR fruirSpawners.leght)
             if (level == 3) { rndFarm = (int) Random.Range(0, 5); }
             else { rndFarm = (int) Random.Range(0, 3); }
-            Vector3 newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, 4f, -4f, 0f);
+            //FIN TODO!!!
+            Vector2 rndFarmSize = fruitSpawners[rndFarm].GetComponent<BoxCollider2D>().size;
+            Vector3 newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);
 
             /* Comprobamos sí la nueva fruta estará cerca de otra para respawnearla o no */
-            bool unlock = true;
-            if(unlock) {
-                if(lastPositions.Count == 0) { 
-                    lastPositions.Add(newConsumablePosition);                           
-                    unlock = false;
-                } else {
-                    int key = 0;
-                    foreach (Vector3 vct in lastPositions) {                        
-                        Vector3 s = (Vector3)vct;
-                        if(Vector3.Distance(vct, newConsumablePosition) < 0.5f) {
-                            newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, 4f, -4f, 0f);
-                            key = 1;
-                            unlock = false;
-                        }                        
-                    }     
-                    if(key==0) lastPositions.Add(newConsumablePosition);                
-                }
-                
-            }
+            bool repeat = true;
+            while(repeat) {
+                repeat = false;
+
+                foreach (Vector3 vct in lastPositions) {                        
+                    Vector3 s = (Vector3)vct;
+                    if(Vector3.Distance(vct, newConsumablePosition) < 1f) {
+                        newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, 4f, -4f, 0f);
+                        repeat = true;
+                        break; /* Go out foreach */
+                    }                        
+                }     
+                                
+            }                
+            lastPositions.Add(newConsumablePosition);
 
             if(Random.Range(0f, 10.0f) >= 6f) {
                 spawnedCalories += Instantiate(PumpkinPrefabs[level - 1], newConsumablePosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
