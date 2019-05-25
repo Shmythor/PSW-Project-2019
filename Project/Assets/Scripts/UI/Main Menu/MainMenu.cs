@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     public void loadGame()
     {
-        LevelController.instance.startGame();   
+        LevelController.instance.loadGame();   
     }
 
     public void accountLogin()
