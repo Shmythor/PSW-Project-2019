@@ -9,6 +9,8 @@ public class consumableFabric : MonoBehaviour
     public static consumableFabric instance = null;
     private int maxHearts = 1, maxEnergy = 2;
 
+    private int level;
+
 
     private void Awake()
     {
@@ -18,7 +20,7 @@ public class consumableFabric : MonoBehaviour
             Destroy(gameObject);        
     }
 
-    public int spawnFruit(int level) {
+    private int spawnFruits() {
         GameObject[] fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner"); 
         ArrayList lastPositions = new ArrayList();
         int spawnedCalories = 0, rndFarm;
@@ -40,7 +42,7 @@ public class consumableFabric : MonoBehaviour
                 foreach (Vector3 vct in lastPositions) {                        
                     Vector3 s = (Vector3)vct;
                     if(Vector3.Distance(vct, newConsumablePosition) < 1f) {
-                        newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, 4f, -4f, 0f);
+                        newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);
                         repeat = true;
                         break; /* Go out foreach */
                     }                        
@@ -59,12 +61,15 @@ public class consumableFabric : MonoBehaviour
         return spawnedCalories;
     }
 
-    private Vector3 generateRandomVector3(float x1, float x2, float y1, float y2) {
-        return new Vector3(Random.Range(x1, x2), Random.Range(y1, y2), 0);
+    
+
+    public int spawnConsumables(int level) { 
+        this.level = level;      
+        spawnDrugs();
+        return spawnFruits();
     }
 
-    public void spawnConsumable(int level) {       
-
+    private void spawnDrugs() {        
         int contHearts = 0, contEnergy = 0;
         if(level != 1) {
             for(int i = 0; i < 5; i++) {
@@ -81,6 +86,10 @@ public class consumableFabric : MonoBehaviour
         }    
     }
 
+    private Vector3 generateRandomVector3(float x1, float x2, float y1, float y2) {
+        return new Vector3(Random.Range(x1, x2), Random.Range(y1, y2), 0);
+    }
+    
     public void restoreHealth() {
         GameController.instance.restoreHealth();
     }

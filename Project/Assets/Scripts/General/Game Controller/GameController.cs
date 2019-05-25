@@ -83,8 +83,7 @@ public class GameController : MonoBehaviour
     private void spawn()
     {
         enemies = new List<IEnemy>();
-        caloriesToWin = consumableFabric.instance.spawnFruit(level);
-        consumableFabric.instance.spawnConsumable(level);
+        caloriesToWin = consumableFabric.instance.spawnConsumables(level);
         enemies = EnemyFabric.instance.spawnImps(level);
     }
 
