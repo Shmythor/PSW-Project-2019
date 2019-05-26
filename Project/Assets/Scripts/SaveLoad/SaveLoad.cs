@@ -14,8 +14,37 @@ public static class SaveLoad {
                         path_top2 = Application.persistentDataPath + "/top2.data",
                         path_top3 = Application.persistentDataPath + "/top3.data";
 
+    private static string path_usernames = Application.persistentDataPath + "/usernames.list";  
+
     public enum paths {cell1, cell2, cell3, top1, top2, top3};                   
 
+    public static string[] getUserNames() {
+        if(File.Exists(path_usernames)) {
+            BinaryFormatter formatter = new BinaryFormatter(); 
+            FileStream stream = new FileStream(path_usernames, FileMode.Open);
+
+            if(stream.Length == 0) {
+                stream.Close(); 
+                return null;
+            }
+
+            UserNamesSerializable data = formatter.Deserialize(stream) as UserNamesSerializable;
+            
+            stream.Close(); 
+            return data.usernames;
+        } else {
+            Debug.LogError("Save file not found in path: " + path_usernames);
+            return null;
+        }
+    }
+
+    public static void addUserNames(string[] usernames) {
+        BinaryFormatter formatter = new BinaryFormatter(); 
+        FileStream stream = new FileStream(path_usernames, FileMode.Create);
+
+        formatter.Serialize(stream, new UserNamesSerializable(usernames));
+        stream.Close();   
+    }
 
     public static void saveGameDataAt(GameDataSerializable data, paths pathEnum) {
         if(pathEnum == paths.cell1) path = path_cell1;
