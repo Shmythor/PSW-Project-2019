@@ -96,6 +96,15 @@ public static class SaveLoad {
         data[0] = loadTopGameDataAt(paths.top1);
         data[1] = loadTopGameDataAt(paths.top2);
         data[2] = loadTopGameDataAt(paths.top3);
-        return data;
+
+        return testTopGameNotNull(data);
+    }
+
+    private static TopGameData[] testTopGameNotNull(TopGameData[] topData) {
+        if(topData[0] == null) topData[0] = new TopGameData(0, 0, 0, 0);
+        if(topData[1] == null) topData[1] = new TopGameData(0, 0, 0, 0);
+        if(topData[2] == null) topData[2] = new TopGameData(0, 0, 0, 0);
+
+        return topData;
     }
 }

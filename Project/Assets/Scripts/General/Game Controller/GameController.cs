@@ -294,23 +294,36 @@ public class GameController : MonoBehaviour
 
     private void saveTopGame() {
         TopGameData[] topData = SaveLoad.loadAllTopGameData();
-        List<TopGameData> listToSort = new List<TopGameData>();
-        listToSort.Add(topData[0]);
-        listToSort.Add(topData[1]);
-        listToSort.Add(topData[2]);
-        listToSort.Add(new TopGameData(3, 4, this.calories, UIController.instance.getTime()));
-
-        //Utilizar Sort con IComparer!!!!
-        listToSort.Sort(new TopGameDataComparer());
-        listToSort.RemoveAt(3);
+        TopGameData newTGD = new TopGameData(3, 4, this.calories, UIController.instance.getTime());
+        
+        for(int i = 0; i<3; i++) {
+            if(compareTo(topData[i], newTGD) == 1) {
+                if(i>0) {topData[i-1] = topData[i];}
+                topData[i] = newTGD;
+            }
+        }       
 
         
 
-        topData = listToSort.ToArray();
+        SaveLoad.saveTopGameDataAt(topData[0], SaveLoad.paths.top1);
+        SaveLoad.saveTopGameDataAt(topData[1], SaveLoad.paths.top2);
+        SaveLoad.saveTopGameDataAt(topData[2], SaveLoad.paths.top3);
+    }
 
-        if(topData[0]!=null) SaveLoad.saveTopGameDataAt(topData[0], SaveLoad.paths.top1);
-        if(topData[1]!=null) SaveLoad.saveTopGameDataAt(topData[1], SaveLoad.paths.top2);
-        if(topData[2]!=null) SaveLoad.saveTopGameDataAt(topData[2], SaveLoad.paths.top3);
+  
+
+    private int compareTo(TopGameData old, TopGameData nw) {
+        if (old.calories == nw.calories) {
+            if(old.time < nw.time) return -1;
+            if(old.time > nw.time) return 1;
+            return 0;
+        }
+           
+        if (old.calories < nw.calories) {            
+            return 1;
+        }
+
+        return -1;
     }
     
     #endregion

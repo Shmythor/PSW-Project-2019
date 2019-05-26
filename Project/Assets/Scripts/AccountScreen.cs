@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class AccountScreen : MonoBehaviour
 {
 
-    public GameObject stats;
-    public Text statsTitle;
+    public Text statsTitle, statsCalories, statsHearts, statsEnergies;
+
 
     private TopGameData[] topData;
     
@@ -26,10 +26,10 @@ public class AccountScreen : MonoBehaviour
 
     public void setTopStatsOf(int topPosition) {
         statsTitle.text = "Stats: Top " + topPosition.ToString();
-
-        stats.transform.GetChild(2).gameObject.GetComponent<Text>().text = "Total calories: " + topData[topPosition-1].calories.ToString();
-        stats.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Total hearts picked: " + topData[topPosition-1].heartsPicked.ToString();
-        stats.transform.GetChild(4).gameObject.GetComponent<Text>().text = "Total energies picked: " + topData[topPosition-1].energiesPicked.ToString();
+        
+        statsCalories.text = "Total calories: " + topData[3-topPosition].calories.ToString();
+        statsHearts.text = "Total hearts picked: " + topData[3-topPosition].heartsPicked.ToString();
+        statsEnergies.text = "Total energies picked: " + topData[3-topPosition].energiesPicked.ToString();
     }
 
     public void close() {
