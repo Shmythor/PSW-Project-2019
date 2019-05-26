@@ -107,12 +107,16 @@ public class consumableFabric : MonoBehaviour
     private int spawnFruits(float[][] grapePositions, float[][] pumpkinPositions) {
         int caloriesToReturn = 0;
 
+        int spawnType = 0;
+        if(level >= 3) spawnType = 1;
+        if(level >= 5) spawnType = 2; 
+
         for(int i = 0; i < grapePositions.Length; i++) {
-           caloriesToReturn += Instantiate(GrapePrefabs[level-1], new Vector3(grapePositions[i][0], grapePositions[i][1], grapePositions[i][2]), Quaternion.identity).GetComponent<Fruit>().getCalories();      
+           caloriesToReturn += Instantiate(GrapePrefabs[spawnType], new Vector3(grapePositions[i][0], grapePositions[i][1], grapePositions[i][2]), Quaternion.identity).GetComponent<Fruit>().getCalories();      
         }   
 
         for(int i = 0; i < pumpkinPositions.Length; i++) {
-          caloriesToReturn += Instantiate(PumpkinPrefabs[level-1], new Vector3(pumpkinPositions[i][0], pumpkinPositions[i][1], pumpkinPositions[i][2]), Quaternion.identity).GetComponent<Fruit>().getCalories();           
+          caloriesToReturn += Instantiate(PumpkinPrefabs[spawnType], new Vector3(pumpkinPositions[i][0], pumpkinPositions[i][1], pumpkinPositions[i][2]), Quaternion.identity).GetComponent<Fruit>().getCalories();           
         } 
 
         return caloriesToReturn;
