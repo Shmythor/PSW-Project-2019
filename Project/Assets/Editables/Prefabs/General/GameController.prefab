@@ -56,3 +56,5 @@ MonoBehaviour:
     type: 3}
   pauseScreen: {fileID: 3626836529521803791, guid: 3ba633e6504a9fc44a42e89f558cf2f6,
     type: 3}
+  saveScreen: {fileID: 6187869555138011520, guid: 3717f75aa2bd6e3418dba0cf9ac92550,
+    type: 3}

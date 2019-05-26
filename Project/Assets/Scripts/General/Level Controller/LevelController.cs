@@ -39,10 +39,10 @@ public class LevelController : MonoBehaviour
         this.currentLevel = 1;
     }
 
-    public void loadGame() {
+    public void loadGame(SaveLoad.paths path) {
         SceneManager.LoadScene(1);
 
-        data = SaveLoad.loadGameData();
+        data = SaveLoad.loadGameDataAt(path);
         this.currentLevel = data.level;
     }
 

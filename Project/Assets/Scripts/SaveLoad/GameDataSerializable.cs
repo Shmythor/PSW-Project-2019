@@ -12,6 +12,7 @@ public class GameDataSerializable {
     /* Game Stats */
     public int level;
     public float time;
+    public string date;
     /* Consumables statas */
     public float[][] grapePositions, pumpkinPositions, heartPositions, energyPositions;
     /* Enemies stats */
@@ -25,12 +26,14 @@ public class GameDataSerializable {
         this.damage = data.damage;
         this.level = data.level;
         this.time = data.time;
+        this.date = data.date;
         this.grapePositions = data.grapePositions;
         this.pumpkinPositions = data.pumpkinPositions;
         this.heartPositions = data.heartPositions;
         this.energyPositions = data.energyPositions;
         this.impPositions = data.impPositions;
         this.bunnyPositions = data.bunnyPositions;
+        
         //this.holePostions = data.holePostions;
         //this.firePositions = data.firePositions;
     }

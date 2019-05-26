@@ -46,7 +46,7 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance == null) 
             instance = this;
         else if (instance != this)
             Destroy(gameObject);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,12 @@ public class GameData {
     /* Game Stats */
     public int level;
     public float time;
+    public string date;
     /* Consumables statas */
     public float[][] grapePositions, pumpkinPositions, heartPositions, energyPositions;
     /* Enemies stats */
     public float[][] impPositions, bunnyPositions, holePostions, firePositions;
+
 
     public GameData(GameObject[] consumables, GameObject[] enemies, GameObject greedy, int level, int hearts, int calories, float damage, float time)
     {        
@@ -28,6 +31,8 @@ public class GameData {
         getConsumablePositions(consumables);
         getEnemyPositions(enemies);
         getGreedyPosition(greedy);
+
+        this.date = DateTime.Now.ToString("dd/MM/yyyy");
     }
 
     private void getConsumablePositions(GameObject[] consumables) {

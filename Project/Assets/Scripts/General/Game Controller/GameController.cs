@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int calories, caloriesToRestore;    
 
     [Header("UI")]
-    [SerializeField] private GameObject mainUI, gamewinScreen, gameoverScreen, pauseScreen;
+    [SerializeField] private GameObject mainUI, gamewinScreen, gameoverScreen, pauseScreen, saveScreen;
 
 
 
@@ -214,6 +214,7 @@ public class GameController : MonoBehaviour
         gameoverScreen.SetActive(false);
         gamewinScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        saveScreen.SetActive(false);
     }
     
     public void GameOver()
@@ -243,6 +244,7 @@ public class GameController : MonoBehaviour
             enemy.stopEnemy();
         if (activatePauseScreen == true)
         {
+            
             pauseScreen.SetActive(true);
             pauseScreen.GetComponent<AScreen>().setCaloriesText(calories);
         }
@@ -256,6 +258,7 @@ public class GameController : MonoBehaviour
         foreach (IEnemy enemy in enemies)
             enemy.resumeEnemy();
         pauseScreen.SetActive(false);
+        saveScreen.SetActive(false);
         MusicController.instance.resumeMainSong();
     }
 
@@ -265,6 +268,11 @@ public class GameController : MonoBehaviour
     #region SaveLoad Methods
 
     public void saveGame() {
+        pauseScreen.SetActive(false);
+        saveScreen.SetActive(true);        
+    }    
+
+      public void saveGameAt(SaveLoad.paths path) {
         GameDataSerializable data = new GameDataSerializable(new GameData(
             GameObject.FindGameObjectsWithTag("Consumable"),
             GameObject.FindGameObjectsWithTag("Enemy"),
@@ -276,7 +284,7 @@ public class GameController : MonoBehaviour
             UIController.instance.getTime()
         )); 
 
-        SaveLoad.saveGameData(data);
+        SaveLoad.saveGameDataAt(data, path);
     }    
 
     

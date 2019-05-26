@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PauseScreen : AScreen
 {
-
-
-
     private void OnEnable()
     {        
+        
         UIController.instance.stopTimer();
         MusicController.instance.playSoundTrack(SoundsEnum.soundTrack.menu_pause);
     }
@@ -22,7 +20,5 @@ public class PauseScreen : AScreen
     public void saveGame() {
         GameController.instance.saveGame();
     }
-
-
 
 }

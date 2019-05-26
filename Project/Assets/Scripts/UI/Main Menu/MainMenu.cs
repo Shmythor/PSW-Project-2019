@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Text texto;
+    public GameObject LoadScreen;
 
     void Start() {
         //console.log("Cargan cosas");
+        LoadScreen.SetActive(false);
         MusicController.instance.playSoundTrack(SoundsEnum.soundTrack.menu_mainMenu);
     }
 
@@ -26,7 +27,7 @@ public class MainMenu : MonoBehaviour
 
     public void loadGame()
     {
-        LevelController.instance.loadGame();   
+        LoadScreen.SetActive(true);
     }
 
     public void accountLogin()
