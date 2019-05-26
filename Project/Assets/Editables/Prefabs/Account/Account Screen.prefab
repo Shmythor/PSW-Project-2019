@@ -753,7 +753,7 @@ Canvas:
   m_GameObject: {fileID: 4564050752647556437}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 8567232113360718947, guid: 7214dc4985aee454a8fb7673ae29c992,
     type: 3}
   m_PlaneDistance: 100
@@ -817,6 +817,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b288e47ddaa8d3f48b067f17a1ccd97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statsTitle: {fileID: 5431463257511997120}
+  statsCalories: {fileID: 1689681540944313148}
+  statsHearts: {fileID: 2137191360992389426}
+  statsEnergies: {fileID: 1647610916370173259}
+  playerName: {fileID: 6532733126379900410}
 --- !u!1 &4670228480517047979
 GameObject:
   m_ObjectHideFlags: 0

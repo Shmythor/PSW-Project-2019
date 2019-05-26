@@ -37,11 +37,9 @@ public class LoginRegister : MonoBehaviour
             check = true;
         } else {
             foreach (string item in usernames)
-            {
-                Debug.Log("OMG " + item);   
+            {  
                 if(item==username) {
-                   // UserNames.currentUsername = username;    
-                    Debug.Log("OMG LO CONSEGIISTE");   
+                    UserNames.currentUsername = item;
                     SceneManager.LoadScene(0);
                 }
             }
@@ -68,10 +66,7 @@ public class LoginRegister : MonoBehaviour
             }
         }
         
-        
         Debug.Log(registerUsername.text);
         SaveLoad.addUserNames(aux.ToArray());   
-
-
    }
 }

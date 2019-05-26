@@ -112,18 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &119120204 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2137191360992389426, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-    type: 3}
-  m_PrefabInstance: {fileID: 2652641452660542421}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &319762230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,18 +206,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79612f9ac9444a64c8433cf5b24e04d0, type: 3}
---- !u!114 &420405717 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1689681540944313148, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-    type: 3}
-  m_PrefabInstance: {fileID: 2652641452660542421}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &427112446
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,18 +546,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &732381369 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1647610916370173259, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-    type: 3}
-  m_PrefabInstance: {fileID: 2652641452660542421}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &742327005
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,18 +620,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742327005}
   m_CullTransparentMesh: 0
---- !u!114 &795493229 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5431463257511997120, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-    type: 3}
-  m_PrefabInstance: {fileID: 2652641452660542421}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &917072505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1608,11 +1560,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5936144440735694954, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-        type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7609926925423864507, guid: c8a9fe90dad41bb43a37ef4363ab0816,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1643,26 +1590,6 @@ PrefabInstance:
       propertyPath: stats
       value: 
       objectReference: {fileID: 1887705994}
-    - target: {fileID: 6490216030866475062, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-        type: 3}
-      propertyPath: statsTitle
-      value: 
-      objectReference: {fileID: 795493229}
-    - target: {fileID: 6490216030866475062, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-        type: 3}
-      propertyPath: statsCalories
-      value: 
-      objectReference: {fileID: 420405717}
-    - target: {fileID: 6490216030866475062, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-        type: 3}
-      propertyPath: statsEnergies
-      value: 
-      objectReference: {fileID: 732381369}
-    - target: {fileID: 6490216030866475062, guid: c8a9fe90dad41bb43a37ef4363ab0816,
-        type: 3}
-      propertyPath: statsHearts
-      value: 
-      objectReference: {fileID: 119120204}
     - target: {fileID: 2137191360992389426, guid: c8a9fe90dad41bb43a37ef4363ab0816,
         type: 3}
       propertyPath: m_Text

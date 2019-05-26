@@ -7,6 +7,7 @@ public class AccountScreen : MonoBehaviour
 {
 
     public Text statsTitle, statsCalories, statsHearts, statsEnergies;
+    public Text playerName;
 
 
     private TopGameData[] topData;
@@ -18,6 +19,11 @@ public class AccountScreen : MonoBehaviour
     {
         getTopStats();
         setTopStatsOf(1);
+
+        string name = UserNames.currentUsername;
+        if(name != null) {
+            playerName.text=name;
+        }
     }
 
     private void getTopStats() {
