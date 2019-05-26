@@ -36,5 +36,23 @@ public class EnemyFabric : MonoBehaviour
         return listOfEnemies;
     }
 
+    public List<IEnemy> spawnImps(GameDataSerializable data)
+    {
+        List<IEnemy> listOfEnemies = new List<IEnemy>();        
+        float[][] bunnyPositions = data.bunnyPositions, impPositions = data.impPositions;
+        Debug.Log("El tamaño de BUNNY es: " + bunnyPositions.Length);
+        Debug.Log("El tamaño de IMP es: " + impPositions.Length);
+        for(int i = 0; i < impPositions.Length; i++) {
+            listOfEnemies.Add(Instantiate(impPrefab, new Vector3(impPositions[i][0], impPositions[i][1], impPositions[i][2]), Quaternion.identity).GetComponent<IEnemy>()); 
+            Debug.Log("Creando prefab de IMP");
+        }
+
+        for(int i = 0; i < bunnyPositions.Length; i++) {
+            listOfEnemies.Add(Instantiate(bunnyPrefab, new Vector3(bunnyPositions[i][0], bunnyPositions[i][1], bunnyPositions[i][2]), Quaternion.identity).GetComponent<IEnemy>());            
+            Debug.Log("Creando prefab de Bunny");
+        }
+
+        return listOfEnemies;
+    }
     
 }

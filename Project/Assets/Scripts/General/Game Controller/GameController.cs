@@ -49,17 +49,6 @@ public class GameController : MonoBehaviour
 
         
     }
-
-    private void Start()
-    {
-        if(loadOrNot) {
-            Debug.Log("Holas");
-        }
-        
-        UIController.instance.initUIStats();
-    }
-
-
     public void startLevel()
     {       
         if (level > 0)
@@ -71,6 +60,7 @@ public class GameController : MonoBehaviour
             //RND SPAWN?
             player.enableInputs();
             player.restoreHealth(); /* updates UI elements as well */
+            
             /* Spawn Consumables */
             caloriesThisLevel = 0;
             caloriesToRestore = 0;
@@ -92,7 +82,36 @@ public class GameController : MonoBehaviour
             mainUI.SetActive(false);
         disativateUIScreens();
     }
-    
+
+    public void startLevel(GameDataSerializable data)
+    {       
+       /* Set map */        
+        this.level = data.level;
+        MapController.instance.setMap(level);
+
+        /* Set Greedy */        
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
+        player.updateHealthFromLoadGameData(data.hearts, data.damage);
+        player.enableInputs();
+
+        /* Spawn Consumables */        
+        caloriesThisLevel = 0;
+        caloriesToRestore = 0;
+        spawnConsumables(data);
+
+        /* Spawn Enemies */            
+        spawnEnemies(data);
+
+        /* Set UI */      
+        mainUI.SetActive(true);     
+        this.calories = data.calories;
+        UIController.instance.setUIStats(data.damage, data.time, data.hearts, data.calories);   
+        UIController.instance.restartTimer();
+        /* Set music */   
+        MusicController.instance.playMainSong();
+
+        disativateUIScreens();
+    }    
     
     private void spawnConsumables()
     {
@@ -100,8 +119,16 @@ public class GameController : MonoBehaviour
         {
             Destroy(consumable);
         }        
-        caloriesToWin = consumableFabric.instance.spawnConsumables(level);
-        
+        caloriesToWin = consumableFabric.instance.spawnConsumables(level);        
+    }
+
+    private void spawnConsumables(GameDataSerializable data)
+    {
+         foreach (GameObject consumable in GameObject.FindGameObjectsWithTag("Consumable"))
+        {
+            Destroy(consumable);
+        }  
+        caloriesToWin = consumableFabric.instance.spawnConsumables(data);
     }
 
     private void spawnEnemies() {
@@ -109,9 +136,16 @@ public class GameController : MonoBehaviour
         {
             Destroy(enemy);
         }
-        enemies = EnemyFabric.instance.spawnImps(level);
+        enemies = EnemyFabric.instance.spawnImps(level);        
+    }
 
-        
+    private void spawnEnemies(GameDataSerializable data) {  
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }     
+       
+        enemies = EnemyFabric.instance.spawnImps(data);
     }
 
     #region Player stats' methods
@@ -162,7 +196,7 @@ public class GameController : MonoBehaviour
     } 
 
     public void restoreHealth() {
-        player.restoreHealth();
+        player.restoreHealth();        
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_heartFill);
     }
 
@@ -188,9 +222,7 @@ public class GameController : MonoBehaviour
         pauseGame(false);
         calories = 0; 
         gameoverScreen.SetActive(true);
-        gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);
-
-        
+        gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);        
     }
 
     public void GameWin()
@@ -245,12 +277,7 @@ public class GameController : MonoBehaviour
         )); 
 
         SaveLoad.saveGameData(data);
-    }   
-
-    public void loadGame() {
-        GameDataSerializable data = SaveLoad.loadGameData();
-        Debug.Log("Conseguido!!" + data.level.ToString());
-    }
+    }    
 
     
     #endregion

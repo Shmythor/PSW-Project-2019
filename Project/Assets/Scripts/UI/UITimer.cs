@@ -10,9 +10,6 @@ public class UITimer : MonoBehaviour
     private float timeLeft = 59;
     private bool runTimer = true;
        
-    void Start() {
-        resetTimer();
-    }
 
     void Update()
     {
@@ -36,7 +33,7 @@ public class UITimer : MonoBehaviour
             } else {
                 timeLeft -= Time.deltaTime;
             }     
-        }   
+        }  
 
     }
 
@@ -56,5 +53,9 @@ public class UITimer : MonoBehaviour
 
     public float getTime() {
         return timeLeft;
+    }
+
+    public void setTime(float time) {
+        timeLeft = time;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
- using System.Linq;
+using System.Linq;
 
 
 
@@ -43,14 +43,6 @@ public class UIController : MonoBehaviour
     public float getTime() {
        return UITimer.getTime();
     }
-    
-
-    /*
-        Start is called on the frame when a script is enabled just before
-        any of the Update methods is called the first time.
-    */
-
-
 
     private void Awake()
     {
@@ -60,14 +52,6 @@ public class UIController : MonoBehaviour
             Destroy(gameObject);
 
         
-    }
-
-
-    void Start()
-    {
-        calories = 0; cont = 0; damage = 0;
-        setCaloriesText();
-        setDamageBar();       
     }
 
     public void resetUIStats() {
@@ -82,8 +66,12 @@ public class UIController : MonoBehaviour
         setHearts(3);        
     }
 
-
-
+    public void setUIStats(float damage, float time, int hearts, int calories) {
+        setCalories(calories);
+        setDamage(damage);
+        setHearts(hearts);
+        setTime(time);      
+    }
    
 
     public void restoreHealth() {
@@ -92,7 +80,7 @@ public class UIController : MonoBehaviour
         }      
     }
 
-     public void restoreEnergy() {
+    public void restoreEnergy() {
         setDamage(0);
     }
 
@@ -102,7 +90,7 @@ public class UIController : MonoBehaviour
 
     public void spawnDEBUG()
     {
-        GameController.instance.loadGame();
+        GameController.instance.startLevel(SaveLoad.loadGameData());
     }
 
     public void resetTimer() {
@@ -115,5 +103,9 @@ public class UIController : MonoBehaviour
 
     public void stopTimer() {
         UITimer.stopTimer();
+    }
+
+    public void setTime(float time) {
+       UITimer.setTime(time);
     }
 }

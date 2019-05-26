@@ -9,6 +9,8 @@ public class LevelController : MonoBehaviour
     public static LevelController instance = null;
     private int currentLevel;
 
+    private GameDataSerializable data;
+
     void Start()
     {
         if (instance == null)
@@ -20,19 +22,28 @@ public class LevelController : MonoBehaviour
 
 
     private void OnLevelWasLoaded(int level)
-    {        
-        GameController.instance.setLevel(level);
-        GameController.instance.startLevel();
+    {   
+        if(data != null) {
+            GameController.instance.startLevel(data);
+            data = null;
+        } else {
+            GameController.instance.setLevel(level);
+            GameController.instance.startLevel();
+        }    
+        
     }
     
     public void startGame() {
         SceneManager.LoadScene(1);
 
         this.currentLevel = 1;
-        /*
-        GameController.instance.setLevel(currentLevel);
-        GameController.instance.startLevel();
-        */
+    }
+
+    public void loadGame() {
+        SceneManager.LoadScene(1);
+
+        data = SaveLoad.loadGameData();
+        this.currentLevel = data.level;
     }
 
 
@@ -54,9 +65,10 @@ public class LevelController : MonoBehaviour
     public void nextLevel()
     {    
         currentLevel++;
-        GameController.instance.setLevel(currentLevel);
-        GameController.instance.startLevel();      
-        
+        if(currentLevel<6) {
+            GameController.instance.setLevel(currentLevel);
+            GameController.instance.startLevel();
+        }       
     }
 
     public void loadMainMenu()

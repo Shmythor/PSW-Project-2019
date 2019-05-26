@@ -19,7 +19,7 @@ public class MapController : MonoBehaviour
 
     public void setMap(int level) {
         maps[activeMap].SetActive(false);
-        activeMap = level - 1;
+        activeMap = level - 1; //TODO PUEDE PONERSE A 6 
         maps[activeMap].SetActive(true);
     }
 

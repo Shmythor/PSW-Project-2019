@@ -65,11 +65,11 @@ public class GameData {
         List<float[]> imps = new List<float[]>(), bunnies = new List<float[]>(); 
 
         foreach(GameObject enemy in enemies) {
-            if(enemy.GetComponent<Grape>() != null) {            
+            if(enemy.GetComponent<Imp>() != null) {            
                 position = enemy.transform.position;
                 imps.Add(new float[] {position.x, position.y, position.z});
             }
-            if(enemy.GetComponent<Pumpkin>() != null) {
+            if(enemy.GetComponent<Bunny>() != null) {
                 position = enemy.transform.position;
                 bunnies.Add(new float[] {position.x, position.y, position.z});
             }

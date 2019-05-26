@@ -39,9 +39,7 @@ public class Player : MonoBehaviour, IPlayer
 
     void Awake ()
     {
-        initReferences();
-
-        
+        initReferences();        
     }
 
     private void initReferences()
@@ -134,7 +132,10 @@ public class Player : MonoBehaviour, IPlayer
             com.enable();
     }
 
-
+    public void updateHealthFromLoadGameData(int hearts, float damage) {
+        healthCom.setHearts(hearts);
+        healthCom.setDamage(damage);
+    }
 
 
 
