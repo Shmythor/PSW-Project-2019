@@ -36,8 +36,6 @@ public static class SaveLoad {
         if(pathEnum == paths.top2) path = path_top2;
         if(pathEnum == paths.top3) path = path_top3;
 
-    
-
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
 
