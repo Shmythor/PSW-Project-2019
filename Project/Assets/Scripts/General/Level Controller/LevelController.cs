@@ -34,13 +34,13 @@ public class LevelController : MonoBehaviour
     }
     
     public void startGame() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
         this.currentLevel = 1;
     }
 
     public void loadGame(SaveLoad.paths path) {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
         data = SaveLoad.loadGameDataAt(path);
         this.currentLevel = data.level;
@@ -65,7 +65,7 @@ public class LevelController : MonoBehaviour
     public void nextLevel()
     {    
         currentLevel++;
-        if(currentLevel<6) {
+        if(currentLevel<=6) {
             GameController.instance.setLevel(currentLevel);
             GameController.instance.startLevel();
         }    
@@ -73,6 +73,6 @@ public class LevelController : MonoBehaviour
 
     public void loadMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

@@ -7,12 +7,12 @@ public static class SaveLoad {
 
     private static string path;
 
-    private static string path_cell1 = Application.persistentDataPath + "/game1.data",
-                        path_cell2 = Application.persistentDataPath + "/game2.data",
-                        path_cell3 = Application.persistentDataPath + "/game3.data",
-                        path_top1 = Application.persistentDataPath + "/top1.data",
-                        path_top2 = Application.persistentDataPath + "/top2.data",
-                        path_top3 = Application.persistentDataPath + "/top3.data";
+    private static string path_cell1 = Application.persistentDataPath + "/" + UserNames.currentUsername + "/game1.data",
+                        path_cell2 = Application.persistentDataPath + "/" + UserNames.currentUsername + "/game2.data",
+                        path_cell3 = Application.persistentDataPath + "/" + UserNames.currentUsername + "/game3.data",
+                        path_top1 = Application.persistentDataPath + "/" + UserNames.currentUsername + "/top1.data",
+                        path_top2 = Application.persistentDataPath + "/" + UserNames.currentUsername + "/top2.data",
+                        path_top3 = Application.persistentDataPath + "/" + UserNames.currentUsername + "/top3.data";
 
     private static string path_usernames = Application.persistentDataPath + "/usernames.list";  
 
@@ -29,7 +29,7 @@ public static class SaveLoad {
             }
 
             UserNamesSerializable data = formatter.Deserialize(stream) as UserNamesSerializable;
-            
+
             stream.Close(); 
             return data.usernames;
         } else {
