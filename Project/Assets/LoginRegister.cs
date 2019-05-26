@@ -40,7 +40,7 @@ public class LoginRegister : MonoBehaviour
             {  
                 if(item==username) {
                     UserNames.currentUsername = item;
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene(1);
                 }
             }
             check = true;

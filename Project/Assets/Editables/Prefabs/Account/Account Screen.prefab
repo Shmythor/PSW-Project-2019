@@ -793,6 +793,7 @@ MonoBehaviour:
   statsCalories: {fileID: 1689681540944313148}
   statsHearts: {fileID: 2137191360992389426}
   statsEnergies: {fileID: 1647610916370173259}
+  playerName: {fileID: 6532733126379900410}
 --- !u!1 &4670228480517047979
 GameObject:
   m_ObjectHideFlags: 0
