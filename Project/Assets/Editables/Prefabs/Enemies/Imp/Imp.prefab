@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1479533272}
   - component: {fileID: 1479533273}
   m_Layer: 0
-  m_Name: ChaseRadius
+  m_Name: Chase Radius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 460804106709769295}
   - component: {fileID: 460804106709769294}
   m_Layer: 0
-  m_Name: sprite
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 6912697547572375781}
   - component: {fileID: 8380634095379760766}
   m_Layer: 0
-  m_Name: Attack range
+  m_Name: Range Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

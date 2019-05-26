@@ -826,20 +826,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1996642614628465173, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+    - target: {fileID: 3104357026555698996, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 0
+      propertyPath: m_Name
+      value: Level Prefabs
       objectReference: {fileID: 0}
     - target: {fileID: 8539625275704039210, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3104357026555698996, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+    - target: {fileID: 1996642614628465173, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
-      propertyPath: m_Name
-      value: Level Prefabs
+      propertyPath: m_RenderMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5669152177344304362, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
@@ -939,6 +939,11 @@ PrefabInstance:
     - target: {fileID: 8061853282493198930, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
       propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061853282493198942, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
