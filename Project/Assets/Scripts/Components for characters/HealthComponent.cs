@@ -94,7 +94,6 @@ public class HealthComponent : AComponent
     public void restoreDamageTaken()
     {
         damage = 0;
-        //sounds.Add(SoundsEnum.soundEffect.ui_damageRestored);
         updatePlayerInfo();
     }
 

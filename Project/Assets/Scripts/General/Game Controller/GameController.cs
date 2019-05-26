@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
             /* Set Greedy */
             //RND SPAWN?
             player.enableInputs();
-            player.restoreHealth();
+            player.restoreHealth(); /* updates UI elements as well */
             /* Spawn Consumables */
             caloriesThisLevel = 0;
             caloriesToRestore = 0;

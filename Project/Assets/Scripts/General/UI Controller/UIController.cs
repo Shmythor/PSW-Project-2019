@@ -71,8 +71,6 @@ public class UIController : MonoBehaviour
     }
 
     public void resetUIStats() {
-  
-
         this.stopTimer();
         this.resetTimer();
         this.restartTimer();  

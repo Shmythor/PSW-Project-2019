@@ -255,12 +255,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c4cf28d5e411248887a5b18df68742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1.5
   damageOnCollide: 300
   hearts: 0
   healths: 0
   canMove: 1
-  minSpeedForDustParticles: 1.5
+  minSpeedForDustParticles: 1
   dustParticles: {fileID: 2577342605488937500}
 --- !u!1 &1267078286120078659
 GameObject:
