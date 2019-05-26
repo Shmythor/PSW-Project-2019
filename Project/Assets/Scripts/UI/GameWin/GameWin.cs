@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GameWin : AScreen
 {
-    [SerializeField]private Animator animator;
+    [SerializeField] private Animator animator;
 
-    private void OnEnable() {
-       
+    private void OnEnable() {       
         UIController.instance.stopTimer();
         MusicController.instance.pauseMainSong();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_launch);

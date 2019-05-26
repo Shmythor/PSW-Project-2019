@@ -235,6 +235,11 @@ public class GameController : MonoBehaviour
 
         gamewinScreen.SetActive(true);
         gamewinScreen.GetComponent<AScreen>().setCaloriesText(calories);
+
+        /* Si terminamos el último nivel, guardamos puntuaciones */
+        if(level == 5) {
+           saveTopGame();
+        }
     }
 
     public void pauseGame(bool activatePauseScreen)
@@ -287,6 +292,26 @@ public class GameController : MonoBehaviour
         SaveLoad.saveGameDataAt(data, path);
     }    
 
+    private void saveTopGame() {
+        TopGameData[] topData = SaveLoad.loadAllTopGameData();
+        List<TopGameData> listToSort = new List<TopGameData>();
+        listToSort.Add(topData[0]);
+        listToSort.Add(topData[1]);
+        listToSort.Add(topData[2]);
+        listToSort.Add(new TopGameData(3, 4, this.calories, UIController.instance.getTime()));
+
+        //Utilizar Sort con IComparer!!!!
+        listToSort.Sort(new TopGameDataComparer());
+        listToSort.RemoveAt(3);
+
+        
+
+        topData = listToSort.ToArray();
+
+        if(topData[0]!=null) SaveLoad.saveTopGameDataAt(topData[0], SaveLoad.paths.top1);
+        if(topData[1]!=null) SaveLoad.saveTopGameDataAt(topData[1], SaveLoad.paths.top2);
+        if(topData[2]!=null) SaveLoad.saveTopGameDataAt(topData[2], SaveLoad.paths.top3);
+    }
     
     #endregion
 

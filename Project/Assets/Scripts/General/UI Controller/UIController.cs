@@ -88,10 +88,6 @@ public class UIController : MonoBehaviour
         GameController.instance.pauseGame(true);
     }
 
-    public void spawnDEBUG()
-    {
-        GameController.instance.startLevel(SaveLoad.loadGameData());
-    }
 
     public void resetTimer() {
         UITimer.resetTimer();

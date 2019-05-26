@@ -27,18 +27,18 @@ public class SaveLoadScreen : MonoBehaviour
     }
 
     public void saveGameDataAtCell(string path) {
-        if(path=="cell1") GameController.instance.saveGameAt(SaveLoad.paths.path1);
-        if(path=="cell2") GameController.instance.saveGameAt(SaveLoad.paths.path2);
-        if(path=="cell3") GameController.instance.saveGameAt(SaveLoad.paths.path3);
+        if(path=="cell1") GameController.instance.saveGameAt(SaveLoad.paths.cell1);
+        if(path=="cell2") GameController.instance.saveGameAt(SaveLoad.paths.cell2);
+        if(path=="cell3") GameController.instance.saveGameAt(SaveLoad.paths.cell3);
         //TODO: WARNING ABOUT REPLACE SAVED DATA
 
         updateCellUI();
     }
 
       public void loadGameDataAtCell(string path) {
-        if(path=="cell1") LevelController.instance.loadGame(SaveLoad.paths.path1);
-        if(path=="cell2") LevelController.instance.loadGame(SaveLoad.paths.path2);
-        if(path=="cell3") LevelController.instance.loadGame(SaveLoad.paths.path3);
+        if(path=="cell1") LevelController.instance.loadGame(SaveLoad.paths.cell1);
+        if(path=="cell2") LevelController.instance.loadGame(SaveLoad.paths.cell2);
+        if(path=="cell3") LevelController.instance.loadGame(SaveLoad.paths.cell3);
         //TODO: WARNING ABOUT REPLACE SAVED DATA
 
         Debug.Log("Funciona esto");

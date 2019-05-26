@@ -68,7 +68,7 @@ public class LevelController : MonoBehaviour
         if(currentLevel<6) {
             GameController.instance.setLevel(currentLevel);
             GameController.instance.startLevel();
-        }       
+        }    
     }
 
     public void loadMainMenu()
