@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class LoginRegister : MonoBehaviour
 {
 
-    public Text inputText, registerUsername;
+    public Text inputText, registerUsername, notifyText;
    
 
     private string[] usernames;
@@ -47,7 +47,8 @@ public class LoginRegister : MonoBehaviour
         }
         //Display error message if not exists || go to main menu if exists
         if(check) {
-            Debug.Log("Eh tu, registrate!!");
+            notifyText.color = Color.red; 
+            notifyText.text = "Usuario no registrado!";
         }  
    }
 
@@ -64,9 +65,11 @@ public class LoginRegister : MonoBehaviour
             {
                 aux.Add(item);
             }
-        }
+        }  
         
-        Debug.Log(registerUsername.text);
-        SaveLoad.addUserNames(aux.ToArray());   
+        SaveLoad.addUserNames(aux.ToArray()); 
+
+        notifyText.color = Color.green; 
+        notifyText.text = "Usuario registrado con éxito!";  
    }
 }

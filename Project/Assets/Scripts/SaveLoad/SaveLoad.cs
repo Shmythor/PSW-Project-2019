@@ -33,7 +33,7 @@ public static class SaveLoad {
             stream.Close(); 
             return data.usernames;
         } else {
-            Debug.LogError("Save file not found in path: " + path_usernames);
+           // Debug.LogError("Save file not found in path: " + path_usernames);
             return null;
         }
     }
@@ -86,7 +86,7 @@ public static class SaveLoad {
 
             return data;
         } else {
-            Debug.LogError("Save file not found in path: " + path);
+           //Debug.LogError("Save file not found in path: " + path);
             return null;
         }
     }
@@ -105,7 +105,7 @@ public static class SaveLoad {
 
             return data;
         } else {
-            Debug.LogError("Save file not found in path: " + path);
+           //Debug.LogError("Save file not found in path: " + path);
             return null;
         }
     }

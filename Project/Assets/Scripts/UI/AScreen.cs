@@ -14,8 +14,12 @@ public abstract class AScreen : MonoBehaviour
     }
 
     public void exit()
-    {
-        GameController.instance.setCaloriesToZero();
+    {        
+        GameController.instance.setCaloriesToZero();        
+        GameController.instance.disativateUIContainer();       
+
+        this.gameObject.SetActive(false);
+
         LevelController.instance.loadMainMenu();
     }
 

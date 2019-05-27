@@ -7,7 +7,7 @@ public class LevelController : MonoBehaviour
 {
     /*          Singleton          */
     public static LevelController instance = null;
-    private int currentLevel;
+    private int currentLevel = 1;
 
     private GameDataSerializable data;
 
@@ -27,8 +27,8 @@ public class LevelController : MonoBehaviour
             GameController.instance.startLevel(data);
             data = null;
         } else {
-            GameController.instance.setLevel(level);
-            GameController.instance.startLevel();
+            Debug.Log("Voy a ponerme al nivel: " + this.currentLevel.ToString());
+            GameController.instance.startLevel(this.currentLevel);
         }    
         
     }
@@ -50,25 +50,21 @@ public class LevelController : MonoBehaviour
     public void changeLevel(int level)
     {
         this.currentLevel = level;
-
-        GameController.instance.setLevel(currentLevel);
-        GameController.instance.startLevel();
+        GameController.instance.startLevel(this.currentLevel);
     }
 
     public void restartLevel()
     {
         UIController.instance.resetTimer(); 
-        GameController.instance.setLevel(currentLevel);
-        GameController.instance.startLevel(); 
+        GameController.instance.startLevel(this.currentLevel);
     }
 
     public void nextLevel()
     {    
-        currentLevel++;
-        if(currentLevel<=6) {
-            GameController.instance.setLevel(currentLevel);
-            GameController.instance.startLevel();
-        }    
+        this.currentLevel++;
+        if(this.currentLevel<=6) {
+            GameController.instance.startLevel(this.currentLevel);
+        } 
     }
 
     public void loadMainMenu()

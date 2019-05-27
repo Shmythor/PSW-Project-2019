@@ -432,6 +432,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 8567232113360718947, guid: 7214dc4985aee454a8fb7673ae29c992,
+        type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567232113360718947, guid: 7214dc4985aee454a8fb7673ae29c992,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567232113360718947, guid: 7214dc4985aee454a8fb7673ae29c992,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8567232113360718946, guid: 7214dc4985aee454a8fb7673ae29c992,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -916,6 +931,11 @@ PrefabInstance:
       propertyPath: saveScreen
       value: 
       objectReference: {fileID: 427635922}
+    - target: {fileID: 3270410355184517855, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: lastLevel
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5651669855715125713, guid: 704bb5665c9b3324c8bf83dd503b36c5,
         type: 3}
       propertyPath: m_IsActive
@@ -946,8 +966,40 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1092181463333475815, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005668760775297139, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651669856721138989, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1949081586}
+    - target: {fileID: 5651669856721138989, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: exit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704bb5665c9b3324c8bf83dd503b36c5, type: 3}
+--- !u!114 &1949081586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5382951716340873539, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1949081585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629ccae7e2d294945ba04fe87ad50653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1957022312
 GameObject:
   m_ObjectHideFlags: 0

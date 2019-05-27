@@ -19,6 +19,6 @@ public class GameWin : AScreen
         LevelController.instance.nextLevel();           
     }
 
- 
+    
 
 }

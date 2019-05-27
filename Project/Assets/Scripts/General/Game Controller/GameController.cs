@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 
 
     [Header("Level")]
-    [SerializeField] private int level, caloriesThisLevel, caloriesToWin, lastLevel = 3;
+    [SerializeField] private int level, caloriesThisLevel, caloriesToWin, lastLevel = 6;
 
     [Header("Player")]
     [SerializeField] private IPlayer player;
@@ -44,17 +44,19 @@ public class GameController : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
 
-
+        this.level = 1;
         enemies = new List<IEnemy>();
 
         
     }
-    public void startLevel()
+    public void startLevel(int level)
     {       
-        if (level > 0)
+        this.level = level;
+        if (this.level > 0)
         {
+            
             /* Set map */        
-            MapController.instance.setMap(level);
+            MapController.instance.setMap(this.level);
 
             /* Set Greedy */
             //RND SPAWN?
@@ -215,6 +217,10 @@ public class GameController : MonoBehaviour
         gamewinScreen.SetActive(false);
         pauseScreen.SetActive(false);
         saveScreen.SetActive(false);
+    }
+
+    public void disativateUIContainer() {
+        mainUI.SetActive(false);
     }
     
     public void GameOver()

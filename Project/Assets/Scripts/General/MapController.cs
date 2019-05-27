@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     [SerializeField] GameObject[] maps;
-    [SerializeField] int activeMap;
+    [SerializeField] int activeMap = 0;
 
     public static MapController instance = null;
 
@@ -18,13 +18,20 @@ public class MapController : MonoBehaviour
     }
 
     public void setMap(int level) {
-        maps[activeMap].SetActive(false);
-        activeMap = level - 1; //TODO PUEDE PONERSE A 6 
-        maps[activeMap].SetActive(true);
+        this.activeMap = level - 1; 
+
+        for(int i = 0; i < maps.Length; i++)
+        {
+            if(i != this.activeMap) maps[i].SetActive(false);
+        }
+
+        maps[this.activeMap].SetActive(true);
+        
+        
     }
 
     public GameObject getActiveMap() {
-        return maps[activeMap];
+        return maps[this.activeMap];
     }
 
 }
