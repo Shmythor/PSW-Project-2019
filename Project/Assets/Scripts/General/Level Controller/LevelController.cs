@@ -22,7 +22,12 @@ public class LevelController : MonoBehaviour
 
 
     private void OnLevelWasLoaded(int level)
-    {   
+    {
+        /*          Menu and login scene        */
+        if (SceneManager.GetActiveScene().buildIndex < 2)
+            return;
+
+        /*     We load the map only if we are in Game Scene             */
         if(data != null) {
             GameController.instance.startLevel(data);
             data = null;
@@ -34,9 +39,10 @@ public class LevelController : MonoBehaviour
     }
     
     public void startGame() {
+        this.currentLevel = 1;
         SceneManager.LoadScene(2);
 
-        this.currentLevel = 1;
+        
     }
 
     public void loadGame(SaveLoad.paths path) {
@@ -70,5 +76,6 @@ public class LevelController : MonoBehaviour
     public void loadMainMenu()
     {
         SceneManager.LoadScene(1);
+
     }
 }
