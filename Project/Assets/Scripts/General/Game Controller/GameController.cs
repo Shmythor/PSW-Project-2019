@@ -92,7 +92,8 @@ public class GameController : MonoBehaviour
         MapController.instance.setMap(level);
 
         /* Set Greedy */        
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
+        //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0.79f, -5.99f,0);
         player.updateHealthFromLoadGameData(data.hearts, data.damage);
         player.enableInputs();
 
