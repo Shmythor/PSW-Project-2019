@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject mainUI, gamewinScreen, gameoverScreen, pauseScreen, saveScreen;
 
 
+    private int totalEnergiesPicked, totalHeartsPicked;
+
+
 
     /*          Other          */
     private List<IEnemy> enemies;
@@ -34,6 +37,9 @@ public class GameController : MonoBehaviour
     public void setCaloriesToZero() { calories = 0; } /* For exiting to the menu */
 
 
+    
+
+
     private void Awake()
     {
         if (instance == null)
@@ -45,13 +51,20 @@ public class GameController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
 
         this.level = 1;
-        enemies = new List<IEnemy>();
-
+        totalEnergiesPicked = 0;
+        totalHeartsPicked = 0;
         
+        enemies = new List<IEnemy>();        
     }
     public void startLevel(int level)
     {       
         this.level = level;
+
+        if(level == 1) {
+            totalEnergiesPicked = 0;
+            totalHeartsPicked = 0;
+        }
+
         if (this.level > 0)
         {
             
@@ -199,11 +212,13 @@ public class GameController : MonoBehaviour
     } 
 
     public void restoreHealth() {
+        this.totalHeartsPicked++;
         player.restoreHealth();        
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_heartFill);
     }
 
     public void restoreEnergy() {
+        this.totalEnergiesPicked++;
         player.restoreDamageTaken();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
     }   
@@ -301,7 +316,8 @@ public class GameController : MonoBehaviour
 
     private void saveTopGame() {
         TopGameData[] topData = SaveLoad.loadAllTopGameData();
-        TopGameData newTGD = new TopGameData(3, 4, this.calories, UIController.instance.getTime());
+        TopGameData newTGD = new TopGameData(this.totalHeartsPicked, this.totalEnergiesPicked, this.calories, UIController.instance.getTime());
+        
         
         for(int i = 0; i<3; i++) {
             if(compareTo(topData[i], newTGD) == 1) {
