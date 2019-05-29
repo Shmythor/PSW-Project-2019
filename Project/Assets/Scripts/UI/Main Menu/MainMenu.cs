@@ -14,9 +14,12 @@ public class MainMenu : MonoBehaviour
     }
 
     void Update() {
-       if (Input.GetKeyDown("space"))
-        {
+       if (Input.GetKeyDown("space")) {
             startGame();
+        }
+
+        if (Input.GetKey("escape")) {            
+            Application.Quit();
         }
     }
 

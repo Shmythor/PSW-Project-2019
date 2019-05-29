@@ -41,8 +41,6 @@ public class LevelController : MonoBehaviour
     public void startGame() {
         this.currentLevel = 1;
         SceneManager.LoadScene(2);
-
-        
     }
 
     public void loadGame(SaveLoad.paths path) {
