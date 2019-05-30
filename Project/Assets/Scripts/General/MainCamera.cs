@@ -29,9 +29,7 @@ public class MainCamera : MonoBehaviour {
             /* pantalla completa */
             if (!Screen.fullScreen) 
                 Screen.SetResolution (1920, 1080, true);
-            /* Permitir cerrar juego al presionar escape    */
-            if (Input.GetKey("escape")) 
-                Application.Quit();
+           
         }
 
         float posX = Mathf.Round( 

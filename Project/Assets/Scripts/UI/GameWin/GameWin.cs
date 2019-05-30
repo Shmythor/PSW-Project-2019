@@ -12,11 +12,18 @@ public class GameWin : AScreen
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_launch);
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_explosion);
         animator.SetBool("lastLevel?", GameController.instance.isIsLastLevel());
+
+        
     }
 
     public void nextLevel()
-    {                     
-        LevelController.instance.nextLevel();           
+    {       
+        if(GameController.instance.isIsLastLevel()) {
+            LevelController.instance.loadMainMenu();
+        } else {            
+            LevelController.instance.nextLevel();      
+        }              
+             
     }
 
     

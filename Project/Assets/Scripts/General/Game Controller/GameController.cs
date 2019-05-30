@@ -227,12 +227,12 @@ public class GameController : MonoBehaviour
 
     #region UI SCREENS   
 
-    private void disativateUIScreens()
+    public void disativateUIScreens()
     {
         gameoverScreen.SetActive(false);
         gamewinScreen.SetActive(false);
         pauseScreen.SetActive(false);
-        saveScreen.SetActive(false);
+        saveScreen.SetActive(false);        
     }
 
     public void disativateUIContainer() {
@@ -259,7 +259,7 @@ public class GameController : MonoBehaviour
         gamewinScreen.GetComponent<AScreen>().setCaloriesText(calories);
 
         /* Si terminamos el último nivel, guardamos puntuaciones */
-        if(level == 5) {
+        if(level == 6) {
            saveTopGame();
         }
     }
