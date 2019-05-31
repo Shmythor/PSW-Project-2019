@@ -9,6 +9,9 @@ public class EnemyFabric : MonoBehaviour
     [SerializeField] private GameObject impPrefab;
     [SerializeField] private GameObject bunnyPrefab;
 
+
+    Transform target;
+
    
 
     private void Awake()
@@ -21,6 +24,9 @@ public class EnemyFabric : MonoBehaviour
 
     public List<IEnemy> spawnImps(int level)
     {
+
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+
         List<IEnemy> listOfEnemies = new List<IEnemy>();
         //TODO decide how many imps we want in each level
         int num = 1;
@@ -29,8 +35,19 @@ public class EnemyFabric : MonoBehaviour
         if(level>=6) num++;
 
         for(int i = 0; i < num; i++) {
-            listOfEnemies.Add(Instantiate(impPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<IEnemy>());
-            listOfEnemies.Add(Instantiate(bunnyPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity).GetComponent<IEnemy>());
+            Vector3 random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
+            while(Vector3.Distance(random, target.position) < 5) {
+                random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
+            }
+
+
+            listOfEnemies.Add(Instantiate(impPrefab, random, Quaternion.identity).GetComponent<IEnemy>());
+            random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
+            while(Vector3.Distance(random, target.position) < 5) {
+                random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
+            }
+
+            listOfEnemies.Add(Instantiate(bunnyPrefab, random, Quaternion.identity).GetComponent<IEnemy>());
         }
 
         return listOfEnemies;
