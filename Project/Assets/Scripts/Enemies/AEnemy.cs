@@ -59,8 +59,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
 
     void FixedUpdate()
     {
-        if (canMove == false)
-            return;
+        if (canMove == false) { return;}
         state.movement();
         Vector2 movementInputs = state.getMovementInputs();
         animCom.updateAnimator(movementInputs.y, movementInputs.x);

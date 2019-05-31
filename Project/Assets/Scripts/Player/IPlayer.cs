@@ -10,4 +10,5 @@ public interface IPlayer: ICharacter
     void restoreHealth();
     void updateHealthFromLoadGameData(int hearts, float damage);
     void setHearts(int hearts);
+    int getHearts();
 }

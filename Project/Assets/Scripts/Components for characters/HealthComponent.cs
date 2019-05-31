@@ -86,8 +86,8 @@ public class HealthComponent : AComponent
 
     public void restoreHealth()
     {
-        hearts = 3;
-        damage = 0;
+        this.hearts = 3;
+        this.damage = 0;
         updatePlayerInfo();
     }
 
@@ -103,12 +103,10 @@ public class HealthComponent : AComponent
     private void updatePlayerInfo()
     {
 
-        if (isDead())
-            return;
+        if (isDead()) {return;}
         /*      array from sounds         */
         SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
-        if (player == null)
-            return;
+        if (player == null) { return;}
 
         player.setHearts(hearts);
         GameController.instance.updatePlayerHealth(hearts, damage, arraySounds);

@@ -75,6 +75,9 @@ public class GameController : MonoBehaviour
             //RND SPAWN?
             player.enableInputs();
             player.restoreHealth(); /* updates UI elements as well */
+
+            Debug.Log("Ahora tienes tantos corazones en Greedy: " + player.getHearts());
+            Debug.Log("Ahora tienes tantos corazones en la UI: " + UIController.instance.getHearts());
             
             /* Spawn Consumables */
             caloriesThisLevel = 0;
@@ -243,7 +246,8 @@ public class GameController : MonoBehaviour
     {
         
         pauseGame(false);
-        calories = 0; 
+        this.calories = 0;  
+        UIController.instance.initUIStats();       
         gameoverScreen.SetActive(true);
         gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);        
     }
