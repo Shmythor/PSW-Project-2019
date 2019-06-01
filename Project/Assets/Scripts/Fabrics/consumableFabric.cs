@@ -10,6 +10,8 @@ public class consumableFabric : MonoBehaviour
     private int maxHearts = 1, maxEnergy = 2;
 
     private int level;
+    private ArrayList lastPositions;
+    private GameObject[] fruitSpawners;    
 
 
     private void Awake()
@@ -17,81 +19,91 @@ public class consumableFabric : MonoBehaviour
         if (instance == null)
             instance = this;
         else if (instance != this)
-            Destroy(gameObject);        
+            Destroy(gameObject);  
+
+           
     }
 
+    #region Consumables - Next level
+    public int spawnConsumables(int level) { 
+        this.level = level;
+        fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner");    
+             
+        spawnDrugs();
+        return spawnFruits();
+    }
+
+    private void spawnDrugs() {        
+        int contHearts = 0, contEnergy = 0;
+        if(level > 1) {
+            for(int i = 0; i < 5; i++) {
+                if(getProbabilityOf(80) && maxHearts >= contHearts) {
+                    Instantiate(heartPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
+                    contHearts++;
+                } 
+                
+                if(getProbabilityOf(80) && maxEnergy >= contEnergy) {
+                    Instantiate(energyPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
+                    contEnergy++;
+                }            
+            }    
+        }    
+    }
+   
     private int spawnFruits() {
-        GameObject[] fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner"); 
-        
-        ArrayList lastPositions = new ArrayList();
-        int spawnedCalories = 0, rndFarm;
+        int spawnedCalories = 0, spawnType = setSpawnType();        
+        lastPositions = new ArrayList();
        
-        for(int i = 0; i < 6; i++) {             
-            rndFarm = (int) Random.Range(0, fruitSpawners.Length);
+        for(int i = 0; i < 6; i++) {           
+            Vector3 newFruitPosition = calculatePositionInFarms();
             
-            Vector2 rndFarmSize = fruitSpawners[rndFarm].GetComponent<BoxCollider2D>().size;
-            Vector3 newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);
-
-            /* Comprobamos sí la nueva fruta estará cerca de otra para respawnearla o no */
-            bool repeat = true;
-            while(repeat) {
-                repeat = false;
-
-                foreach (Vector3 vct in lastPositions) {                        
-                    Vector3 s = (Vector3)vct;
-                    if(Vector3.Distance(vct, newConsumablePosition) < 1f) {
-                        newConsumablePosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);
-                        repeat = true;
-                        break; /* Go out foreach */
-                    }                        
-                }     
-                                
-            }                            
-            lastPositions.Add(newConsumablePosition);
-
-            int spawnType = 0;
-            if(level >= 3) spawnType = 1;
-            if(level >= 5) spawnType = 2;
-
-            if(Random.Range(0f, 10.0f) >= 6f) {
-                spawnedCalories += Instantiate(PumpkinPrefabs[spawnType], newConsumablePosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
+            /* 60% Grapes & 40% Pumpkins (aprox) */
+            if(getProbabilityOf(60)) {
+                spawnedCalories += Instantiate(PumpkinPrefabs[spawnType], newFruitPosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
             } else {
-                spawnedCalories += Instantiate(GrapePrefabs[spawnType], newConsumablePosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
+                spawnedCalories += Instantiate(GrapePrefabs[spawnType], newFruitPosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
             }            
         }
 
         return spawnedCalories;
     }
+    
+    private Vector3 calculatePositionInFarms() {
+        int rndFarm = (int) Random.Range(0, fruitSpawners.Length);
+            
+        Vector2 rndFarmSize = fruitSpawners[rndFarm].GetComponent<BoxCollider2D>().size;
+        Vector3 newFruitPosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);
+
+        /* Comprobamos si la nueva fruta estará cerca de otra para respawnearla o no */
+        bool repeat = true;
+        while(repeat) {
+            repeat = false;
+
+            foreach (Vector3 vct in lastPositions) {                        
+                Vector3 s = (Vector3)vct;
+                if(Vector3.Distance(vct, newFruitPosition) < 1f) {
+                    newFruitPosition = fruitSpawners[rndFarm].transform.position + generateRandomVector3(0f, rndFarmSize.x, -rndFarmSize.y, 0f);
+                    repeat = true;
+                    break; /* Go out foreach */
+                }                        
+            }                
+        }
+
+        lastPositions.Add(newFruitPosition);
+
+        return newFruitPosition;
+    }
 
     
+    #endregion
 
-    public int spawnConsumables(int level) { 
-        this.level = level;      
-        spawnDrugs();
-        return spawnFruits();
-    }
-
+    #region Consumables - Load level
+    
     public int spawnConsumables(GameDataSerializable data) { 
-        this.level = data.level;      
+        this.level = data.level;
+        fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner");         
         spawnDrugs(data.energyPositions, data.heartPositions);
         return spawnFruits(data.grapePositions, data.pumpkinPositions);
-    }
-
-    private void spawnDrugs() {        
-        int contHearts = 0, contEnergy = 0;
-        if(level != 1) {
-            for(int i = 0; i < 5; i++) {
-                if(Random.Range(0f, 10.0f) >= 8f && maxHearts >= contHearts) {
-                    Instantiate(heartPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity);
-                    contHearts++;
-                } 
-                
-                if(Random.Range(0f, 10.0f) >= 8f && maxEnergy >= contEnergy) {
-                    Instantiate(energyPrefab, new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0), Quaternion.identity);
-                    contEnergy++;
-                }            
-            }    
-        }    
     }
 
     private void spawnDrugs(float[][] energyPositions, float[][] heartPositions) {
@@ -105,11 +117,7 @@ public class consumableFabric : MonoBehaviour
     }
 
     private int spawnFruits(float[][] grapePositions, float[][] pumpkinPositions) {
-        int caloriesToReturn = 0;
-
-        int spawnType = 0;
-        if(level >= 3) spawnType = 1;
-        if(level >= 5) spawnType = 2; 
+        int caloriesToReturn = 0, spawnType = setSpawnType();     
 
         for(int i = 0; i < grapePositions.Length; i++) {
            caloriesToReturn += Instantiate(GrapePrefabs[spawnType], new Vector3(grapePositions[i][0], grapePositions[i][1], grapePositions[i][2]), Quaternion.identity).GetComponent<Fruit>().getCalories();      
@@ -122,9 +130,20 @@ public class consumableFabric : MonoBehaviour
         return caloriesToReturn;
     }
 
+    #endregion
     private Vector3 generateRandomVector3(float x1, float x2, float y1, float y2) {
         return new Vector3(Random.Range(x1, x2), Random.Range(y1, y2), 0);
     }
-    
-    
+
+    private int setSpawnType() {
+        int spawnType = 0;
+        if(this.level >= 3) spawnType = 1;
+        if(this.level >= 5) spawnType = 2;
+
+        return spawnType;
+    }
+
+    private bool getProbabilityOf(int chance) {
+        return Random.Range(0f, 100.0f) >= chance;
+    }
 }
