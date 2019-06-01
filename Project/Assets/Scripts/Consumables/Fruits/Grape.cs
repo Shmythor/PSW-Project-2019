@@ -17,7 +17,7 @@ public class Grape : Fruit
 
     int setPropsByType() {     
         this.GetComponent<SpriteRenderer>().sprite = sprites[this.type];
-
+        
         if(this.type == 0) {                        
             return 5;            
         } else if (this.type == 1) {
