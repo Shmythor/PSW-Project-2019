@@ -28,7 +28,7 @@ public class UITimer : MonoBehaviour
             } 
 
             if(timeLeft <= 1) {
-                GameController.instance.GameOver();
+                UIController.instance.GameOver();
                 timeLeft = 0;
             } else {
                 timeLeft -= Time.deltaTime;

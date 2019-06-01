@@ -97,7 +97,7 @@ public int getHearts() { return this.hearts; }
     public void die()
     {
         //Debug.Log
-        GameController.instance.GameOver();
+        UIController.instance.GameOver();
         
     }
 

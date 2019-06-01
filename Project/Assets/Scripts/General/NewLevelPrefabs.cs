@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NewLevelPrefabs : MonoBehaviour
 {
-
     public static NewLevelPrefabs instance = null;
     private void Awake()
     {
@@ -15,3 +14,4 @@ public class NewLevelPrefabs : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 }
+

@@ -14,11 +14,11 @@ public class PauseScreen : AScreen
     public void resume()
     {
         UIController.instance.restartTimer();
-        GameController.instance.resumeGame();
+        UIController.instance.resumeGame();
     }
 
     public void saveGame() {
-        GameController.instance.saveGame();
+        UIController.instance.saveGame();
     }
 
 }

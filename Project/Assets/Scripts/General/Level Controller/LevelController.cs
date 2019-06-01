@@ -73,8 +73,8 @@ public class LevelController : MonoBehaviour
 
     public void loadMainMenu()
     {
-        GameController.instance.disativateUIScreens();
-        GameController.instance.disativateUIContainer();
+        UIController.instance.setUIScreens(false);
+        UIController.instance.setUIContainer(false);
         SceneManager.LoadScene(1);
     }
 }

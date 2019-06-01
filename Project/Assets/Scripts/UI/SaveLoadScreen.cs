@@ -55,7 +55,7 @@ public class SaveLoadScreen : MonoBehaviour
 
     public void close() {
         UIController.instance.restartTimer();
-        GameController.instance.resumeGame();
+        UIController.instance.resumeGame();
     }
 
     public void closeAtMainMenu() {

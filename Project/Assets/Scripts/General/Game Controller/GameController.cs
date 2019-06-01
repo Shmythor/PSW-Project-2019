@@ -13,8 +13,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private IPlayer player;
     [SerializeField] private int calories, caloriesToRestore;    
 
-    [Header("UI")]
-    [SerializeField] private GameObject mainUI, gamewinScreen, gameoverScreen, pauseScreen, saveScreen;
 
 
     private int totalEnergiesPicked, totalHeartsPicked;
@@ -76,9 +74,6 @@ public class GameController : MonoBehaviour
             player.enableInputs();
             player.restoreHealth(); /* updates UI elements as well */
 
-            Debug.Log("Ahora tienes tantos corazones en Greedy: " + player.getHearts());
-            Debug.Log("Ahora tienes tantos corazones en la UI: " + UIController.instance.getHearts());
-            
             /* Spawn Consumables */
             caloriesThisLevel = 0;
             caloriesToRestore = 0;
@@ -88,7 +83,7 @@ public class GameController : MonoBehaviour
             spawnEnemies();
 
             /* Set UI */      
-            mainUI.SetActive(true);  
+            UIController.instance.setUIContainer(true); 
             UIController.instance.resetUIStats();
             UIController.instance.setCalories(calories);
             /* Set music */   
@@ -97,8 +92,8 @@ public class GameController : MonoBehaviour
           
         }
         else
-            mainUI.SetActive(false);
-        disativateUIScreens();
+            UIController.instance.setUIContainer(false);
+        UIController.instance.setUIScreens(false);
     }
 
     public void startLevel(GameDataSerializable data)
@@ -122,14 +117,14 @@ public class GameController : MonoBehaviour
         spawnEnemies(data);
 
         /* Set UI */      
-        mainUI.SetActive(true);     
+        UIController.instance.setUIContainer(true);
         this.calories = data.calories;
         UIController.instance.setUIStats(data.damage, data.time, data.hearts, data.calories);   
         UIController.instance.restartTimer();
         /* Set music */   
         MusicController.instance.playMainSong();
 
-        disativateUIScreens();
+        UIController.instance.setUIScreens(false);
     }    
     
     private void spawnConsumables()
@@ -199,8 +194,6 @@ public class GameController : MonoBehaviour
 
         UIController.instance.setCalories(this.calories);
 
-        
-        
         float rndSound = Random.Range(1f, 3f);
 
         if(rndSound <= 1) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
@@ -210,7 +203,7 @@ public class GameController : MonoBehaviour
         /* If the player has consumed all the fruits invoke the gameWin method      */
         if(caloriesThisLevel == caloriesToWin)
         {
-            GameWin();
+            UIController.instance.GameWin();
         }
     } 
 
@@ -228,80 +221,21 @@ public class GameController : MonoBehaviour
 
     #endregion
 
-    #region UI SCREENS   
-
-    public void disativateUIScreens()
-    {
-        gameoverScreen.SetActive(false);
-        gamewinScreen.SetActive(false);
-        pauseScreen.SetActive(false);
-        saveScreen.SetActive(false);        
-    }
-
-    public void disativateUIContainer() {
-        mainUI.SetActive(false);
-    }
-    
-    public void GameOver()
-    {
-        
-        pauseGame(false);
-        this.calories = 0;  
-        UIController.instance.initUIStats();       
-        gameoverScreen.SetActive(true);
-        gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);        
-    }
-
-    public void GameWin()
-    {
-        pauseGame(false);
-
-        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_launch);
-        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_explosion);
-
-        gamewinScreen.SetActive(true);
-        gamewinScreen.GetComponent<AScreen>().setCaloriesText(calories);
-
-        /* Si terminamos el último nivel, guardamos puntuaciones */
-        if(level == 6) {
-           saveTopGame();
-        }
-    }
-
-    public void pauseGame(bool activatePauseScreen)
-    {
+    public void stopGame() {
         player.disableInputs();
         foreach (IEnemy enemy in enemies)
             enemy.stopEnemy();
-        if (activatePauseScreen == true)
-        {
-            
-            pauseScreen.SetActive(true);
-            pauseScreen.GetComponent<AScreen>().setCaloriesText(calories);
-        }
-
     }
-    
 
-    public void resumeGame()
-    {
+    public void restartGame() {
         player.enableInputs();
         foreach (IEnemy enemy in enemies)
             enemy.resumeEnemy();
-        pauseScreen.SetActive(false);
-        saveScreen.SetActive(false);
-        MusicController.instance.resumeMainSong();
     }
-
-    #endregion
-
 
     #region SaveLoad Methods
 
-    public void saveGame() {
-        pauseScreen.SetActive(false);
-        saveScreen.SetActive(true);        
-    }    
+     
 
       public void saveGameAt(SaveLoad.paths path) {
         GameDataSerializable data = new GameDataSerializable(new GameData(
@@ -318,7 +252,7 @@ public class GameController : MonoBehaviour
         SaveLoad.saveGameDataAt(data, path);
     }    
 
-    private void saveTopGame() {
+    public void saveTopGame() {
         TopGameData[] topData = SaveLoad.loadAllTopGameData();
         TopGameData newTGD = new TopGameData(this.totalHeartsPicked, this.totalEnergiesPicked, this.calories, UIController.instance.getTime());
         

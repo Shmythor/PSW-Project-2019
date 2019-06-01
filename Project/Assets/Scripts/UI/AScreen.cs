@@ -16,7 +16,7 @@ public abstract class AScreen : MonoBehaviour
     public void exit()
     {        
         GameController.instance.setCaloriesToZero();        
-        GameController.instance.disativateUIContainer();       
+        UIController.instance.setUIContainer(false);       
 
         
 

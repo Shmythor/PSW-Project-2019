@@ -18,6 +18,9 @@ public class UIController : MonoBehaviour
     [SerializeField] private SimpleHealthBar healthBar;
     [SerializeField] private UITimer UITimer;
 
+     [Header("UI")]
+    [SerializeField] private GameObject gamewinScreen, gameoverScreen, pauseScreen, saveScreen;
+
 
     void setCaloriesText() { caloryText.text = calories.ToString(); }
     public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
@@ -85,8 +88,72 @@ public class UIController : MonoBehaviour
     }
 
     public void pauseButton() {
-        GameController.instance.pauseGame(true);
+        pauseGame(true);
     }
+
+    
+    #region UI SCREENS   
+
+    public void setUIScreens(bool set)
+    {
+        gameoverScreen.SetActive(set);
+        gamewinScreen.SetActive(set);
+        pauseScreen.SetActive(set);
+        saveScreen.SetActive(set);        
+    }
+
+    public void setUIContainer(bool set) {
+        this.gameObject.SetActive(set);
+    }
+    
+    public void GameOver()
+    {       
+        pauseGame(false);
+        initUIStats();       
+        gameoverScreen.SetActive(true);
+        gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);        
+    }
+
+    public void GameWin()
+    {
+        pauseGame(false);
+
+        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_launch);
+        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_explosion);
+
+        gamewinScreen.SetActive(true);
+        gamewinScreen.GetComponent<AScreen>().setCaloriesText(calories);
+
+        /* Si terminamos el último nivel, guardamos puntuaciones */
+        if(GameController.instance.getLevel() == 6) {
+           GameController.instance.saveTopGame();
+        }
+    }
+
+    public void pauseGame(bool activatePauseScreen)
+    {       
+        if (activatePauseScreen == true)
+        {
+            GameController.instance.stopGame();     
+            pauseScreen.SetActive(true);
+            pauseScreen.GetComponent<AScreen>().setCaloriesText(calories);
+        }
+    }
+    
+    public void saveGame() {
+        pauseScreen.SetActive(false);
+        saveScreen.SetActive(true);        
+    }   
+
+    public void resumeGame()
+    {
+        GameController.instance.restartGame();        
+        pauseScreen.SetActive(false);
+        saveScreen.SetActive(false);
+        MusicController.instance.resumeMainSong();
+    }
+
+    #endregion
 
 
     public void resetTimer() {
