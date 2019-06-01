@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Drug : Consumable
 {
+
+    public override int chanceOfSpawn => 0;
+    public override string typeOfConsumable => "";
+    public override int calories
+    {
+        get => 0;
+        set => calories = 0;
+    }
+    
     void Awake() {
     /* Create a new GameObject with the same trigger and rigidbody settings as this one */
         GameObject obj = new GameObject("Cube with collider");
@@ -17,13 +26,12 @@ public class Drug : Consumable
     }
 
     
-        protected void restoreHealth() {
-            GameController.instance.restoreHealth();
-        }
+    protected void restoreHealth() {
+        GameController.instance.restoreHealth();
+    }
 
-        protected void restoreEnergy() {
-            GameController.instance.restoreEnergy();
-        }
-
+    protected void restoreEnergy() {
+        GameController.instance.restoreEnergy();
+    }
 
 }

@@ -6,8 +6,12 @@ using UnityEngine;
 public abstract class Fruit : Consumable
 {
     /*          References          */
-    public int type;
-    protected int calories;
+    public int type;    
+    public override int calories => 0;
+    public override int chanceOfSpawn => 0;
+    public override string typeOfConsumable => "";
+
+    public Sprite[] sprites;
 
 
     public void setType(int type) { this.type = type; }

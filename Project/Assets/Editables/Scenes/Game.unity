@@ -1020,6 +1020,17 @@ PrefabInstance:
       propertyPath: pauseScreen
       value: 
       objectReference: {fileID: 1949081587}
+    - target: {fileID: 6112512793345559918, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: ConsumablePrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112512793345559918, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: ConsumablePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6252845804559959683, guid: 60e12066b56d35e44be89970a3a9392a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704bb5665c9b3324c8bf83dd503b36c5, type: 3}
 --- !u!1 &1949081586 stripped

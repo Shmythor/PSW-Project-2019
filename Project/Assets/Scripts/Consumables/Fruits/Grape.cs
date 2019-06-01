@@ -5,19 +5,25 @@ using UnityEngine;
 
 public class Grape : Fruit
 {
-    
-    void Awake() {
-        setPropsByType();
-    }
 
-    void setPropsByType() {        
-        if(this.type == 1) {
-            this.calories = 5;            
-        } else if (this.type == 2) {
-            this.calories = 10;
+    public override int chanceOfSpawn => 60;
+    public override string typeOfConsumable => "Grape";
+
+    public override int calories
+    {
+        get => setPropsByType();
+        set => calories = setPropsByType();
+    }    
+
+    int setPropsByType() {     
+        this.GetComponent<SpriteRenderer>().sprite = sprites[this.type];
+
+        if(this.type == 0) {                        
+            return 5;            
+        } else if (this.type == 1) {
+            return 10;
         } else {
-            this.calories = 15;
+            return 15;
         }
-    }  
-
+    }
 }

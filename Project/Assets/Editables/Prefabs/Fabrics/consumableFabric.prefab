@@ -55,3 +55,12 @@ MonoBehaviour:
   - {fileID: 6252845804559959683, guid: 60e12066b56d35e44be89970a3a9392a, type: 3}
   - {fileID: 243979495339679388, guid: 1a4dbd1985269c645b41796e8a54c624, type: 3}
   - {fileID: 6178510077086370869, guid: 4ff9dba8a64fdb34bb11fec5f0cee5ff, type: 3}
+  ConsumablePrefabs:
+  - {fileID: 2000711831758618458, guid: 1ec3d8cfe98e6504da9103def295fc0b, type: 3}
+  - {fileID: 6874795115525580428, guid: 82b5a35f7215d934b8e5027adad5ed3c, type: 3}
+  - {fileID: 3435003865282362593, guid: e4414238fa934ae4f8778e93241811ad, type: 3}
+  - {fileID: 8536800177851144691, guid: dfe011fbb71be594f9f659ade814b3ec, type: 3}
+  - {fileID: 1132790646898318301, guid: e7243b417a3135b43a6148c13feffc82, type: 3}
+  - {fileID: 6252845804559959683, guid: 60e12066b56d35e44be89970a3a9392a, type: 3}
+  - {fileID: 243979495339679388, guid: 1a4dbd1985269c645b41796e8a54c624, type: 3}
+  - {fileID: 6178510077086370869, guid: 4ff9dba8a64fdb34bb11fec5f0cee5ff, type: 3}

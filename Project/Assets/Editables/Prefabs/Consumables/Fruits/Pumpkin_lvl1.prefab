@@ -121,6 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  sprites:
+  - {fileID: 21300000, guid: c47f5f43b0dad2740afc48056cdc214c, type: 3}
+  - {fileID: 21300000, guid: 5f4fdb395a770ca45872bdc3e5ce3945, type: 3}
+  - {fileID: 21300000, guid: b5424814065846447aa2d4c227fb0b46, type: 3}
 --- !u!50 &5476042894245856465
 Rigidbody2D:
   serializedVersion: 4

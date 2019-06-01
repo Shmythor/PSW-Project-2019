@@ -6,10 +6,11 @@ public class consumableFabric : MonoBehaviour
 {
     public GameObject heartPrefab, energyPrefab;
     public GameObject[] GrapePrefabs, PumpkinPrefabs;
+    public List<GameObject> ConsumablePrefabs;
     public static consumableFabric instance = null;
     private int maxHearts = 1, maxEnergy = 2;
 
-    private int level;
+    private int level, caloriesToReturn;
     private ArrayList lastPositions;
     private GameObject[] fruitSpawners;    
 
@@ -24,48 +25,112 @@ public class consumableFabric : MonoBehaviour
            
     }
 
-    #region Consumables - Next level
+    #region Consumable Fabric -- Public methods  
+
     public int spawnConsumables(int level) { 
-        this.level = level;
-        fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner");    
-             
-        spawnDrugs();
-        return spawnFruits();
+        initVariables(level);
+
+        foreach (GameObject consumable in ConsumablePrefabs)
+        {
+            spawnConsumablesOf(consumable);
+        }  
+
+        return caloriesToReturn;
     }
 
-    private void spawnDrugs() {        
-        int contHearts = 0, contEnergy = 0;
+    public int spawnConsumables(GameDataSerializable data) { 
+        initVariables(data.level);
+        
+        spawnDrugs(data.energyPositions, data.heartPositions);
+        spawnFruits(data.grapePositions, data.pumpkinPositions);
+        return caloriesToReturn;
+    }
+
+    
+    #endregion
+
+    #region Consumables - Next level
+    
+    /* MAIN METHOD OF THIS FACTORY PATTERN */
+    private void spawnConsumablesOf(GameObject consumable) {
+        string typeOfConsumable = consumable.GetComponent<Consumable>().typeOfConsumable;
+
+        switch(typeOfConsumable) {
+            case "Grape":
+                spawnGrapes(consumable);
+                break;
+            case "Pumpkin":
+                spawnPumpkins(consumable);
+                break;
+            case "Energy":
+                spawnEnergies(consumable);
+                break;
+            case "Heart":
+                spawnHearts(consumable);
+                break;
+        }
+    }
+
+    private void spawnEnergies(GameObject energyPrefab) {        
+        int contEnergy = 0;
+        Energy energy = energyPrefab.GetComponent<Energy>();
+
         if(level > 1) {
             for(int i = 0; i < 5; i++) {
-                if(getProbabilityOf(80) && maxHearts >= contHearts) {
-                    Instantiate(heartPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
-                    contHearts++;
-                } 
-                
-                if(getProbabilityOf(80) && maxEnergy >= contEnergy) {
+                if(getProbabilityOf(energy.chanceOfSpawn) && maxEnergy >= contEnergy) {
                     Instantiate(energyPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
                     contEnergy++;
                 }            
             }    
         }    
     }
+
+    private void spawnHearts(GameObject heartPrefab) {        
+        int contHearts = 0;
+        Heart heart = heartPrefab.GetComponent<Heart>();
+
+        if(level > 1) {
+            for(int i = 0; i < 5; i++) {
+                if(getProbabilityOf(heart.chanceOfSpawn) && maxHearts >= contHearts) {
+                    Instantiate(heartPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
+                    contHearts++;
+                }       
+            }    
+        }    
+    }
    
-    private int spawnFruits() {
-        int spawnedCalories = 0, spawnType = setSpawnType();        
+    private void spawnGrapes(GameObject grapePrefab) {        
+        int spawnType = getSpawnType();       
         lastPositions = new ArrayList();
+        Grape grape = grapePrefab.GetComponent<Grape>();
        
         for(int i = 0; i < 6; i++) {           
             Vector3 newFruitPosition = calculatePositionInFarms();
             
-            /* 60% Grapes & 40% Pumpkins (aprox) */
-            if(getProbabilityOf(60)) {
-                spawnedCalories += Instantiate(PumpkinPrefabs[spawnType], newFruitPosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
-            } else {
-                spawnedCalories += Instantiate(GrapePrefabs[spawnType], newFruitPosition, Quaternion.identity).GetComponent<Fruit>().getCalories();
+            if(getProbabilityOf(grape.chanceOfSpawn)) {
+                Grape clone = (Grape) Instantiate(grapePrefab, newFruitPosition, Quaternion.identity).GetComponent<Grape>();; 
+
+                clone.setType(spawnType);
+                caloriesToReturn += clone.getCalories();                 
             }            
         }
+    }
 
-        return spawnedCalories;
+    private void spawnPumpkins(GameObject pumpkinPrefab) {        
+        int spawnType = getSpawnType();       
+        lastPositions = new ArrayList();
+        Pumpkin pumpkin = pumpkinPrefab.GetComponent<Pumpkin>();
+       
+        for(int i = 0; i < 6; i++) {           
+            Vector3 newFruitPosition = calculatePositionInFarms();            
+           
+            if(getProbabilityOf(pumpkin.chanceOfSpawn)) {
+                Pumpkin clone = (Pumpkin) Instantiate(pumpkinPrefab, newFruitPosition, Quaternion.identity).GetComponent<Pumpkin>();;    
+
+                clone.setType(spawnType);
+                caloriesToReturn += clone.getCalories();            
+            }            
+        }
     }
     
     private Vector3 calculatePositionInFarms() {
@@ -88,46 +153,38 @@ public class consumableFabric : MonoBehaviour
                 }                        
             }                
         }
-
         lastPositions.Add(newFruitPosition);
 
         return newFruitPosition;
     }
-
-    
+   
     #endregion
 
     #region Consumables - Load level
     
-    public int spawnConsumables(GameDataSerializable data) { 
-        this.level = data.level;
-        fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner");         
-        spawnDrugs(data.energyPositions, data.heartPositions);
-        return spawnFruits(data.grapePositions, data.pumpkinPositions);
-    }
+   
 
     private void spawnDrugs(float[][] energyPositions, float[][] heartPositions) {
-        for(int i = 0; i < energyPositions.Length; i++) {
-            Instantiate(energyPrefab, new Vector3(energyPositions[i][0], energyPositions[i][1], energyPositions[i][2]), Quaternion.identity);           
-        }   
-
         for(int i = 0; i < heartPositions.Length; i++) {
-            Instantiate(heartPrefab, new Vector3(heartPositions[i][0], heartPositions[i][1], heartPositions[i][2]), Quaternion.identity);           
+            Instantiate(heartPrefab, new Vector3(heartPositions[i][0], heartPositions[i][1], heartPositions[i][2]), Quaternion.identity).GetComponent<Heart>();           
         } 
+
+        for(int i = 0; i < energyPositions.Length; i++) {
+            Instantiate(energyPrefab, new Vector3(energyPositions[i][0], energyPositions[i][1], energyPositions[i][2]), Quaternion.identity).GetComponent<Energy>();           
+        }
     }
 
-    private int spawnFruits(float[][] grapePositions, float[][] pumpkinPositions) {
-        int caloriesToReturn = 0, spawnType = setSpawnType();     
+    private void spawnFruits(float[][] grapePositions, float[][] pumpkinPositions) {
+        int spawnType = getSpawnType();        
 
         for(int i = 0; i < grapePositions.Length; i++) {
-           caloriesToReturn += Instantiate(GrapePrefabs[spawnType], new Vector3(grapePositions[i][0], grapePositions[i][1], grapePositions[i][2]), Quaternion.identity).GetComponent<Fruit>().getCalories();      
+           caloriesToReturn += Instantiate(GrapePrefabs[spawnType], new Vector3(grapePositions[i][0], grapePositions[i][1], grapePositions[i][2]), Quaternion.identity).GetComponent<Grape>().calories;      
         }   
 
         for(int i = 0; i < pumpkinPositions.Length; i++) {
-          caloriesToReturn += Instantiate(PumpkinPrefabs[spawnType], new Vector3(pumpkinPositions[i][0], pumpkinPositions[i][1], pumpkinPositions[i][2]), Quaternion.identity).GetComponent<Fruit>().getCalories();           
+          caloriesToReturn += Instantiate(PumpkinPrefabs[spawnType], new Vector3(pumpkinPositions[i][0], pumpkinPositions[i][1], pumpkinPositions[i][2]), Quaternion.identity).GetComponent<Pumpkin>().calories;           
         } 
 
-        return caloriesToReturn;
     }
 
     #endregion
@@ -135,7 +192,7 @@ public class consumableFabric : MonoBehaviour
         return new Vector3(Random.Range(x1, x2), Random.Range(y1, y2), 0);
     }
 
-    private int setSpawnType() {
+    private int getSpawnType() {
         int spawnType = 0;
         if(this.level >= 3) spawnType = 1;
         if(this.level >= 5) spawnType = 2;
@@ -145,5 +202,11 @@ public class consumableFabric : MonoBehaviour
 
     private bool getProbabilityOf(int chance) {
         return Random.Range(0f, 100.0f) >= chance;
+    }
+
+    private void initVariables(int level) {
+        this.level = level;        
+        caloriesToReturn = 0;  
+        fruitSpawners = GameObject.FindGameObjectsWithTag("FruitSpawner");  
     }
 }
