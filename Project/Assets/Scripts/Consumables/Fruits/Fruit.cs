@@ -30,7 +30,7 @@ public abstract class Fruit : Consumable
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.transform.tag == "Player") {
-            GameController.instance.consumeCalories(calories);
+            GameController.instance.consumeCalories(calories, true);
             Destroy(gameObject); 
         } 
     }

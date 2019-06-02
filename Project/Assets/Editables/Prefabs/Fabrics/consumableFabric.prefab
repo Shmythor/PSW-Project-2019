@@ -43,24 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1476ef25c8a48145be85584d52b7f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 6874795115525580428, guid: 82b5a35f7215d934b8e5027adad5ed3c,
-    type: 3}
-  energyPrefab: {fileID: 2000711831758618458, guid: 1ec3d8cfe98e6504da9103def295fc0b,
-    type: 3}
-  GrapePrefabs:
-  - {fileID: 3435003865282362593, guid: e4414238fa934ae4f8778e93241811ad, type: 3}
-  - {fileID: 8536800177851144691, guid: dfe011fbb71be594f9f659ade814b3ec, type: 3}
-  - {fileID: 1132790646898318301, guid: e7243b417a3135b43a6148c13feffc82, type: 3}
-  PumpkinPrefabs:
-  - {fileID: 6252845804559959683, guid: 60e12066b56d35e44be89970a3a9392a, type: 3}
-  - {fileID: 243979495339679388, guid: 1a4dbd1985269c645b41796e8a54c624, type: 3}
-  - {fileID: 6178510077086370869, guid: 4ff9dba8a64fdb34bb11fec5f0cee5ff, type: 3}
   ConsumablePrefabs:
   - {fileID: 2000711831758618458, guid: 1ec3d8cfe98e6504da9103def295fc0b, type: 3}
-  - {fileID: 6874795115525580428, guid: 82b5a35f7215d934b8e5027adad5ed3c, type: 3}
+  - {fileID: 3043744201959272960, guid: 82b5a35f7215d934b8e5027adad5ed3c, type: 3}
   - {fileID: 3435003865282362593, guid: e4414238fa934ae4f8778e93241811ad, type: 3}
-  - {fileID: 8536800177851144691, guid: dfe011fbb71be594f9f659ade814b3ec, type: 3}
-  - {fileID: 1132790646898318301, guid: e7243b417a3135b43a6148c13feffc82, type: 3}
   - {fileID: 6252845804559959683, guid: 60e12066b56d35e44be89970a3a9392a, type: 3}
-  - {fileID: 243979495339679388, guid: 1a4dbd1985269c645b41796e8a54c624, type: 3}
-  - {fileID: 6178510077086370869, guid: 4ff9dba8a64fdb34bb11fec5f0cee5ff, type: 3}
+  - {fileID: 72006773313330145, guid: 71f8849f2bcfa7e4a8af9ba83fba7355, type: 3}

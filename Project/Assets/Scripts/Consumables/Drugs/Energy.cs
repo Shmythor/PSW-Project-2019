@@ -14,7 +14,7 @@ public class Energy : Drug
     void OnTriggerEnter2D(Collider2D other) { 
         if (other.transform.tag == "Player") { 
             restoreEnergy();
-            GameController.instance.consumeCalories(calories);           
+            GameController.instance.consumeCalories(calories, false);           
             Destroy(gameObject);             
         } 
                   

@@ -14,17 +14,20 @@ public class EnemyFabric : MonoBehaviour
 
    
 
-    private void Awake()
+    void Awake()
     {
-        if (instance == null)
+        if (instance == null) {
             instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        } else if (instance != this) {
+            //There can only ever be one instance of this object!!
+            Destroy(gameObject);  
+        }
     }
 
 
     public List<IEnemy> spawnEnemies(int level)
     {
+        cleanLevelBeforeSpawn();
 
         player = GameController.instance.getPlayerTransform();
 
@@ -46,6 +49,8 @@ public class EnemyFabric : MonoBehaviour
 
     public List<IEnemy> spawnEnemies(GameDataSerializable data)
     {
+        cleanLevelBeforeSpawn();
+
         List<IEnemy> listOfEnemies = new List<IEnemy>();        
         float[][] bunnyPositions = data.bunnyPositions, impPositions = data.impPositions;
         for(int i = 0; i < impPositions.Length; i++) {
@@ -69,4 +74,12 @@ public class EnemyFabric : MonoBehaviour
 
         return position;
     }
+
+    private void cleanLevelBeforeSpawn() {
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }       
+    }
+    
 }

@@ -11,12 +11,16 @@ public class LevelController : MonoBehaviour
 
     private GameDataSerializable data;
 
-    void Start()
+    void Awake()
     {
-        if (instance == null)
+        if (instance == null) {
             instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        } else if (instance != this) {
+            //There can only ever be one instance of this object!!
+            Destroy(gameObject);  
+        }
+
+        //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);        
     }
 
@@ -32,7 +36,6 @@ public class LevelController : MonoBehaviour
             GameController.instance.startLevel(data);
             data = null;
         } else {
-            Debug.Log("Voy a ponerme al nivel: " + this.currentLevel.ToString());
             GameController.instance.startLevel(this.currentLevel);
         }    
         

@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameDataSerializable {
     /* Greedy Stats */
     public float[] greedyPosition;
-    public int hearts, calories;
+     public int hearts, calories, fruitsEaten, fruitsToEat;
     public float damage;
     /* Game Stats */
     public int level;
@@ -23,6 +23,8 @@ public class GameDataSerializable {
         this.greedyPosition = data.greedyPosition;
         this.hearts = data.hearts;
         this.calories = data.calories;
+        this.fruitsEaten = data.fruitsEaten;
+        this.fruitsToEat = data.fruitsToEat;
         this.damage = data.damage;
         this.level = data.level;
         this.time = data.time;

@@ -137,6 +137,17 @@ public class Player : MonoBehaviour, IPlayer
         healthCom.setDamage(damage);
     }
 
+    
+    public void increaseSpeedForXSeconds(float speedRate, int seconds) {
+        StartCoroutine(logicOfIncreaseSpeed(speedRate, seconds));
+    } 
+
+    private IEnumerator logicOfIncreaseSpeed(float speedRate, int seconds) {
+        float oldSpeed = this.speed;
+        mvCom.setSpeed(oldSpeed + (oldSpeed * speedRate));
+        yield return new WaitForSeconds(seconds);
+        mvCom.setSpeed(oldSpeed);
+    }
 
 
     

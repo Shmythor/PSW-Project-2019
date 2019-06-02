@@ -9,6 +9,7 @@ public interface IPlayer: ICharacter
     void enableInputs();
     void restoreHealth();
     void updateHealthFromLoadGameData(int hearts, float damage);
+    void increaseSpeedForXSeconds(float speed, int seconds);
     void setHearts(int hearts);
     int getHearts();
 }

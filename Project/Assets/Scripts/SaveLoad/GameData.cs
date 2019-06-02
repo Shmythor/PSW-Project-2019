@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameData {
     /* Greedy Stats */
     public float[] greedyPosition;
-    public int hearts, calories;
+    public int hearts, calories, fruitsEaten, fruitsToEat;
     public float damage;
     /* Game Stats */
     public int level;
@@ -20,9 +20,11 @@ public class GameData {
     public float[][] impPositions, bunnyPositions, holePostions, firePositions;
 
 
-    public GameData(GameObject[] consumables, GameObject[] enemies, GameObject greedy, int level, int hearts, int calories, float damage, float time)
+    public GameData(GameObject[] consumables, GameObject[] enemies, GameObject greedy, int level, int hearts, int calories, int fruitsEaten, int fruitsToEat, float damage, float time)
     {        
         this.hearts = hearts;
+        this.fruitsEaten = fruitsEaten;
+        this.fruitsToEat = fruitsToEat;
         this.calories = calories;
         this.damage = damage;
         this.level = level;
