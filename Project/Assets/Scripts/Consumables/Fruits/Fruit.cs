@@ -8,7 +8,7 @@ public abstract class Fruit : Consumable
     /*          References          */
     public int type;    
     public override int calories => 0;
-    public override int chanceOfSpawn => 0;
+    public override float chanceOfSpawn => 0f;
     public override string typeOfConsumable => "";
 
     public Sprite[] sprites;

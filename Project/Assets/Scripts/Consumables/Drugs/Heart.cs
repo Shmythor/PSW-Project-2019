@@ -7,7 +7,7 @@ public class Heart : Drug
 {    
 
     public override int calories => 35;
-    public override int chanceOfSpawn => 5;
+    public override float chanceOfSpawn => 15f;
     public override string typeOfConsumable => "Heart";
         
     void OnTriggerEnter2D(Collider2D other) {          

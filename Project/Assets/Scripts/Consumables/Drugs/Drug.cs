@@ -6,7 +6,7 @@ using UnityEngine;
 public class Drug : Consumable
 {
 
-    public override int chanceOfSpawn => 0;
+    public override float chanceOfSpawn => 0f;
     public override string typeOfConsumable => "";
     public override int calories
     {

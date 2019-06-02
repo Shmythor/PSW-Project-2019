@@ -8,6 +8,6 @@ using UnityEngine;
 public abstract class Consumable : MonoBehaviour
 {
     public abstract int calories { get; set; }
-    public abstract int chanceOfSpawn { get; }
+    public abstract float chanceOfSpawn { get; }
     public abstract string typeOfConsumable { get; }
 }

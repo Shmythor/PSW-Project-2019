@@ -8,7 +8,7 @@ public class VelocityPotion : Drug
 {
    
     public override int calories => 0;
-    public override int chanceOfSpawn => 15;
+    public override float chanceOfSpawn => 5f;
     public override string typeOfConsumable => "VelocityPotion";
 
     private float speedToIncrease = 2f;

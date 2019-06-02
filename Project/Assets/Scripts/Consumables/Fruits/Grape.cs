@@ -6,7 +6,7 @@ using UnityEngine;
 public class Grape : Fruit
 {
 
-    public override int chanceOfSpawn => 60;
+    public override float chanceOfSpawn => 60f;
     public override string typeOfConsumable => "Grape";
 
     public override int calories
@@ -15,7 +15,7 @@ public class Grape : Fruit
         set => calories = setPropsByType();
     }    
 
-    int setPropsByType() {     
+    public int setPropsByType() {     
         this.GetComponent<SpriteRenderer>().sprite = sprites[this.type];
         
         if(this.type == 0) {                        

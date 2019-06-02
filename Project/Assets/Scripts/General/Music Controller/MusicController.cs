@@ -83,5 +83,12 @@ public class MusicController : MonoBehaviour {
         mainSong.Play();
     }
 
+    public void playConsumeCaloriesSoundEffect() {
+        float rndSound = Random.Range(1f, 3f);
+
+        if (rndSound <= 1) playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);
+        if (rndSound > 1 && rndSound <= 2) playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
+        if (rndSound > 2 && rndSound <= 3) playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);
+    }
 
 }

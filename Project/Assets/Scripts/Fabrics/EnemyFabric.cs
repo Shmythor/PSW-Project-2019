@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFabric : MonoBehaviour
 {
-    public static EnemyFabric instance = null;
+    
     [Header("Enemies")]
     [SerializeField] private GameObject impPrefab;
     [SerializeField] private GameObject bunnyPrefab;
@@ -13,7 +13,7 @@ public class EnemyFabric : MonoBehaviour
     Transform player;
 
    
-
+    public static EnemyFabric instance = null;
     void Awake()
     {
         if (instance == null) {

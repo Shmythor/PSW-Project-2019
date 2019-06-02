@@ -21,6 +21,15 @@ public class UIController : MonoBehaviour
      [Header("UI")]
     [SerializeField] private GameObject gamewinScreen, gameoverScreen, pauseScreen, saveScreen;
 
+    void Awake()
+    {
+        if (instance == null) {
+            instance = this;
+        } else if (instance != this) {
+            //There can only ever be one instance of this object!!
+            Destroy(gameObject);  
+        }
+    }
 
     void setCaloriesText() { caloryText.text = calories.ToString(); }
     public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
@@ -45,17 +54,7 @@ public class UIController : MonoBehaviour
 
     public float getTime() {
        return UITimer.getTime();
-    }
-
-    void Awake()
-    {
-        if (instance == null) {
-            instance = this;
-        } else if (instance != this) {
-            //There can only ever be one instance of this object!!
-            Destroy(gameObject);  
-        }
-    }
+    } 
 
     public void resetUIStats() {
         this.stopTimer();

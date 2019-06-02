@@ -4,15 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
-
-
+    
     [Header("Level")]
     [SerializeField] private int level, caloriesThisLevel, lastLevel = 6;
 
     [Header("Player")]
     [SerializeField] private GameObject playerGameObject;
     [SerializeField] private IPlayer player;
-    private int calories, caloriesToRestore, fruitsToEat, fruitsEaten, totalEnergiesPicked, totalHeartsPicked;   
+
+    private int calories, contOfCaloriesToRestore, fruitsToEat, fruitsEaten, totalEnergiesPicked, totalHeartsPicked;   
+
+    private const int CALORIES_TO_RESTORE = 100;
   
     /*          Other          */
     private List<IEnemy> enemies;
@@ -29,10 +31,6 @@ public class GameController : MonoBehaviour
     public void setCaloriesToZero() { calories = 0; } /* For exiting to the menu */
     public Transform getPlayerTransform() { return playerGameObject.transform; }
 
-
-    
-
-
     void Awake()
     {
         if (instance == null) {
@@ -42,111 +40,135 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);  
         }
 
-
-        playerGameObject = GameObject.FindGameObjectWithTag("Player");
-        player = playerGameObject.transform.GetComponent<IPlayer>();
-        this.level = 1;
-        totalEnergiesPicked = 0;
-        totalHeartsPicked = 0;
-        
-        enemies = new List<IEnemy>();        
+        initializeVariables();          
     }
+    #region startLevel methods
     public void startLevel(int level)
     {       
-        this.level = level;
-
-        if(level == 1) {
-            totalEnergiesPicked = 0;
-            totalHeartsPicked = 0;
-        }
+        initializeVariables(level);        
 
         if (this.level > 0)
         {
-            /* Set map */        
             MapController.instance.setMap(this.level);
 
-            /* Set Greedy */
-            player.enableInputs();
-            player.restoreHealth(); /* updates UI elements as well */
+            initializePlayer();
 
-            /* Spawn Consumables */
-            caloriesThisLevel = 0;
-            caloriesToRestore = 0;
-            fruitsEaten = 0;
-            fruitsToEat = 0;
-            spawnConsumables();  
-
-             Debug.Log("Tenemos que comer: " + fruitsToEat + " frutas");
-
-            /* Spawn Enemies */            
+            spawnConsumables();
             spawnEnemies();
 
-            /* Set UI */      
-            UIController.instance.setUIContainer(true); 
-            UIController.instance.resetUIStats();
-            UIController.instance.setCalories(calories);
-            /* Set music */   
-            MusicController.instance.playMainSong();
+            initializeUI();
 
-          
+            MusicController.instance.playMainSong();
         }
         else
-            UIController.instance.setUIContainer(false);
-        UIController.instance.setUIScreens(false);
+            UIController.instance.setUIContainer(false);        
     }
-
+    
     public void startLevel(GameDataSerializable data)
-    {       
-       /* Set map */        
-        this.level = data.level;
-        MapController.instance.setMap(level);
+    {
+        initializeVariables(data);
+        /* Set map */
+        MapController.instance.setMap(this.level);
 
-        /* Set Greedy */        
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
-        //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0.79f, -5.99f,0);
-        player.updateHealthFromLoadGameData(data.hearts, data.damage);
-        player.enableInputs();
+        /* Set Greedy */
+        initializePlayer(data);
 
-        /* Spawn Consumables */        
-        caloriesThisLevel = 0;
-        caloriesToRestore = 0;
-        fruitsEaten = data.fruitsEaten;
-        fruitsToEat = data.fruitsToEat;
-        spawnConsumables(data); 
+        /* Spawn Consumables */
+        spawnConsumables(data);
 
-        /* Spawn Enemies */            
+        /* Spawn Enemies */
         spawnEnemies(data);
 
-        /* Set UI */      
-        UIController.instance.setUIContainer(true);
-        this.calories = data.calories;
-        UIController.instance.setUIStats(data.damage, data.time, data.hearts, data.calories);   
-        UIController.instance.restartTimer();
-        /* Set music */   
+        /* Set UI */
+        initializeUI(data);
+
+        /* Set music */
         MusicController.instance.playMainSong();
+    }
 
-        UIController.instance.setUIScreens(false);
-    }    
     
-    private void spawnConsumables()
-    {      
-        fruitsToEat = consumableFabric.instance.spawnConsumables(level);        
-    }
 
-    private void spawnConsumables(GameDataSerializable data)
-    {
-        consumableFabric.instance.spawnConsumables(data);
-    }
+    #region StartLevel - refactor methods
 
-    private void spawnEnemies() {
+        private void initializeVariables() {
+            this.level = 1;
+
+            playerGameObject = GameObject.FindGameObjectWithTag("Player");
+            player = playerGameObject.transform.GetComponent<IPlayer>();           
         
-        enemies = EnemyFabric.instance.spawnEnemies(level);        
-    }
+            enemies = new List<IEnemy>();     
+        }
+        private void initializeVariables(int level) {
+            this.level = level;
 
-    private void spawnEnemies(GameDataSerializable data) {  
-        enemies = EnemyFabric.instance.spawnEnemies(data);
-    }
+            if(level == 1) {
+                totalEnergiesPicked = 0;
+                totalHeartsPicked = 0;
+            }
 
+            caloriesThisLevel = 0;
+            contOfCaloriesToRestore = 0;
+            fruitsEaten = 0;
+            fruitsToEat = 0;
+        }
+        private void initializeVariables(GameDataSerializable data) {
+            this.level = data.level;
+
+            this.calories = data.calories;   
+            caloriesThisLevel = 0;
+            contOfCaloriesToRestore = 0;
+            fruitsEaten = data.fruitsEaten;
+            fruitsToEat = data.fruitsToEat;
+        }
+
+        private void initializePlayer(GameDataSerializable data)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(
+                        data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
+            player.updateHealthFromLoadGameData(data.hearts, data.damage);
+            player.enableInputs();
+        }
+        private void initializePlayer()
+        {
+            player.enableInputs();
+            player.restoreHealth(); /* updates UI elements as well */
+        }
+        
+        private void initializeUI()
+        {
+            UIController.instance.setUIContainer(true);
+            UIController.instance.resetUIStats();
+            UIController.instance.setCalories(this.calories);
+
+            UIController.instance.setUIScreens(false);
+        }
+        private static void initializeUI(GameDataSerializable data)
+        {
+            UIController.instance.setUIContainer(true);
+            UIController.instance.setUIStats(data.damage, data.time, data.hearts, data.calories);
+            UIController.instance.setUIScreens(false);
+            UIController.instance.restartTimer();
+        }
+    
+        private void spawnConsumables()
+        {      
+            fruitsToEat = consumableFabric.instance.spawnConsumables(level);        
+        }
+        private void spawnConsumables(GameDataSerializable data)
+        {
+            consumableFabric.instance.spawnConsumables(data);
+        }
+
+        private void spawnEnemies() {        
+            enemies = EnemyFabric.instance.spawnEnemies(level);        
+        }
+        private void spawnEnemies(GameDataSerializable data) {  
+            enemies = EnemyFabric.instance.spawnEnemies(data);
+        }
+       
+        #endregion
+    #endregion
+    
     #region Player stats' methods
     public void updatePlayerHealth(int hearts, float damage, SoundsEnum.soundEffect[] sounds) {       
         
@@ -169,31 +191,41 @@ public class GameController : MonoBehaviour
 
     public void consumeCalories(int calories, bool isFruit)
     {
-        if(isFruit) {fruitsEaten++;}
+        updateCalories(calories, isFruit);
 
-        this.calories += calories;
-        caloriesThisLevel += calories;
-        caloriesToRestore += calories;
-        if (caloriesToRestore > 100){
-            player.restoreDamageTaken();
-            caloriesToRestore -= 100;
-        }
-
-        UIController.instance.setCalories(this.calories);
+        if (isFruit) MusicController.instance.playConsumeCaloriesSoundEffect();
         
-        if(isFruit) {
-            float rndSound = Random.Range(1f, 3f);
+        applyLogicOfUpdateCalories();
 
-            if(rndSound <= 1) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
-            if(rndSound>1 && rndSound<= 2) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
-            if(rndSound>2 && rndSound<= 3) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);      
-        }
-        /* If the player has consumed all the fruits invoke the gameWin method      */
-        if(fruitsEaten >= fruitsToEat)
+    }
+
+        private void applyLogicOfUpdateCalories()
         {
-            UIController.instance.GameWin();
+            /* Every 100 calories consumed restore all damage of Greedy */
+            if (contOfCaloriesToRestore > CALORIES_TO_RESTORE)
+            {
+                player.restoreDamageTaken();
+                contOfCaloriesToRestore -= CALORIES_TO_RESTORE;
+            }
+
+            UIController.instance.setCalories(this.calories);
+
+            /* If the player has consumed all the fruits invoke the gameWin method */
+            if (fruitsEaten >= fruitsToEat)
+            {
+                UIController.instance.GameWin();
+            }
         }
-    } 
+        private void updateCalories(int calories, bool isFruit)
+        {
+            if (isFruit) { fruitsEaten++; }
+
+            this.calories += calories;
+            caloriesThisLevel += calories;
+            contOfCaloriesToRestore += calories;        
+        }
+
+    
 
     public void restoreHealth() {
         this.totalHeartsPicked++;
@@ -214,6 +246,8 @@ public class GameController : MonoBehaviour
 
     #endregion
 
+    #region stop & restart methods
+
     public void stopGame() {
         player.disableInputs();
         foreach (IEnemy enemy in enemies)
@@ -226,11 +260,11 @@ public class GameController : MonoBehaviour
             enemy.resumeEnemy();
     }
 
+    #endregion
+
     #region SaveLoad Methods
 
-     
-
-      public void saveGameAt(SaveLoad.paths path) {
+    public void saveGameAt(SaveLoad.paths path) {
         GameDataSerializable data = new GameDataSerializable(new GameData(
             GameObject.FindGameObjectsWithTag("Consumable"),
             GameObject.FindGameObjectsWithTag("Enemy"),
@@ -268,19 +302,19 @@ public class GameController : MonoBehaviour
 
   
 
-    private int compareTo(TopGameData old, TopGameData nw) {
-        if (old.calories == nw.calories) {
-            if(old.time < nw.time) return -1;
-            if(old.time > nw.time) return 1;
-            return 0;
-        }
-           
-        if (old.calories < nw.calories) {            
-            return 1;
-        }
+        private int compareTo(TopGameData old, TopGameData nw) {
+            if (old.calories == nw.calories) {
+                if(old.time < nw.time) return -1;
+                if(old.time > nw.time) return 1;
+                return 0;
+            }
+            
+            if (old.calories < nw.calories) {            
+                return 1;
+            }
 
-        return -1;
-    }
+            return -1;
+        }
     
     #endregion
 

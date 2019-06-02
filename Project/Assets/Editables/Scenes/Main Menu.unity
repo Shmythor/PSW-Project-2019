@@ -635,7 +635,7 @@ PrefabInstance:
     - target: {fileID: 3866623428633880547, guid: 0f63fc9dce092b140a843f076c95079d,
         type: 3}
       propertyPath: m_Name
-      value: LevelChanger
+      value: LevelController
       objectReference: {fileID: 0}
     - target: {fileID: 3866623428633880545, guid: 0f63fc9dce092b140a843f076c95079d,
         type: 3}

@@ -10,12 +10,12 @@ public class Pumpkin : Fruit
         get => setPropsByType();
         set => calories = setPropsByType();
     }  
-    public override int chanceOfSpawn => 40;
+    public override float chanceOfSpawn => 40f;
     public override string typeOfConsumable => "Pumpkin";
 
     
 
-    int setPropsByType() {     
+    public int setPropsByType() {     
         this.GetComponent<SpriteRenderer>().sprite = sprites[this.type];    
 
         if(this.type == 0) {

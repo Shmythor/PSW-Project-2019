@@ -120,13 +120,14 @@ public class consumableFabric : MonoBehaviour
         Grape grape = grapePrefab.GetComponent<Grape>();        
         lastPositions = new ArrayList();
        
-        for(int i = 0; i < 4; i++) {           
+        for(int i = 0; i < 6; i++) {           
             Vector3 newFruitPosition = calculatePositionInFarms();
             
             if(getProbabilityOf(grape.chanceOfSpawn)) {
                 Grape clone = (Grape) Instantiate(grapePrefab, newFruitPosition, Quaternion.identity).GetComponent<Grape>(); 
 
                 clone.setType(spawnType);
+                clone.setPropsByType();
                 numOfFruitsSpawned++;                 
             }            
         }
@@ -136,13 +137,14 @@ public class consumableFabric : MonoBehaviour
         Pumpkin pumpkin = pumpkinPrefab.GetComponent<Pumpkin>();
         lastPositions = new ArrayList();
        
-        for(int i = 0; i < 2; i++) {           
+        for(int i = 0; i < 4; i++) {           
             Vector3 newFruitPosition = calculatePositionInFarms();            
            
             if(getProbabilityOf(pumpkin.chanceOfSpawn)) {
                 Pumpkin clone = (Pumpkin) Instantiate(pumpkinPrefab, newFruitPosition, Quaternion.identity).GetComponent<Pumpkin>();    
 
                 clone.setType(spawnType);
+                clone.setPropsByType();
                 numOfFruitsSpawned++;            
             }            
         }
@@ -198,6 +200,7 @@ public class consumableFabric : MonoBehaviour
             Grape clone = (Grape) Instantiate(grapePrefab, new Vector3(grapePositions[i][0], grapePositions[i][1], grapePositions[i][2]), Quaternion.identity).GetComponent<Grape>(); 
 
             clone.setType(spawnType);
+            clone.setPropsByType();
         }   
 
     }
@@ -209,6 +212,7 @@ public class consumableFabric : MonoBehaviour
             Pumpkin clone = (Pumpkin) Instantiate(pumpkinPrefab, new Vector3(pumpkinPositions[i][0], pumpkinPositions[i][1], pumpkinPositions[i][2]), Quaternion.identity).GetComponent<Pumpkin>();   
 
             clone.setType(spawnType);
+            clone.setPropsByType();
         } 
 
     }
@@ -229,8 +233,8 @@ public class consumableFabric : MonoBehaviour
         return spawnType;
     }
 
-    private bool getProbabilityOf(int chance) {
-        return Random.Range(0f, 100.0f) >= (float) chance;
+    private bool getProbabilityOf(float chance) {
+        return chance >= Random.Range(0f, 100.0f);
     }
 
     private void initVariables(int level) {
