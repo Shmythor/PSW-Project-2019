@@ -230,7 +230,7 @@ public class consumableFabric : MonoBehaviour
     }
 
     private bool getProbabilityOf(int chance) {
-        return Random.Range(0f, 100.0f) >= chance;
+        return Random.Range(0f, 100.0f) >= (float) chance;
     }
 
     private void initVariables(int level) {

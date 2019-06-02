@@ -207,6 +207,7 @@ public class GameController : MonoBehaviour
     }  
 
     public void updateSpeed(float speed, int seconds) {
+        MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.velocityPotion);
         player.increaseSpeedForXSeconds(speed, seconds);
     } 
 

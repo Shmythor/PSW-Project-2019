@@ -8,11 +8,11 @@ public class VelocityPotion : Drug
 {
    
     public override int calories => 0;
-    public override int chanceOfSpawn => 5;
+    public override int chanceOfSpawn => 15;
     public override string typeOfConsumable => "VelocityPotion";
 
-    private float speedToIncrease = 0.35f;
-    private int secondsToApplySpeed = 5;
+    private float speedToIncrease = 2f;
+    private int secondsToApplySpeed = 17;
 
     void OnTriggerEnter2D(Collider2D other) { 
         if (other.transform.tag == "Player") { 
