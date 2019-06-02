@@ -111,7 +111,7 @@ public class UIController : MonoBehaviour
         pauseGame(false);
         initUIStats();       
         gameoverScreen.SetActive(true);
-        gameoverScreen.GetComponent<AScreen>().setCaloriesText(calories);        
+        gameoverScreen.GetComponent<GameOver>().setCaloriesText(calories);        
     }
 
     public void GameWin()
@@ -131,10 +131,10 @@ public class UIController : MonoBehaviour
     }
 
     public void pauseGame(bool activatePauseScreen)
-    {       
+    {
+        GameController.instance.stopGame();
         if (activatePauseScreen == true)
-        {
-            GameController.instance.stopGame();     
+        { 
             pauseScreen.SetActive(true);
             pauseScreen.GetComponent<AScreen>().setCaloriesText(calories);
         }

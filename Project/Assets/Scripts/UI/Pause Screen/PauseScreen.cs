@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PauseScreen : AScreen
 {
+
+    
     public void resume()
     {
         UIController.instance.restartTimer();

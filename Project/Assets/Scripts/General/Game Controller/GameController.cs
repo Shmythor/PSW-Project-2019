@@ -140,11 +140,11 @@ public class GameController : MonoBehaviour
 
     private void spawnEnemies() {
         
-        enemies = EnemyFabric.instance.spawnImps(level);        
+        enemies = EnemyFabric.instance.spawnEnemies(level);        
     }
 
     private void spawnEnemies(GameDataSerializable data) {  
-        enemies = EnemyFabric.instance.spawnImps(data);
+        enemies = EnemyFabric.instance.spawnEnemies(data);
     }
 
     #region Player stats' methods
