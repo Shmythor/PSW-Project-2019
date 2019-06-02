@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IAttack 
+public interface IAttack : IComponent
 {
     IEnumerator cooldownForNextAttack();
     void setDamage(float damage);
     void setCooldown(float cooldown);
-    void enable();
-    void disable();
     void attack();
 }

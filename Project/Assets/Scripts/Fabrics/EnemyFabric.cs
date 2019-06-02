@@ -10,7 +10,7 @@ public class EnemyFabric : MonoBehaviour
     [SerializeField] private GameObject bunnyPrefab;
 
 
-    Transform target;
+    Transform player;
 
    
 
@@ -22,54 +22,51 @@ public class EnemyFabric : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public List<IEnemy> spawnImps(int level)
+
+    public List<IEnemy> spawnEnemies(int level)
     {
 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameController.instance.getPlayerTransform();
 
         List<IEnemy> listOfEnemies = new List<IEnemy>();
-        //TODO decide how many imps we want in each level
-        int num = 1;
-        if(level>=4) num++;
-        //if(level>=5) num++;
-        if(level>=6) num++;
+        int amountOfEnemies = 1;
+        if(level>=4) amountOfEnemies = 2;
+        if(level>=6) amountOfEnemies = 3;
 
-        for(int i = 0; i < num; i++) {
-            Vector3 random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
-            while(Vector3.Distance(random, target.position) < 5) {
-                random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
-            }
-
-
-            listOfEnemies.Add(Instantiate(impPrefab, random, Quaternion.identity).GetComponent<IEnemy>());
-            random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
-            while(Vector3.Distance(random, target.position) < 5) {
-                random = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
-            }
-
-            listOfEnemies.Add(Instantiate(bunnyPrefab, random, Quaternion.identity).GetComponent<IEnemy>());
+        for(int i = 0; i < amountOfEnemies; i++) {
+            listOfEnemies.Add(Instantiate(impPrefab, getRandomPosition(), Quaternion.identity).GetComponent<IEnemy>());
+            listOfEnemies.Add(Instantiate(bunnyPrefab, getRandomPosition(), Quaternion.identity).GetComponent<IEnemy>());
         }
 
         return listOfEnemies;
     }
 
-    public List<IEnemy> spawnImps(GameDataSerializable data)
+
+
+
+    public List<IEnemy> spawnEnemies(GameDataSerializable data)
     {
         List<IEnemy> listOfEnemies = new List<IEnemy>();        
         float[][] bunnyPositions = data.bunnyPositions, impPositions = data.impPositions;
-        Debug.Log("El tamaño de BUNNY es: " + bunnyPositions.Length);
-        Debug.Log("El tamaño de IMP es: " + impPositions.Length);
         for(int i = 0; i < impPositions.Length; i++) {
             listOfEnemies.Add(Instantiate(impPrefab, new Vector3(impPositions[i][0], impPositions[i][1], impPositions[i][2]), Quaternion.identity).GetComponent<IEnemy>()); 
-            Debug.Log("Creando prefab de IMP");
         }
 
         for(int i = 0; i < bunnyPositions.Length; i++) {
             listOfEnemies.Add(Instantiate(bunnyPrefab, new Vector3(bunnyPositions[i][0], bunnyPositions[i][1], bunnyPositions[i][2]), Quaternion.identity).GetComponent<IEnemy>());            
-            Debug.Log("Creando prefab de Bunny");
         }
 
         return listOfEnemies;
     }
-    
+
+    private Vector3 getRandomPosition()
+    {
+        Vector3 position = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
+        while (Vector3.Distance(position, player.position) < 5)
+        {
+            position = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-9.0f, 9.0f), 0);
+        }
+
+        return position;
+    }
 }

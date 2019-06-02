@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AAttack : MonoBehaviour, IAttack, IComponent
+public abstract class AAttack : MonoBehaviour, IAttack
 {
    protected float damage;
     protected float cooldown = 1f;

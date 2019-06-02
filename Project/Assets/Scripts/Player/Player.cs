@@ -34,7 +34,7 @@ public class Player : MonoBehaviour, IPlayer
 
     public Vector2 getPosition() { return transform.position; }
     public void setHearts(int hearts) { this.hearts = hearts; }
-public int getHearts() { return this.hearts; }
+    public int getHearts() { return this.hearts; }
 
 
     void Awake ()
@@ -122,14 +122,14 @@ public int getHearts() { return this.hearts; }
 
     public void disableInputs()
     {
-        foreach (IComponent com in components)
-            com.disable();
+        foreach (IComponent component in components)
+            component.disable();
     }
 
     public void enableInputs()
     {
-        foreach (IComponent com in components)
-            com.enable();
+        foreach (IComponent component in components)
+            component.enable();
     }
 
     public void updateHealthFromLoadGameData(int hearts, float damage) {

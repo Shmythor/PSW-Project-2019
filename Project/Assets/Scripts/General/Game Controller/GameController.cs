@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int level, caloriesThisLevel, caloriesToWin, lastLevel = 6;
 
     [Header("Player")]
+    [SerializeField] private GameObject playerGameObject;
     [SerializeField] private IPlayer player;
     [SerializeField] private int calories, caloriesToRestore;    
 
@@ -27,12 +28,12 @@ public class GameController : MonoBehaviour
 
 
 
-    private bool loadOrNot = true;
 
     public void setLevel(int level){ this.level = level; }
     public int getLevel() { return level; }
     public bool isIsLastLevel() { return level == lastLevel ? true : false; }
     public void setCaloriesToZero() { calories = 0; } /* For exiting to the menu */
+    public Transform getPlayerTransform() { return playerGameObject.transform; }
 
 
     
@@ -46,8 +47,8 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
 
 
-        player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
-
+        playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        player = playerGameObject.transform.GetComponent<IPlayer>();
         this.level = 1;
         totalEnergiesPicked = 0;
         totalHeartsPicked = 0;
@@ -150,7 +151,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(enemy);
         }
-        enemies = EnemyFabric.instance.spawnImps(level);        
+        enemies = EnemyFabric.instance.spawnEnemies(level);        
     }
 
     private void spawnEnemies(GameDataSerializable data) {  
@@ -159,7 +160,7 @@ public class GameController : MonoBehaviour
             Destroy(enemy);
         }     
        
-        enemies = EnemyFabric.instance.spawnImps(data);
+        enemies = EnemyFabric.instance.spawnEnemies(data);
     }
 
     #region Player stats' methods

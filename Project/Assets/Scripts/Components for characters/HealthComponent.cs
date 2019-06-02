@@ -59,20 +59,18 @@ public class HealthComponent : AComponent
         if (invincible)
             return;
         damage += damageTaken;
-
-        if(damage > 0 && damage < 40) sounds.Add(SoundsEnum.soundEffect.greedy_hurt1);
-        if(damage > 41 && damage < 70) sounds.Add(SoundsEnum.soundEffect.greedy_hurt2);
-        if(damage > 71) sounds.Add(SoundsEnum.soundEffect.greedy_hurt3);
+        addPlayerDamageSound();
 
         if (damage >= 100)
         {
             hearts--;
             sounds.Add(SoundsEnum.soundEffect.ui_heartLoose);
-            if (isDead()) {
+            if (isDead())
+            {
                 sounds.Add(SoundsEnum.soundEffect.greedy_death);
                 character.die();
             }
-                              
+
             this.damage = 0;
         }
         updatePlayerInfo(); // Only if it's the player
@@ -82,7 +80,12 @@ public class HealthComponent : AComponent
         // TODO invicible
     }
 
-
+    private void addPlayerDamageSound()
+    {
+        if (damage > 0 && damage < 40) sounds.Add(SoundsEnum.soundEffect.greedy_hurt1);
+        if (damage > 41 && damage < 70) sounds.Add(SoundsEnum.soundEffect.greedy_hurt2);
+        if (damage > 71) sounds.Add(SoundsEnum.soundEffect.greedy_hurt3);
+    }
 
     public void restoreHealth()
     {
@@ -102,13 +105,12 @@ public class HealthComponent : AComponent
     /* ONLY FOR PLAYER  */
     private void updatePlayerInfo()
     {
-
+        if (player == null) { return; }
+        player.setHearts(hearts);
         if (isDead()) {return;}
         /*      array from sounds         */
         SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
-        if (player == null) { return;}
-
-        player.setHearts(hearts);
+       
         GameController.instance.updatePlayerHealth(hearts, damage, arraySounds);
         sounds.Clear();
     }
