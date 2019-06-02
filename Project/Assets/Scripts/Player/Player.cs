@@ -137,6 +137,17 @@ public int getHearts() { return this.hearts; }
         healthCom.setDamage(damage);
     }
 
+    
+    public void increaseSpeedForXSeconds(float speedRate, int seconds) {
+        StartCoroutine(logicOfIncreaseSpeed(speedRate, seconds));
+    } 
+
+    private IEnumerator logicOfIncreaseSpeed(float speedRate, int seconds) {
+        float oldSpeed = this.speed;
+        mvCom.setSpeed(oldSpeed + (oldSpeed * speedRate));
+        yield return new WaitForSeconds(seconds);
+        mvCom.setSpeed(oldSpeed);
+    }
 
 
     

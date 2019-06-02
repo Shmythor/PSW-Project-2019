@@ -11,15 +11,8 @@ public class GameController : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private IPlayer player;
-    private int calories, caloriesToRestore, fruitsToEat, fruitsEaten;    
-
-    
-
-
-    private int totalEnergiesPicked, totalHeartsPicked;
-
-
-
+    private int calories, caloriesToRestore, fruitsToEat, fruitsEaten, totalEnergiesPicked, totalHeartsPicked;   
+  
     /*          Other          */
     private List<IEnemy> enemies;
 
@@ -211,7 +204,11 @@ public class GameController : MonoBehaviour
         this.totalEnergiesPicked++;
         player.restoreDamageTaken();
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.ui_damageRestored);
-    }   
+    }  
+
+    public void updateSpeed(float speed, int seconds) {
+        player.increaseSpeedForXSeconds(speed, seconds);
+    } 
 
     #endregion
 

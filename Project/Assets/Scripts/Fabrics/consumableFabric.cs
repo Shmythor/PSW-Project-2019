@@ -34,8 +34,6 @@ public class consumableFabric : MonoBehaviour
             spawnConsumablesOf(consumable);
         }
 
-        Debug.Log("Tenemos que comer: " + numOfFruitsSpawned + " frutas");
-
         return numOfFruitsSpawned;
     }
 
@@ -65,6 +63,9 @@ public class consumableFabric : MonoBehaviour
                 break;
             case "Heart":
                 spawnHearts(consumable);
+                break;
+            case "VelocityPotion":
+                spawnVelocityPotions(consumable);
                 break;
         }
     }
@@ -104,6 +105,14 @@ public class consumableFabric : MonoBehaviour
                     contHearts++;
                 }       
             }    
+        }    
+    }
+
+    private void spawnVelocityPotions(GameObject velocityPrefab) {       
+        VelocityPotion velocity = velocityPrefab.GetComponent<VelocityPotion>();
+
+        if(getProbabilityOf(velocity.chanceOfSpawn)) {
+           Instantiate(velocityPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
         }    
     }
    

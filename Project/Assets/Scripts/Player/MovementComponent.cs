@@ -23,8 +23,6 @@ public class MovementComponent : AComponent
         this.speed = speed;
     }
 
-
-
     public void movement(float horInput, float verInput, float magnitude)
     {
         this.magnitude = magnitude;
@@ -43,8 +41,9 @@ public class MovementComponent : AComponent
         else dustParticles.SetActive(true);
     }
 
-
-
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
 
     
 }
