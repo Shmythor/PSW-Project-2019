@@ -12,9 +12,6 @@ public class AccountScreen : MonoBehaviour
 
     private TopGameData[] topData;
     
-    /// <summary>
-    /// This function is called when the object becomes enabled and active.
-    /// </summary>
     void OnEnable()
     {
         getTopStats();
@@ -34,8 +31,8 @@ public class AccountScreen : MonoBehaviour
         statsTitle.text = "Stats: Top " + topPosition.ToString();
         
         statsCalories.text = "Total calories: " + topData[3-topPosition].calories.ToString();
-        statsHearts.text = "Total hearts picked: " + topData[3-topPosition].heartsPicked.ToString();
-        statsEnergies.text = "Total energies picked: " + topData[3-topPosition].energiesPicked.ToString();
+        statsHearts.text = "Total hearts: " + topData[3-topPosition].heartsPicked.ToString();
+        statsEnergies.text = "Total energies: " + topData[3-topPosition].energiesPicked.ToString();
     }
 
     public void close() {

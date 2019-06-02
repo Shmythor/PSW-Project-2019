@@ -9,12 +9,14 @@ public class MapController : MonoBehaviour
 
     public static MapController instance = null;
 
-    private void Awake()
+    void Awake()
     {
-        if (instance == null)
+        if (instance == null) {
             instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        } else if (instance != this) {
+            //There can only ever be one instance of this object!!
+            Destroy(gameObject);  
+        }
     }
 
     public void setMap(int level) {

@@ -6,14 +6,15 @@ public class GameWin : AScreen
 {
     [SerializeField] private Animator animator;
 
-    private void OnEnable() {       
-        UIController.instance.stopTimer();
-        MusicController.instance.pauseMainSong();
+    void OnEnable() {
+        this.callOnEnable();          
+    }
+
+    public override void callOnEnable() {
+        base.callOnEnable();  
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_launch);
         MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.fireworks_explosion);
-        animator.SetBool("lastLevel?", GameController.instance.isIsLastLevel());
-
-        
+        animator.SetBool("lastLevel?", GameController.instance.isIsLastLevel());           
     }
 
     public void nextLevel()

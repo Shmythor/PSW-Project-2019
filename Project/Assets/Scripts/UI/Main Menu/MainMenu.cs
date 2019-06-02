@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
     public GameObject loadScreen, accountScreen;
 
     void Start() {
-        //console.log("Cargan cosas");
         loadScreen.SetActive(false);
         MusicController.instance.playSoundTrack(SoundsEnum.soundTrack.menu_mainMenu);
     }

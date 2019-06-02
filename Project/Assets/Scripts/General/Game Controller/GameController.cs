@@ -7,12 +7,13 @@ public class GameController : MonoBehaviour
 
 
     [Header("Level")]
-    [SerializeField] private int level, caloriesThisLevel, caloriesToWin, lastLevel = 6;
+    [SerializeField] private int level, caloriesThisLevel, lastLevel = 6;
 
     [Header("Player")]
     [SerializeField] private IPlayer player;
-    [SerializeField] private int calories, caloriesToRestore;    
+    private int calories, caloriesToRestore, fruitsToEat, fruitsEaten;    
 
+    
 
 
     private int totalEnergiesPicked, totalHeartsPicked;
@@ -38,12 +39,14 @@ public class GameController : MonoBehaviour
     
 
 
-    private void Awake()
+    void Awake()
     {
-        if (instance == null)
+        if (instance == null) {
             instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        } else if (instance != this) {
+            //There can only ever be one instance of this object!!
+            Destroy(gameObject);  
+        }
 
 
         player = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<IPlayer>();
@@ -65,19 +68,21 @@ public class GameController : MonoBehaviour
 
         if (this.level > 0)
         {
-            
             /* Set map */        
             MapController.instance.setMap(this.level);
 
             /* Set Greedy */
-            //RND SPAWN?
             player.enableInputs();
             player.restoreHealth(); /* updates UI elements as well */
 
             /* Spawn Consumables */
             caloriesThisLevel = 0;
             caloriesToRestore = 0;
-            spawnConsumables();
+            fruitsEaten = 0;
+            fruitsToEat = 0;
+            spawnConsumables();  
+
+             Debug.Log("Tenemos que comer: " + fruitsToEat + " frutas");
 
             /* Spawn Enemies */            
             spawnEnemies();
@@ -103,15 +108,17 @@ public class GameController : MonoBehaviour
         MapController.instance.setMap(level);
 
         /* Set Greedy */        
-        //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0.79f, -5.99f,0);
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(data.greedyPosition[0], data.greedyPosition[1], data.greedyPosition[2]);
+        //GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0.79f, -5.99f,0);
         player.updateHealthFromLoadGameData(data.hearts, data.damage);
         player.enableInputs();
 
         /* Spawn Consumables */        
         caloriesThisLevel = 0;
         caloriesToRestore = 0;
-        spawnConsumables(data);
+        fruitsEaten = data.fruitsEaten;
+        fruitsToEat = data.fruitsToEat;
+        spawnConsumables(data); 
 
         /* Spawn Enemies */            
         spawnEnemies(data);
@@ -128,37 +135,21 @@ public class GameController : MonoBehaviour
     }    
     
     private void spawnConsumables()
-    {
-        foreach (GameObject consumable in GameObject.FindGameObjectsWithTag("Consumable"))
-        {
-            Destroy(consumable);
-        }        
-        caloriesToWin = consumableFabric.instance.spawnConsumables(level);        
+    {      
+        fruitsToEat = consumableFabric.instance.spawnConsumables(level);        
     }
 
     private void spawnConsumables(GameDataSerializable data)
     {
-         foreach (GameObject consumable in GameObject.FindGameObjectsWithTag("Consumable"))
-        {
-            Destroy(consumable);
-        }  
-        caloriesToWin = consumableFabric.instance.spawnConsumables(data);
+        consumableFabric.instance.spawnConsumables(data);
     }
 
     private void spawnEnemies() {
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            Destroy(enemy);
-        }
+        
         enemies = EnemyFabric.instance.spawnImps(level);        
     }
 
     private void spawnEnemies(GameDataSerializable data) {  
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            Destroy(enemy);
-        }     
-       
         enemies = EnemyFabric.instance.spawnImps(data);
     }
 
@@ -182,8 +173,10 @@ public class GameController : MonoBehaviour
     }
 
 
-    public void consumeCalories(int calories)
+    public void consumeCalories(int calories, bool isFruit)
     {
+        if(isFruit) {fruitsEaten++;}
+
         this.calories += calories;
         caloriesThisLevel += calories;
         caloriesToRestore += calories;
@@ -193,15 +186,16 @@ public class GameController : MonoBehaviour
         }
 
         UIController.instance.setCalories(this.calories);
-
-        float rndSound = Random.Range(1f, 3f);
-
-        if(rndSound <= 1) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
-        if(rndSound>1 && rndSound<= 2) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
-        if(rndSound>2 && rndSound<= 3) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);      
         
+        if(isFruit) {
+            float rndSound = Random.Range(1f, 3f);
+
+            if(rndSound <= 1) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat1);      
+            if(rndSound>1 && rndSound<= 2) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat2);
+            if(rndSound>2 && rndSound<= 3) MusicController.instance.playSoundEffect(SoundsEnum.soundEffect.greedy_eat3);      
+        }
         /* If the player has consumed all the fruits invoke the gameWin method      */
-        if(caloriesThisLevel == caloriesToWin)
+        if(fruitsEaten >= fruitsToEat)
         {
             UIController.instance.GameWin();
         }
@@ -245,6 +239,8 @@ public class GameController : MonoBehaviour
             this.level,
             UIController.instance.getHearts(),
             UIController.instance.getCalories(),
+            this.fruitsEaten,
+            this.fruitsToEat,
             UIController.instance.getDamage(),
             UIController.instance.getTime()
         )); 
