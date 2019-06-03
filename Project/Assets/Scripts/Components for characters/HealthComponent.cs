@@ -73,7 +73,7 @@ public class HealthComponent : AComponent
 
             this.damage = 0;
         }
-        updatePlayerInfo(); // Only if it's the player
+        updatePlayerInfo(); /* Only if it's the player */
 
 
         //invincible = true;
@@ -110,7 +110,6 @@ public class HealthComponent : AComponent
         if (isDead()) {return;}
         /*      array from sounds         */
         SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
-       
         GameController.instance.updatePlayerHealth(hearts, damage, arraySounds);
         sounds.Clear();
     }
