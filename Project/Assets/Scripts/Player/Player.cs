@@ -34,7 +34,9 @@ public class Player : MonoBehaviour, IPlayer
 
     public Vector2 getPosition() { return transform.position; }
     public void setHearts(int hearts) { this.hearts = hearts; }
+    public void setSpeed(float speed) { this.speed = speed; }
     public int getHearts() { return this.hearts; }
+    public float getSpeed() { return speed; }
 
 
     void Awake ()

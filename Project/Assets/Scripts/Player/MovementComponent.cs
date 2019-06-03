@@ -14,7 +14,7 @@ public class MovementComponent : AComponent
     /*          Stats          */
     private float speed;
 
-
+    public void setSpeed(float speed){ this.speed = speed; }
     public void setDustParticles(GameObject dust) { dustParticles = dust; }
 
     public MovementComponent(Rigidbody2D rb2d, float speed)
@@ -41,9 +41,7 @@ public class MovementComponent : AComponent
         else dustParticles.SetActive(true);
     }
 
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
+    
 
     
 }

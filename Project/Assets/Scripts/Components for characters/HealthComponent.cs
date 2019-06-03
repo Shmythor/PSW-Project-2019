@@ -26,7 +26,7 @@ public class HealthComponent : AComponent
     public void setPlayer(IPlayer player) { this.player = player; }
     public void setHearts(int hearts) { this.hearts = hearts; }
     public void setDamage(float damage) { this.damage = damage; }
-
+    public int getHearts() { return hearts; }
 
     /*          Default constructor          */
     public HealthComponent(ICharacter character)
@@ -44,10 +44,7 @@ public class HealthComponent : AComponent
         this.hearts = hearts;
         this.timeInvincible = timeInivcibly;
     }
-
-
-
-
+    
     /*
         Can not recive damage if the character is already invicible
         If damage is more than health the character has, it takes one heart and increases the health by 100
@@ -103,7 +100,6 @@ public class HealthComponent : AComponent
         if (isDead()) return;
         /*      array from sounds         */
         SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
-       
         GameController.instance.updatePlayerHealth(hearts, damage, arraySounds);
         sounds.Clear();
     }
