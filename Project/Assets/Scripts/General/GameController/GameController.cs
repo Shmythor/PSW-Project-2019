@@ -202,8 +202,8 @@ public class GameController : MonoBehaviour
 
     }
 
-    
 
+    
         private void applyLogicOfUpdateCalories()
         {
             /* Every 100 calories consumed restore all damage of Greedy */
@@ -303,9 +303,9 @@ public class GameController : MonoBehaviour
         SaveLoad.saveTopGameDataAt(topData[0], SaveLoad.paths.top1);
         SaveLoad.saveTopGameDataAt(topData[1], SaveLoad.paths.top2);
         SaveLoad.saveTopGameDataAt(topData[2], SaveLoad.paths.top3);
-    }
+    } 
 
-  
+
 
         private int compareTo(TopGameData old, TopGameData nw) {
             if (old.calories == nw.calories) {
