@@ -26,7 +26,7 @@ public class HealthComponent : AComponent
     public void setPlayer(IPlayer player) { this.player = player; }
     public void setHearts(int hearts) { this.hearts = hearts; }
     public void setDamage(float damage) { this.damage = damage; }
-
+    public int getHearts() { return hearts; }
 
     /*          Default constructor          */
     public HealthComponent(ICharacter character)
