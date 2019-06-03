@@ -10,7 +10,7 @@ public class EnemyFabric : MonoBehaviour
     [SerializeField] private GameObject bunnyPrefab;
 
 
-    Transform player;
+    private Transform player;
 
    
     public static EnemyFabric instance = null;
