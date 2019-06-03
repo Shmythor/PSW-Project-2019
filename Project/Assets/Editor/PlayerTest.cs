@@ -7,33 +7,19 @@ using UnityEngine.TestTools;
 namespace Tests
 {
     public class PlayerTest
-    {
-        static GameObject playerGameObject = new GameObject("player");
-        Player player = playerGameObject.AddComponent<Player>();
+    {      
         
-        
-
-        [UnityTest]
-        public IEnumerator PlayerTestWithEnumeratorPasses()
-        {
-
-            yield return null;
-        }
-
         [Test]
         public void player_test_initial_variables()
         {
-            HealthComponent healths = new HealthComponent(player);
+            GameObject playerGameObject = new GameObject("player");
+            Player player = playerGameObject.AddComponent<Player>();
             Assert.AreEqual(3, player.getHearts());
-            player.setHearts(2);
-            Assert.AreEqual(2, player.getHearts());
             Assert.AreEqual(4f, player.getSpeed());
-            player.setSpeed(3f);
-            Assert.AreEqual(3f, player.getSpeed());
         }
 
         [Test]
-        public void player_test_movement()
+        public void player_movement_test()
         {
             Rigidbody2D rb2d = new GameObject("Test movement").AddComponent<Rigidbody2D>();
             rb2d.gravityScale = 0f;
@@ -44,15 +30,32 @@ namespace Tests
         }
 
         [Test]
-        public void player_test_damage()
+        public void player_damage_test()
         {
-            ICharacter character = new Bunny();
-            HealthComponent healths = new HealthComponent(character);
+            Player playerTest = new GameObject("Damage test").AddComponent<Player>();
+            HealthComponent healths = new HealthComponent(playerTest);
             healths.reciveDamage(100);
             Assert.AreEqual(2, healths.getHearts());
         }
 
-        
+       [Test]
+        public void enemyNumber_spawn_by_level_test()
+        {
 
+            GameController gc = new GameController();
+            EnemyFabric enemyFabric = new GameObject("Enemy Spawn test").AddComponent<EnemyFabric>();
+            
+            List<IEnemy> enemiesList = new List<IEnemy>();
+            enemiesList = enemyFabric.spawnEnemies(1);         
+            Assert.AreEqual(2,enemiesList.Count);
+
+            enemiesList.Clear();
+            enemiesList = enemyFabric.spawnEnemies(4);
+            Assert.AreEqual(4, enemiesList.Count);
+
+            enemiesList.Clear();
+            enemiesList = enemyFabric.spawnEnemies(6);
+            Assert.AreEqual(6, enemiesList.Count);
+        }
     }
 }
