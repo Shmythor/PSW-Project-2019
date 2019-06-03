@@ -53,7 +53,7 @@ public abstract class AEnemy : MonoBehaviour, IEnemy
         animCom = new AnimationController(animator);
         meeleAttack = GetComponentInChildren<MeeleAttack>();
         rangeAttack = GetComponentInChildren<RangeAttack>();
-        if(meeleAttack != null)attackComponents.Add(meeleAttack);
+        if(meeleAttack != null) attackComponents.Add(meeleAttack);
         if(rangeAttack != null) attackComponents.Add(rangeAttack);
     }
 
