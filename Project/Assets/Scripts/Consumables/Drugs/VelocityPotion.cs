@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class VelocityPotion : Drug
 {
-   
     public override int calories => 0;
     public override float chanceOfSpawn => 5f;
     public override string typeOfConsumable => "VelocityPotion";
@@ -24,6 +23,6 @@ public class VelocityPotion : Drug
     private void givePlayerSpeed() {
         GameController.instance.updateSpeed(speedToIncrease, secondsToApplySpeed);
     }
-
-
 }
+
+

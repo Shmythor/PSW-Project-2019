@@ -421,6 +421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8567232113360718948, guid: 7214dc4985aee454a8fb7673ae29c992,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
     - target: {fileID: 8567232113360718947, guid: 7214dc4985aee454a8fb7673ae29c992,
         type: 3}
       propertyPath: orthographic
@@ -435,11 +440,6 @@ PrefabInstance:
         type: 3}
       propertyPath: near clip plane
       value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8567232113360718948, guid: 7214dc4985aee454a8fb7673ae29c992,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 8567232113360718946, guid: 7214dc4985aee454a8fb7673ae29c992,
         type: 3}
@@ -935,6 +935,26 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1540556089}
+    - target: {fileID: 2159730049504735962, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430230143603153045, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: pauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430230143603153045, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430230143603153045, guid: 704bb5665c9b3324c8bf83dd503b36c5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704bb5665c9b3324c8bf83dd503b36c5, type: 3}
 --- !u!1 &1957022312

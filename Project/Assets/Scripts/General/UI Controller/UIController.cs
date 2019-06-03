@@ -8,19 +8,50 @@ using System.Linq;
 
 public class UIController : MonoBehaviour
 {
-
-    /*          Singleton          */
-    public static UIController instance = null;
-    private int calories, cont, hearts;
-    private float damage;
     [Header("Referencess")]
     [SerializeField] private Text heartText, caloryText;
     [SerializeField] private SimpleHealthBar healthBar;
     [SerializeField] private UITimer UITimer;
 
-     [Header("UI")]
+    [Header("UI")]
     [SerializeField] private GameObject gamewinScreen, gameoverScreen, pauseScreen, saveScreen;
 
+
+      /*          Singleton          */
+    public static UIController instance = null;
+
+    #region Setters & Getters 
+
+    private int calories;
+    public int Calories {
+        get => calories;
+        set {
+            calories = value;
+            caloryText.text = calories.ToString();
+        }
+    }
+
+    private int hearts;
+    public int Hearts {
+        get => hearts;
+        set {
+            hearts = value;
+            heartText.text = hearts.ToString();
+        }
+    }
+
+    private float damage;
+    public float Damage {
+        get => damage;
+        set {
+            damage = value;
+            healthBar.UpdateBar(100 - this.damage, 100);
+        }
+    }
+
+
+    #endregion
+   
     void Awake()
     {
         if (instance == null) {
@@ -31,67 +62,31 @@ public class UIController : MonoBehaviour
         }
     }
 
-    void setCaloriesText() { caloryText.text = calories.ToString(); }
-    public void setCalories(int calories) { this.calories = calories; setCaloriesText(); }
-    public void setDamageBar() { healthBar.UpdateBar(100 - this.damage, 100); }
-    public void setHearts(int hearts) { heartText.text = hearts.ToString(); }
-    public void setDamage(float damage){
-        this.damage = damage;
-        setDamageBar();
-    }
+    #region UIContainer
 
-    public int getCalories() {
-        return calories;
-    }
-
-    public int getHearts() {
-        return hearts;
-    }
-
-    public float getDamage() {
-        return damage;
-    }
-
-    public float getTime() {
-       return UITimer.getTime();
-    } 
-
-    public void resetUIStats() {
+    public void initializeTimer() {
         this.stopTimer();
         this.resetTimer();
         this.restartTimer();  
     }
-
     public void initUIStats() {
-        setCalories(0);
-        setDamage(0);
-        setHearts(3);        
+        Calories = 0;
+        Damage = 0;
+        Hearts = 3;    
     }
-
     public void setUIStats(float damage, float time, int hearts, int calories) {
-        setCalories(calories);
-        setDamage(damage);
-        setHearts(hearts);
-        setTime(time);      
+        Calories = calories;
+        Damage = damage;
+        Hearts = hearts;   
+        Time = time;      
     }
-   
-
-    public void restoreHealth() {
-       if(this.hearts < 3) {
-           setHearts(this.hearts + 1);
-        }      
+    public void setUIContainer(bool set) {
+        this.gameObject.SetActive(set);
     }
-
-    public void restoreEnergy() {
-        setDamage(0);
-    }
-
-    public void pauseButton() {
-        pauseGame(true);
-    }
-
     
-    #region UI SCREENS   
+    #endregion    
+
+    #region UIScreens: active & inactive   
 
     public void setUIScreens(bool set)
     {
@@ -99,12 +94,7 @@ public class UIController : MonoBehaviour
         gamewinScreen.SetActive(set);
         pauseScreen.SetActive(set);
         saveScreen.SetActive(set);        
-    }
-
-    public void setUIContainer(bool set) {
-        this.gameObject.SetActive(set);
-    }
-    
+    }    
     public void GameOver()
     {       
         pauseGame(false);
@@ -112,7 +102,6 @@ public class UIController : MonoBehaviour
         gameoverScreen.SetActive(true);
         gameoverScreen.GetComponent<GameOver>().setCaloriesText(calories);        
     }
-
     public void GameWin()
     {
         pauseGame(false);
@@ -124,11 +113,10 @@ public class UIController : MonoBehaviour
         gamewinScreen.GetComponent<AScreen>().setCaloriesText(calories);
 
         /* Si terminamos el último nivel, guardamos puntuaciones */
-        if(GameController.instance.getLevel() == 6) {
+        if(GameController.instance.Level == 6) {
            GameController.instance.saveTopGame();
         }
     }
-
     public void pauseGame(bool activatePauseScreen)
     {
         GameController.instance.stopGame();
@@ -138,12 +126,10 @@ public class UIController : MonoBehaviour
             pauseScreen.GetComponent<AScreen>().setCaloriesText(calories);
         }
     }
-    
     public void saveGame() {
         pauseScreen.SetActive(false);
         saveScreen.SetActive(true);        
     }   
-
     public void resumeGame()
     {
         GameController.instance.restartGame();        
@@ -154,20 +140,25 @@ public class UIController : MonoBehaviour
 
     #endregion
 
-
+    #region Timer methods 
+        
+    private float time;
+    public float Time {
+        get => UITimer.getTime();
+        set {
+            UITimer.setTime(value);
+        }
+    }
     public void resetTimer() {
         UITimer.resetTimer();
     }
-
     public void restartTimer() {
         UITimer.restartTimer();
     }
-
     public void stopTimer() {
         UITimer.stopTimer();
     }
 
-    public void setTime(float time) {
-       UITimer.setTime(time);
-    }
+    #endregion
+
 }

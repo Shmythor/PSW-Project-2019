@@ -11,11 +11,11 @@ public class Grape : Fruit
 
     public override int calories
     {
-        get => setPropsByType();
-        set => calories = setPropsByType();
+        get => getPropsByType();
+        set => calories = getPropsByType();
     }    
 
-    public int setPropsByType() {     
+    public int getPropsByType() {     
         this.GetComponent<SpriteRenderer>().sprite = sprites[this.type];
         
         if(this.type == 0) {                        

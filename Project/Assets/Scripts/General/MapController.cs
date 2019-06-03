@@ -22,14 +22,11 @@ public class MapController : MonoBehaviour
     public void setMap(int level) {
         this.activeMap = level - 1; 
 
-        for(int i = 0; i < maps.Length; i++)
-        {
+        for(int i = 0; i < maps.Length; i++) {
             if(i != this.activeMap) maps[i].SetActive(false);
         }
 
-        maps[this.activeMap].SetActive(true);
-        
-        
+        maps[this.activeMap].SetActive(true);       
     }
 
     

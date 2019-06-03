@@ -11,15 +11,13 @@ public class LevelController : MonoBehaviour
 
     private GameDataSerializable data;
 
-    void Awake()
-    {
+    void Awake() {
         if (instance == null) {
             instance = this;
         } else if (instance != this) {
             //There can only ever be one instance of this object!!
             Destroy(gameObject);  
         }
-
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);        
     }

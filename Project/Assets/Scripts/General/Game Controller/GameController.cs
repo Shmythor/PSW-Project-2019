@@ -22,11 +22,11 @@ public class GameController : MonoBehaviour
     /*          Singleton          */
     public static GameController instance = null;
 
-
-
-
-    public void setLevel(int level){ this.level = level; }
-    public int getLevel() { return level; }
+    public int Level {
+        get => this.level;
+        set => this.level = value;
+    }
+    
     public bool isIsLastLevel() { return level == lastLevel ? true : false; }
     public void setCaloriesToZero() { calories = 0; } /* For exiting to the menu */
     public Transform getPlayerTransform() { return playerGameObject.transform; }
@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
         else
             UIController.instance.setUIContainer(false);        
     }
-    
+
     public void startLevel(GameDataSerializable data)
     {
         initializeVariables(data);
@@ -84,9 +84,7 @@ public class GameController : MonoBehaviour
 
         /* Set music */
         MusicController.instance.playMainSong();
-    }
-
-    
+    }    
 
     #region StartLevel - refactor methods
 
@@ -98,8 +96,12 @@ public class GameController : MonoBehaviour
         
             enemies = new List<IEnemy>();     
         }
+
         private void initializeVariables(int level) {
             this.level = level;
+
+            playerGameObject = GameObject.FindGameObjectWithTag("Player");
+            player = playerGameObject.transform.GetComponent<IPlayer>();         
 
             if(level == 1) {
                 totalEnergiesPicked = 0;
@@ -111,8 +113,12 @@ public class GameController : MonoBehaviour
             fruitsEaten = 0;
             fruitsToEat = 0;
         }
+
         private void initializeVariables(GameDataSerializable data) {
             this.level = data.level;
+
+            playerGameObject = GameObject.FindGameObjectWithTag("Player");
+            player = playerGameObject.transform.GetComponent<IPlayer>();         
 
             this.calories = data.calories;   
             caloriesThisLevel = 0;
@@ -137,8 +143,8 @@ public class GameController : MonoBehaviour
         private void initializeUI()
         {
             UIController.instance.setUIContainer(true);
-            UIController.instance.resetUIStats();
-            UIController.instance.setCalories(this.calories);
+            UIController.instance.initializeTimer();
+            UIController.instance.Calories = this.calories;
 
             UIController.instance.setUIScreens(false);
         }
@@ -158,7 +164,6 @@ public class GameController : MonoBehaviour
         {
             consumableFabric.instance.spawnConsumables(data);
         }
-
         private void spawnEnemies() {        
             enemies = EnemyFabric.instance.spawnEnemies(level);        
         }
@@ -171,21 +176,19 @@ public class GameController : MonoBehaviour
     
     #region Player stats' methods
     public void updatePlayerHealth(int hearts, float damage, SoundsEnum.soundEffect[] sounds) {       
-        
-        UIController.instance.setHearts(hearts);
-        UIController.instance.setDamage(damage);         
+        UIController.instance.Hearts = hearts;
+        UIController.instance.Damage = damage;         
 
-        foreach (SoundsEnum.soundEffect sound in sounds)
-        {
+        foreach (SoundsEnum.soundEffect sound in sounds) {
             MusicController.instance.playSoundEffect(sound);
         }   
     }
 
     public void updatePlayerHealth(int hearts, float damage)
     {
-        UIController.instance.setHearts(hearts);
-        UIController.instance.setDamage(damage);
-        UIController.instance.setCalories(calories);
+        UIController.instance.Hearts = hearts;
+        UIController.instance.Damage = damage;
+        UIController.instance.Calories = this.calories;
     }
 
 
@@ -199,6 +202,8 @@ public class GameController : MonoBehaviour
 
     }
 
+    
+
         private void applyLogicOfUpdateCalories()
         {
             /* Every 100 calories consumed restore all damage of Greedy */
@@ -208,7 +213,7 @@ public class GameController : MonoBehaviour
                 contOfCaloriesToRestore -= CALORIES_TO_RESTORE;
             }
 
-            UIController.instance.setCalories(this.calories);
+            UIController.instance.Calories = this.calories;
 
             /* If the player has consumed all the fruits invoke the gameWin method */
             if (fruitsEaten >= fruitsToEat)
@@ -270,12 +275,12 @@ public class GameController : MonoBehaviour
             GameObject.FindGameObjectsWithTag("Enemy"),
             GameObject.FindGameObjectWithTag("Player"),
             this.level,
-            UIController.instance.getHearts(),
-            UIController.instance.getCalories(),
+            UIController.instance.Hearts,
+            UIController.instance.Calories,
             this.fruitsEaten,
             this.fruitsToEat,
-            UIController.instance.getDamage(),
-            UIController.instance.getTime()
+            UIController.instance.Damage,
+            UIController.instance.Time
         )); 
 
         SaveLoad.saveGameDataAt(data, path);
@@ -283,7 +288,7 @@ public class GameController : MonoBehaviour
 
     public void saveTopGame() {
         TopGameData[] topData = SaveLoad.loadAllTopGameData();
-        TopGameData newTGD = new TopGameData(this.totalHeartsPicked, this.totalEnergiesPicked, this.calories, UIController.instance.getTime());
+        TopGameData newTGD = new TopGameData(this.totalHeartsPicked, this.totalEnergiesPicked, this.calories, UIController.instance.Time);
         
         
         for(int i = 0; i<3; i++) {

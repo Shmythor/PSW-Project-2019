@@ -98,7 +98,7 @@ public class consumableFabric : MonoBehaviour
         Heart heart = heartPrefab.GetComponent<Heart>();
         int contHearts = 0;
 
-        if(level > 1) {
+        if(level > 4) {
             for(int i = 0; i < 2; i++) {
                 if(getProbabilityOf(heart.chanceOfSpawn) && maxHearts > contHearts) {
                     Instantiate(heartPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
@@ -110,10 +110,11 @@ public class consumableFabric : MonoBehaviour
 
     private void spawnVelocityPotions(GameObject velocityPrefab) {       
         VelocityPotion velocity = velocityPrefab.GetComponent<VelocityPotion>();
-
-        if(getProbabilityOf(velocity.chanceOfSpawn)) {
-           Instantiate(velocityPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
-        }    
+        if(level > 2) {
+            if(getProbabilityOf(velocity.chanceOfSpawn)) {
+            Instantiate(velocityPrefab, generateRandomVector3(-11f, 11f, -9f, 9f), Quaternion.identity);
+            }   
+        } 
     }
    
     private void spawnGrapes(GameObject grapePrefab) { 
@@ -127,7 +128,7 @@ public class consumableFabric : MonoBehaviour
                 Grape clone = (Grape) Instantiate(grapePrefab, newFruitPosition, Quaternion.identity).GetComponent<Grape>(); 
 
                 clone.setType(spawnType);
-                clone.setPropsByType();
+                clone.getPropsByType();
                 numOfFruitsSpawned++;                 
             }            
         }
@@ -144,7 +145,7 @@ public class consumableFabric : MonoBehaviour
                 Pumpkin clone = (Pumpkin) Instantiate(pumpkinPrefab, newFruitPosition, Quaternion.identity).GetComponent<Pumpkin>();    
 
                 clone.setType(spawnType);
-                clone.setPropsByType();
+                clone.getPropsByType();
                 numOfFruitsSpawned++;            
             }            
         }
@@ -200,7 +201,7 @@ public class consumableFabric : MonoBehaviour
             Grape clone = (Grape) Instantiate(grapePrefab, new Vector3(grapePositions[i][0], grapePositions[i][1], grapePositions[i][2]), Quaternion.identity).GetComponent<Grape>(); 
 
             clone.setType(spawnType);
-            clone.setPropsByType();
+            clone.getPropsByType();
         }   
 
     }
@@ -212,7 +213,7 @@ public class consumableFabric : MonoBehaviour
             Pumpkin clone = (Pumpkin) Instantiate(pumpkinPrefab, new Vector3(pumpkinPositions[i][0], pumpkinPositions[i][1], pumpkinPositions[i][2]), Quaternion.identity).GetComponent<Pumpkin>();   
 
             clone.setType(spawnType);
-            clone.setPropsByType();
+            clone.getPropsByType();
         } 
 
     }

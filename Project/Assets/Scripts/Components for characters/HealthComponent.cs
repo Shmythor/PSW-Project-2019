@@ -54,19 +54,16 @@ public class HealthComponent : AComponent
         Starts invicible time
         Checks if the character is dead
     */
-    public void reciveDamage(float damageTaken)
-    {
-        if (invincible)
-            return;
+    public void reciveDamage(float damageTaken) {
+        if (invincible) return;
         damage += damageTaken;
         addPlayerDamageSound();
 
-        if (damage >= 100)
-        {
+        if (damage >= 100) {
             hearts--;
             sounds.Add(SoundsEnum.soundEffect.ui_heartLoose);
-            if (isDead())
-            {
+
+            if (isDead()) {
                 sounds.Add(SoundsEnum.soundEffect.greedy_death);
                 character.die();
             }
@@ -74,10 +71,6 @@ public class HealthComponent : AComponent
             this.damage = 0;
         }
         updatePlayerInfo(); // Only if it's the player
-
-
-        //invincible = true;
-        // TODO invicible
     }
 
     private void addPlayerDamageSound()
@@ -103,11 +96,11 @@ public class HealthComponent : AComponent
 
     /* Send player's status(amount of hearts and damage taken) to GameController */
     /* ONLY FOR PLAYER  */
-    private void updatePlayerInfo()
-    {
-        if (player == null) { return; }
+    private void updatePlayerInfo() {
+        if (player == null) return;
+
         player.setHearts(hearts);
-        if (isDead()) {return;}
+        if (isDead()) return;
         /*      array from sounds         */
         SoundsEnum.soundEffect[] arraySounds = sounds.ToArray();
        
