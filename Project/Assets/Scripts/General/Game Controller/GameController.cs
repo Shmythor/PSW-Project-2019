@@ -67,22 +67,16 @@ public class GameController : MonoBehaviour
     public void startLevel(GameDataSerializable data)
     {
         initializeVariables(data);
-        /* Set map */
+
         MapController.instance.setMap(this.level);
 
-        /* Set Greedy */
         initializePlayer(data);
 
-        /* Spawn Consumables */
         spawnConsumables(data);
-
-        /* Spawn Enemies */
         spawnEnemies(data);
 
-        /* Set UI */
         initializeUI(data);
 
-        /* Set music */
         MusicController.instance.playMainSong();
     }    
 
@@ -158,11 +152,11 @@ public class GameController : MonoBehaviour
     
         private void spawnConsumables()
         {      
-            fruitsToEat = consumableFabric.instance.spawnConsumables(level);        
+            fruitsToEat = ConsumableFabric.instance.spawnConsumables(level);        
         }
         private void spawnConsumables(GameDataSerializable data)
         {
-            consumableFabric.instance.spawnConsumables(data);
+            ConsumableFabric.instance.spawnConsumables(data);
         }
         private void spawnEnemies() {        
             enemies = EnemyFabric.instance.spawnEnemies(level);        
@@ -195,11 +189,8 @@ public class GameController : MonoBehaviour
     public void consumeCalories(int calories, bool isFruit)
     {
         updateCalories(calories, isFruit);
-
-        if (isFruit) MusicController.instance.playConsumeCaloriesSoundEffect();
-        
+        if (isFruit) MusicController.instance.playConsumeCaloriesSoundEffect();        
         applyLogicOfUpdateCalories();
-
     }
 
 
@@ -322,6 +313,5 @@ public class GameController : MonoBehaviour
         }
     
     #endregion
-
 
 }

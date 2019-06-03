@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class consumableFabric : MonoBehaviour
+public class ConsumableFabric : MonoBehaviour
 {
     public List<GameObject> ConsumablePrefabs;
-    public static consumableFabric instance = null;
+    public static ConsumableFabric instance = null;
     private int maxHearts, maxEnergy, spawnType;
 
     private int level, numOfFruitsSpawned;

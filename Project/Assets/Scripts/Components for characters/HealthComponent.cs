@@ -29,20 +29,17 @@ public class HealthComponent : AComponent
     public int getHearts() { return hearts; }
 
     /*          Default constructor          */
-    public HealthComponent(ICharacter character)
-    {
+    public HealthComponent(ICharacter character) {
         this.character = character;
 
     }
 
-
     /*          Constructor with parametrs          */
-    public HealthComponent(ICharacter character, int hearts, float damage, float timeInivcibly)
-    {
+    public HealthComponent(ICharacter character, int hearts, float damage, float timeInvincible) {
         this.character = character;
         this.damage = damage;
         this.hearts = hearts;
-        this.timeInvincible = timeInivcibly;
+        this.timeInvincible = timeInvincible;
     }
     
     /*
@@ -110,10 +107,7 @@ public class HealthComponent : AComponent
         updatePlayerInfo();
 
     }
-
-
-
-
+    
     private bool isDead()
     {
         return damage >= 100 && hearts <= 0 ? true : false;

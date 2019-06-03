@@ -17,11 +17,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject gamewinScreen, gameoverScreen, pauseScreen, saveScreen;
 
 
-      /*          Singleton          */
+    /*          Singleton          */
     public static UIController instance = null;
 
     #region Setters & Getters 
-
     private int calories;
     public int Calories {
         get => calories;
@@ -48,8 +47,6 @@ public class UIController : MonoBehaviour
             healthBar.UpdateBar(100 - this.damage, 100);
         }
     }
-
-
     #endregion
    
     void Awake()
